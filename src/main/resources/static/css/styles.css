@@ -1,0 +1,14 @@
+
+.black{
+    color: black;
+}
+
+.collapse-item:hover{
+    color: black !important;
+}
+
+
+textarea{
+    width: 100%;
+    border-radius: 5px;
+}
