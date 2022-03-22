@@ -1,5 +1,7 @@
 package com.example.demo.service.db;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ public class UsuarioServiceJpa implements IUsuarioService {
 	UserRepository repoUsuario;
 	
 	@Override
-	public IDatosUsuario datosUsuario(Integer idUsuario) {
+	public List<IDatosUsuario> datosUsuario(Integer idUsuario) {
 		// TODO Auto-generated method stub
 		return repoUsuario.getDatosUsuarios(idUsuario);
 	}

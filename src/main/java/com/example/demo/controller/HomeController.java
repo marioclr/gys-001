@@ -1,8 +1,11 @@
 package com.example.demo.controller;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.model.IDatosUsuario;
@@ -20,13 +23,13 @@ public class HomeController {
 	}
 	
 	@GetMapping("/")
-	public String mostrarHome(HttpSession session) {
+	public String mostrarHome(HttpSession session, Model modelo) {
 		if (session.getAttribute("usuario") == null){
-			IDatosUsuario usuario = servicioDeUsuario.datosUsuario(1);	
-			System.out.println("Usuario: " + usuario.getNombre());
-			System.out.println("Perfil: " + usuario.getNombrePerfil());
-			System.out.println("Opción: " + usuario.getNombreOpcion());
-			session.setAttribute("usuario", usuario.getNombre());
+			List<IDatosUsuario> usuarios = servicioDeUsuario.datosUsuario(2);
+			modelo.addAttribute("permisos", usuarios);
+			System.out.println(usuarios);
+			
+
 		}
 		return "blank";
 	}

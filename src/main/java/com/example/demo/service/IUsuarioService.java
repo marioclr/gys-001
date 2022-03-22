@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.IDatosUsuario;
 
 public interface IUsuarioService {
 
-	IDatosUsuario datosUsuario(Integer idUsuario);
+	List<IDatosUsuario> datosUsuario(Integer idUsuario);
 }

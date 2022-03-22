@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -17,5 +19,5 @@ public interface UserRepository extends JpaRepository<Usuario, Integer> {
 			+ "  And U.id_empleado=E.id_empleado\r\n"
 			+ "  And U.IdUsuario=?\r\n"
 			+ "Order by U.IdUsuario, R.IdPerfil, O.IdOpcion", nativeQuery = true)
-	IDatosUsuario getDatosUsuarios(Integer idUsuario);
+	List<IDatosUsuario> getDatosUsuarios(Integer idUsuario);
 }
