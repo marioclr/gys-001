@@ -1,12 +1,11 @@
 
 .black{
-    color: black;
+    color: black !important;
 }
 
 .collapse-item:hover{
     color: black !important;
 }
-
 
 textarea{
     width: 100%;
