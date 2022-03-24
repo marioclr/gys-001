@@ -20,4 +20,6 @@ public interface UserRepository extends JpaRepository<Usuario, Integer> {
 			+ "  And U.IdUsuario=?\r\n"
 			+ "Order by U.IdUsuario, R.IdPerfil, O.IdOpcion", nativeQuery = true)
 	List<IDatosUsuario> getDatosUsuarios(Integer idUsuario);
+	
+	Usuario findByUsername(String username);
 }
