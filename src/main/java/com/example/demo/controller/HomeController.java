@@ -25,10 +25,10 @@ public class HomeController {
 	@GetMapping("/")
 	public String mostrarHome(HttpSession session, Model modelo) {
 		if (session.getAttribute("usuario") == null){
-			List<IDatosUsuario> usuarios = servicioDeUsuario.datosUsuario(3);
+			List<IDatosUsuario> usuarios = servicioDeUsuario.datosUsuario(2);
 			modelo.addAttribute("permisos", usuarios);
 			System.out.println(usuarios);
-			
+	
 
 		}
 		return "blank";
