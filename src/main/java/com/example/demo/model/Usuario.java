@@ -14,105 +14,66 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Usuarios")
+@Table(name = "gys_Usuario")
 public class Usuario {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment MySQL
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idUsuario;
+	private String id_sociedad;
+	private String id_empleado;
 	private String username;
-	private String nombre;
-	private String email;
 	private String password;
-	private Integer estatus;	
-	private Date fechaRegistro;
+	private String id_div_geografica;
+	private Integer estatus;
 
-	// Relacion ManyToMany (Un usuario tiene muchos perfiles)
-	// Por defecto Fetch es FetchType.LAZY
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name = "UsuarioPerfil", // tabla intermedia
-			joinColumns = @JoinColumn(name = "idUsuario"), // foreignKey en la tabla de UsuarioPerfil
-			inverseJoinColumns = @JoinColumn(name = "idPerfil") // foreignKey en la tabla de UsuarioPerfil
-	)
-	//private List<Perfil> perfiles;
-
-	public Integer getId() {
-		return id;
+	public Integer getIdUsuario() {
+		return idUsuario;
 	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
 	}
-
+	public String getId_sociedad() {
+		return id_sociedad;
+	}
+	public void setId_sociedad(String id_sociedad) {
+		this.id_sociedad = id_sociedad;
+	}
+	public String getId_empleado() {
+		return id_empleado;
+	}
+	public void setId_empleado(String id_empleado) {
+		this.id_empleado = id_empleado;
+	}
 	public String getUsername() {
 		return username;
 	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	public String getId_div_geografica() {
+		return id_div_geografica;
+	}
+	public void setId_div_geografica(String id_div_geografica) {
+		this.id_div_geografica = id_div_geografica;
+	}
 	public Integer getEstatus() {
 		return estatus;
 	}
-
 	public void setEstatus(Integer estatus) {
 		this.estatus = estatus;
 	}
 
-	public Date getFechaRegistro() {
-		return fechaRegistro;
-	}
-
-	public void setFechaRegistro(Date fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
-	}
-
-//	public List<Perfil> getPerfiles() {
-//		return perfiles;
-//	}
-//
-//	public void setPerfiles(List<Perfil> perfiles) {
-//		this.perfiles = perfiles;
-//	}
-//	
-//	// Metodo para agregar perfiles
-//	public void agregar(Perfil tempPerfil) {
-//		if (perfiles == null) {
-//			perfiles = new LinkedList<>();
-//		}
-//		perfiles.add(tempPerfil);
-//	}
-
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", username=" + username + ", nombre=" + nombre + ", email=" + email
-				+ ", password=" + password + ", estatus=" + estatus + ", fechaRegistro=" + fechaRegistro + ", perfiles="
-				+ "]";
+		return "Usuario [idUsuario=" + idUsuario + ", id_sociedad=" + id_sociedad + ", id_empleado=" + id_empleado
+				+ ", username=" + username + ", password=" + password + ", id_div_geografica=" + id_div_geografica
+				+ ", estatus=" + estatus + "]";
 	}
-	
 }
