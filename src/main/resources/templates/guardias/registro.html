@@ -1,10 +1,452 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+
+<head th:insert="fragments/head::head-main">
 </head>
-<body>
-<h5>HOLA MUNDO</h5>
+
+<body id="page-top">
+
+    <!-- Div que contienen todos los elementos de la página-->
+    <div id="wrapper" class="text-dark">
+
+        <!-- Sidebar -->
+        <div th:insert="fragments/menu::menu-lateral"></div>
+        <!-- End of Sidebar -->
+
+        <!-- Contenido principal -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <div th:insert="fragments/nav::navbar"></div>
+                <!-- End of Topbar -->
+
+                <!-- Contenido editable por página -->
+                <div class="container-fluid mt-3">
+                    <h2 class="text-center">Registro de guardias</h2>
+                    <div class="row mt-3">
+                        <!-- Columna 1 -->
+                        <div class="col-md-12 col-sm-12 col-lg-4 mt-3">
+                            <div class="card card-primary">
+                                <div class="card-header bg-primary">
+                                    <h4 class="card-title text-center text-white">Criterios de consulta</h4>
+                                </div>
+
+                                <div class="card text-center">
+                                    <div class="card-header">
+                                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link active" id="interno-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#interno" type="button" role="tab"
+                                                    aria-controls="interno" aria-selected="true">Interno</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" id="externo-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#externo" type="button" role="tab"
+                                                    aria-controls="externo" aria-selected="false">Externo</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-content card-body" id="myTabContent">
+                                        <!-- Card interno -->
+                                        <div id="interno" class="tab-pane fade show active" role="tabpanel"
+                                            aria-labelledby="interno-tab">
+                                            <div class="busqueda">
+                                                <form action="" method="post">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label><strong>Empleado:</strong></label>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <input type="text" id="txtNumero" class="form-control text-center">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input type="submit" id="ContentPlaceHolder1_btnConsultar" class="btn btn-primary" value="Consultar">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                            <hr>
+                                            <div class="informacion-int">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label class="fw-bold"><strong>Nombre(s):</strong></label>
+                                                    </div>
+                                                    <div class="col-md-8 mb-3">
+                                                        <span id="ContentPlaceHolder1_lblNombres" class="nombre">José
+                                                            Aleksei</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="fw-bold"><strong>Apellidos:</strong></label>
+                                                    </div>
+                                                    <div class="col-md-8 mb-3">
+                                                        <span id="ContentPlaceHolder1_lblApellidos"
+                                                            class="nombre">Martínez Hernández</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="fw-bold"><strong>RFC:</strong></label>
+                                                    </div>
+                                                    <div class="col-md-8 mb-3">
+                                                        <span id="lblRFC" class="nombre">MAHA980416884</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="fw-bold"><strong>Adscripción:</strong></label>
+                                                    </div>
+                                                    <div class="col-md-8 mb-3">
+                                                        <span id="lblAdscripcion" class="nombre">Subdireccion de
+                                                            personal</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="fw-bold"><strong>Servicio:</strong></label>
+                                                    </div>
+                                                    <div class="col-md-8 mb-3">
+                                                        <span id="lblServicio" class="nombre">Programacion</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="fw-bold"><strong>Puesto:</strong></label>
+                                                    </div>
+                                                    <div class="col-md-8 mb-3">
+                                                        <span id="lblPuesto" class="nombre">Subjefe de
+                                                            departamento</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="fw-bold"><strong>Horario:</strong></label>
+                                                    </div>
+                                                    <div class="col-md-8 mb-3">
+                                                        <span id="lblHorario" class="nombre">09:00 am - 18:00 pm</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="fw-bold"><strong>Nivel:</strong></label>
+                                                    </div>
+                                                    <div class="col-md-8 mb-3">
+                                                        <span id="ContentPlaceHolder1_lblNivel"
+                                                            class="nombre">29/6</span>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="fw-bold"><strong>Tipo Jornada:</strong></label>
+                                                    </div>
+                                                    <div class="col-md-8 mb-3">
+                                                        <span id="lblHoras" class="nombre">Mixta</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Fin de interno -->
+
+                                        <!-- Card Externo -->
+                                        <div id="externo" class="tab-pane fade show" role="tabpanel"
+                                            aria-labelledby="externo-tab">
+                                            <div class="busqueda">
+                                                <form action="" method="post">
+                                                    <div class="row">
+                                                        <div class="col-md-3 col-sm-12">
+                                                            <label><strong>RFC:</strong></label>
+                                                        </div>
+                                                        <div class="col-md-5 col-sm-12">
+                                                            <input type="text" id="txtRFC" class="form-control text-center mb-2" placeholder="Introducir RFC">
+                                                        </div>
+                                                        <div class="col-md-4 col-sm-12">
+                                                            <input type="submit" id="ContentPlaceHolder1_btnConsultaRFC" class="btn btn-primary" value="Consultar">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                            <hr>
+                                            <div class="informacion-ext">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label>Nombre:</label>
+                                                    </div>
+                                                    <div class="col-md-9 mb-3">
+                                                        <span id="lblNombre">Jose Aleksei Martinez Hernandez</span>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <!-- Formulario de externos -->
+                                                <form action="" method="post">
+                                                    <div class="row">
+                                                        <div class="col-lg-4 mb-3">
+                                                            <label><strong>Adscripción</strong></label>
+                                                        </div>
+                                                        <div class="col-lg-8 mb-3">
+                                                            <select class="form-select" id="ddlAscripcion"
+                                                                aria-label="Default select example">
+                                                                <option selected>Seleccione una opcion</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-lg-4 mb-3">
+                                                            <label><strong>Puesto</strong></label>
+                                                        </div>
+                                                        <div class="col-lg-8 mb-3">
+                                                            <select class="form-select" id="ddlPuesto"
+                                                                aria-label="Default select example">
+                                                                <option selected>Seleccione una opcion</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-lg-4 mb-3">
+                                                            <label><strong>Servicio</strong></label>
+                                                        </div>
+                                                        <div class="col-lg-8 mb-3">
+                                                            <select class="form-select" id="ddlServicio"
+                                                                aria-label="Default select example">
+                                                                <option selected>Seleccione una opcion</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-lg-4 mb-3">
+                                                            <label><strong>Nivel/Subnivel</strong></label>
+                                                        </div>
+                                                        <div class="col-lg-8 mb-3">
+                                                            <select class="form-select" id="ddlNivel"
+                                                                aria-label="Default select example">
+                                                                <option selected>Seleccione una opcion</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-lg-4 mb-3">
+                                                            <label><strong>Tipo de jornada</strong></label>
+                                                        </div>
+                                                        <div class="col-lg-8 mb-3">
+                                                            <select class="form-select" id="ddlJornada"
+                                                                aria-label="Default select example">
+                                                                <option selected>Seleccione una opcion</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <button class="btn btn-success">Validar puesto</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+
+                                        </div>
+                                        <!-- Fin de externo -->
+
+                                    </div>
+                                    <hr>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+
+                        <!-- Columna 2 -->
+                        <div class="col-md-12 col-sm-12 col-lg-8 mt-3">
+                            <div class="agregar">
+                                <div class="card card-primary">
+                                    <div class="card-header bg-primary">
+                                        <h4 class="card-title text-center text-white">Criterios de la guardia</h4>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <form action="" method="post">
+                                            <div class="row mt-3">
+                                                <!-- Folio -->
+                                                <div class="col-md-6">
+                                                    <label>Folio de autorización:</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" id="txtFolio" class="form-control">
+                                                </div>
+                                                <!-- Fecha de inicio y fin -->
+                                                <div class="col-xl-2 col-sm-6 mt-3 mb-3">
+                                                    <label>Fecha de inicio:</label>
+                                                </div>
+                                                <div class="col-xl-4 col-sm-6 mt-3 mb-3">
+                                                    <input type="date" id="txtFechaInicio">
+                                                </div>
+                                                <div class="col-xl-2 col-sm-6 mt-3 mb-3">
+                                                    <label>Fecha fin:</label>
+                                                </div>
+                                                <div class="col-xl-4 col-sm-6 mt-3 mb-3">
+                                                    <input type="date" id="txtFechaFin">
+                                                </div>
+                                                <!-- Movimiento -->
+                                                <div class="col-md-6 mb-3">
+                                                    <label>Movimiento:</label>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <select class="form-select" id="ddlMovimiento"
+                                                        aria-label="Default select example">
+                                                        <option selected>Seleccione una opcion</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <!-- Motivo -->
+                                                <div class="col-md-6 mb-3">
+                                                    <label>Motivo:</label>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <select class="form-select" id="ddlMotivo"
+                                                        aria-label="Default select example">
+                                                        <option selected>Seleccione una opcion</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <!-- Riesgos profesionales -->
+                                                <div class="col-md-6 mb-3">
+                                                    <label>Riesgos profesionales:</label>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <select class="form-select" id="ddlRiesgos"
+                                                        aria-label="Default select example">
+                                                        <option selected>Seleccione una opcion</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <!-- Dias/horas -->
+                                                <div class="col-md-6 mb-3">
+                                                    <label>Dias/Horas:</label>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <input type="text" id="txtDias" class="form-control">
+                                                </div>
+                                                <!-- Comentarios -->
+                                                <div class="col-md-6 mb-3">
+                                                    <label>Comentarios:</label>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <textarea id="txtComentarios"></textarea>
+                                                </div>
+                                                <!-- Quincena -->
+                                                <div class="col-md-6 mb-3">
+                                                    <label>Quincena:</label>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <select class="form-select" id="ddlQuincena"
+                                                        aria-label="Default select example">
+                                                        <option selected>Seleccione una opcion</option>
+                                                        <option value="1">One</option>
+                                                        <option value="2">Two</option>
+                                                        <option value="3">Three</option>
+                                                    </select>
+                                                </div>
+                                                <!-- Boton de agregar guardia -->
+                                                <div class="col-md-12">
+                                                    <button type="submit" id="btnAgregarGuardia"
+                                                        class="btn btn-success btn-block">Agregar Guardia</button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr>
+
+                    <!-- Tabla de historial de guardias -->
+                    <div class="row mt-5 mb-5">
+                        <div class="col-md-12 col-sm-12">
+                            <h2 class="text-center mb-5">Historial de guardias</h2>
+                            <div class="table table-responsive-sm">
+                                <table class="table">
+                                    <thead class="table-dark text-center">
+                                        <tr>
+                                            <th>Empleado</th>
+                                            <th>Puesto</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Pago</th>
+                                            <th>Horas</th>
+                                            <th>Importe</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr>
+                                            <td>Dato 1</td>
+                                            <td>Dato 2</td>
+                                            <td>Dato 3</td>
+                                            <td>Dato 4</td>
+                                            <td>Dato 5</td>
+                                            <td>Dato 6</td>
+                                            <td><a class="btn btn-outline-warning">Editar</a></td>
+                                            <td><a class="btn btn-outline-danger">Eliminar</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dato 1</td>
+                                            <td>Dato 2</td>
+                                            <td>Dato 3</td>
+                                            <td>Dato 4</td>
+                                            <td>Dato 5</td>
+                                            <td>Dato 6</td>
+                                            <td><a class="btn btn-outline-warning">Editar</a></td>
+                                            <td><a class="btn btn-outline-danger">Eliminar</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!--  -->
+
+                </div>
+                <!-- Fin del contenido editable por página -->
+
+            </div>
+
+
+            <!-- Footer -->
+            <div th:insert="fragments/footer::pie-pagina"></div>
+
+
+        </div>
+        <!--Fin del div que contiene todos los elementos de la pagina -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+
+
+    <!-- Scroll to Top Button-->
+    <a th:insert="fragments/boton-scroll::boton-scroll-up"></a>
+
+    <!-- Logout Modal-->
+    <div th:insert="fragments/modal :: msgSalir"></div>
+
+    <!-- Scripts -->
+    <div th:insert="fragments/scripts::scripts-js"></div>
+    <!-- Script para animacion de cambio de tarjeta -->
+    <script th:src="@{/js/bootstrap.js}"></script>
+
 </body>
+
 </html>

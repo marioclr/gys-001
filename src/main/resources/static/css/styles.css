@@ -11,3 +11,12 @@ textarea{
     width: 100%;
     border-radius: 5px;
 }
+
+select{
+    width: 100%;
+}
+
+/* Ancho de menu */
+.navbar-nav{
+    height: 100%;
+}
