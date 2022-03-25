@@ -10,7 +10,7 @@ import com.example.demo.model.Usuario;
 
 public interface UserRepository extends JpaRepository<Usuario, Integer> {
 
-	@Query(value ="Select E.Nombre, P.Descripcion NombrePerfil, O.Nombre NombreOpcion \r\n"
+	@Query(value ="Select E.Nombre, P.Descripcion NombrePerfil, O.Nombre NombreOpcion, O.Componente \r\n"
 			+ "From gys_Usuario U, gys_PrivilegiosUsuarios R, gys_Perfil P, gys_Opcion O, m4t_empleados E\r\n"
 			+ "Where U.IdUsuario=R.IdUsuario\r\n"
 			+ "  And P.IdPerfil=R.IdPerfil\r\n"

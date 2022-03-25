@@ -5,5 +5,6 @@ public interface IDatosUsuario {
 	String getNombre();
 	String getNombrePerfil();
 	String getNombreOpcion();
+	String getComponente();
 	
 }

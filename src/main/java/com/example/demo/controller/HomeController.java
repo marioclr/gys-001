@@ -27,14 +27,17 @@ public class HomeController {
 	@GetMapping("/")
 	public String mostrarHome(Authentication authentication, HttpSession session, Model modelo) {
 		String username = authentication.getName();
+		Usuario usuario;
 		
 		if (session.getAttribute("usuario") == null){
-			Usuario usuario = serviceUsuarios.buscarPorUsername(username);
+			usuario = serviceUsuarios.buscarPorUsername(username);
 			session.setAttribute("usuario", usuario);
-			List<IDatosUsuario> usuarios = serviceUsuarios.datosUsuario(usuario.getIdUsuario());
-			modelo.addAttribute("permisos", usuarios);
-			System.out.println(usuarios);
+			System.out.println(usuario);
+		} else {
+			usuario = (Usuario) session.getAttribute("usuario");
 		}
+		List<IDatosUsuario> datosUsuario = serviceUsuarios.datosUsuario(usuario.getIdUsuario());
+		modelo.addAttribute("permisos", datosUsuario);
 		return "blank";
 	}
 
