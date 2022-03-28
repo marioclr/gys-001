@@ -21,19 +21,18 @@
 
                 <!-- Topbar -->
                 <div th:insert="fragments/nav::navbar"></div>
-                <!-- End of Topbar -->
 
                 <!-- Contenido editable por página -->
                 <div class="container-fluid mt-3">
-                    <h2 class="text-center">Registro de guardias</h2>
+                    <h2 class="text-center black">Registro de guardias</h2>
                     <div class="row mt-3">
                         <!-- Columna 1 -->
                         <div class="col-md-12 col-sm-12 col-lg-4 mt-3">
                             <div class="card card-primary">
-                                <div class="card-header bg-primary">
+                                <div class="card-header issste-v">
                                     <h4 class="card-title text-center text-white">Criterios de consulta</h4>
                                 </div>
-
+                                <!-- Cards interna y externa -->
                                 <div class="card text-center">
                                     <div class="card-header">
                                         <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
@@ -58,13 +57,18 @@
                                                 <form action="" method="post">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            <label><strong>Empleado:</strong></label>
+                                                            <label for="txtNumero"><strong>Empleado:</strong></label>
                                                         </div>
-                                                        <div class="col-md-5">
-                                                            <input type="text" id="txtNumero" class="form-control text-center">
+                                                        <div class="col-md-5 mb-2">
+                                                            <input type="text" id="txtNumero"
+                                                                name="ctl00$ContentPlaceHolder1$txtNumero"
+                                                                class="form-control text-center"
+                                                                placeholder="Introduce número" required>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <input type="submit" id="ContentPlaceHolder1_btnConsultar" class="btn btn-primary" value="Consultar">
+                                                            <input type="submit" id="ContentPlaceHolder1_btnConsultar"
+                                                                name="ctl00$ContentPlaceHolder1$btnConsultar"
+                                                                class="btn btn-primary" value="Consultar">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -144,13 +148,18 @@
                                                 <form action="" method="post">
                                                     <div class="row">
                                                         <div class="col-md-3 col-sm-12">
-                                                            <label><strong>RFC:</strong></label>
+                                                            <label for="txtRFC"><strong>RFC:</strong></label>
                                                         </div>
                                                         <div class="col-md-5 col-sm-12">
-                                                            <input type="text" id="txtRFC" class="form-control text-center mb-2" placeholder="Introducir RFC">
+                                                            <input type="text" id="txtRFC"
+                                                                name="ctl00$ContentPlaceHolder1$txtRFC"
+                                                                class="form-control text-center mb-2"
+                                                                placeholder="Introducir RFC">
                                                         </div>
                                                         <div class="col-md-4 col-sm-12">
-                                                            <input type="submit" id="ContentPlaceHolder1_btnConsultaRFC" class="btn btn-primary" value="Consultar">
+                                                            <input type="submit" id="ContentPlaceHolder1_btnConsultaRFC"
+                                                                name="ctl00$ContentPlaceHolder1$btnConsultaRFC"
+                                                                class="btn btn-primary" value="Consultar">
                                                         </div>
                                                     </div>
                                                 </form>
@@ -160,7 +169,7 @@
                                             <div class="informacion-ext">
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                        <label>Nombre:</label>
+                                                        <label>Nombres:</label>
                                                     </div>
                                                     <div class="col-md-9 mb-3">
                                                         <span id="lblNombre">Jose Aleksei Martinez Hernandez</span>
@@ -171,12 +180,14 @@
                                                 <form action="" method="post">
                                                     <div class="row">
                                                         <div class="col-lg-4 mb-3">
-                                                            <label><strong>Adscripción</strong></label>
+                                                            <label
+                                                                id="ContentPlaceHolder1_lblAdscripcionExt"><strong>Adscripción</strong></label>
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-select" id="ddlAscripcion"
+                                                                name="ctl00$ContentPlaceHolder1$ddlAscripcion"
                                                                 aria-label="Default select example">
-                                                                <option selected>Seleccione una opcion</option>
+                                                                <option selected disabled>Seleccione una opcion</option>
                                                                 <option value="1">One</option>
                                                                 <option value="2">Two</option>
                                                                 <option value="3">Three</option>
@@ -184,12 +195,14 @@
                                                         </div>
 
                                                         <div class="col-lg-4 mb-3">
-                                                            <label><strong>Puesto</strong></label>
+                                                            <label
+                                                                id="ContentPlaceHolder1_lblPuestoExt"><strong>Puesto</strong></label>
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-select" id="ddlPuesto"
+                                                                name="ctl00$ContentPlaceHolder1$ddlPuesto"
                                                                 aria-label="Default select example">
-                                                                <option selected>Seleccione una opcion</option>
+                                                                <option selected disabled>Seleccione una opcion</option>
                                                                 <option value="1">One</option>
                                                                 <option value="2">Two</option>
                                                                 <option value="3">Three</option>
@@ -197,12 +210,14 @@
                                                         </div>
 
                                                         <div class="col-lg-4 mb-3">
-                                                            <label><strong>Servicio</strong></label>
+                                                            <label
+                                                                id="ContentPlaceHolder1_lblServicioExt"><strong>Servicio</strong></label>
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-select" id="ddlServicio"
+                                                                name="ctl00$ContentPlaceHolder1$ddlServicio"
                                                                 aria-label="Default select example">
-                                                                <option selected>Seleccione una opcion</option>
+                                                                <option selected disabled>Seleccione una opcion</option>
                                                                 <option value="1">One</option>
                                                                 <option value="2">Two</option>
                                                                 <option value="3">Three</option>
@@ -210,12 +225,14 @@
                                                         </div>
 
                                                         <div class="col-lg-4 mb-3">
-                                                            <label><strong>Nivel/Subnivel</strong></label>
+                                                            <label
+                                                                id="ContentPlaceHolder1_lblNivelExt"><strong>Nivel/Subnivel</strong></label>
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-select" id="ddlNivel"
+                                                                name="ctl00$ContentPlaceHolder1$ddlNivel"
                                                                 aria-label="Default select example">
-                                                                <option selected>Seleccione una opcion</option>
+                                                                <option selected disabled>Seleccione una opcion</option>
                                                                 <option value="1">One</option>
                                                                 <option value="2">Two</option>
                                                                 <option value="3">Three</option>
@@ -223,12 +240,14 @@
                                                         </div>
 
                                                         <div class="col-lg-4 mb-3">
-                                                            <label><strong>Tipo de jornada</strong></label>
+                                                            <label id="ContentPlaceHolder1_lblTipoJornada"><strong>Tipo
+                                                                    de jornada</strong></label>
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-select" id="ddlJornada"
+                                                                name="ctl00$ContentPlaceHolder1$ddlJornada"
                                                                 aria-label="Default select example">
-                                                                <option selected>Seleccione una opcion</option>
+                                                                <option selected disabled>Seleccione una opcion</option>
                                                                 <option value="1">One</option>
                                                                 <option value="2">Two</option>
                                                                 <option value="3">Three</option>
@@ -236,31 +255,25 @@
                                                         </div>
 
                                                         <div class="col-lg-12">
-                                                            <button class="btn btn-success">Validar puesto</button>
+                                                            <button type="submit" id="btnValidaPuesto"
+                                                                class="btn btn-success">Validar puesto</button>
                                                         </div>
                                                     </div>
                                                 </form>
-
                                             </div>
-
                                         </div>
                                         <!-- Fin de externo -->
-
                                     </div>
                                     <hr>
                                 </div>
-
                             </div>
-
-
-
                         </div>
 
                         <!-- Columna 2 -->
                         <div class="col-md-12 col-sm-12 col-lg-8 mt-3">
                             <div class="agregar">
                                 <div class="card card-primary">
-                                    <div class="card-header bg-primary">
+                                    <div class="card-header issste-v">
                                         <h4 class="card-title text-center text-white">Criterios de la guardia</h4>
                                     </div>
 
@@ -269,23 +282,28 @@
                                             <div class="row mt-3">
                                                 <!-- Folio -->
                                                 <div class="col-md-6">
-                                                    <label>Folio de autorización:</label>
+                                                    <label id="ContentPlaceHolder1_lblFolio">Folio de
+                                                        autorización:</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="text" id="txtFolio" class="form-control">
+                                                    <input type="text" id="txtFolio"
+                                                        name="ctl00$ContentPlaceHolder1$txtFolio" class="form-control"
+                                                        placeholder="Introducir Folio...">
                                                 </div>
                                                 <!-- Fecha de inicio y fin -->
                                                 <div class="col-xl-2 col-sm-6 mt-3 mb-3">
-                                                    <label>Fecha de inicio:</label>
+                                                    <label id="ContentPlaceHolder1_lblInicio">Fecha de inicio:</label>
                                                 </div>
                                                 <div class="col-xl-4 col-sm-6 mt-3 mb-3">
-                                                    <input type="date" id="txtFechaInicio">
+                                                    <input type="date" id="txtFechaInicio"
+                                                        name="ctl00$ContentPlaceHolder1$txtFechaInicio">
                                                 </div>
                                                 <div class="col-xl-2 col-sm-6 mt-3 mb-3">
-                                                    <label>Fecha fin:</label>
+                                                    <label id="ContentPlaceHolder1_lblFin">Fecha fin:</label>
                                                 </div>
                                                 <div class="col-xl-4 col-sm-6 mt-3 mb-3">
-                                                    <input type="date" id="txtFechaFin">
+                                                    <input type="date" id="txtFechaFin"
+                                                        name="ctl00$ContentPlaceHolder1$txtFechaFin">
                                                 </div>
                                                 <!-- Movimiento -->
                                                 <div class="col-md-6 mb-3">
@@ -293,8 +311,9 @@
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <select class="form-select" id="ddlMovimiento"
+                                                        name="ctl00$ContentPlaceHolder1$ddlMovimiento"
                                                         aria-label="Default select example">
-                                                        <option selected>Seleccione una opcion</option>
+                                                        <option selected disabled>Seleccione una opcion</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>
@@ -302,12 +321,13 @@
                                                 </div>
                                                 <!-- Motivo -->
                                                 <div class="col-md-6 mb-3">
-                                                    <label>Motivo:</label>
+                                                    <label id="ContentPlaceHolder1_lblMotivo">Motivo:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <select class="form-select" id="ddlMotivo"
+                                                        name="ctl00$ContentPlaceHolder1$ddlMotivo"
                                                         aria-label="Default select example">
-                                                        <option selected>Seleccione una opcion</option>
+                                                        <option selected disabled>Seleccione una opcion</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>
@@ -315,12 +335,14 @@
                                                 </div>
                                                 <!-- Riesgos profesionales -->
                                                 <div class="col-md-6 mb-3">
-                                                    <label>Riesgos profesionales:</label>
+                                                    <label id="ContentPlaceHolder1_lblRiesgos">Riesgos
+                                                        profesionales:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <select class="form-select" id="ddlRiesgos"
+                                                        name="ctl00$ContentPlaceHolder1$ddlRiesgos"
                                                         aria-label="Default select example">
-                                                        <option selected>Seleccione una opcion</option>
+                                                        <option selected disabled>Seleccione una opcion</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>
@@ -328,26 +350,29 @@
                                                 </div>
                                                 <!-- Dias/horas -->
                                                 <div class="col-md-6 mb-3">
-                                                    <label>Dias/Horas:</label>
+                                                    <label id="ContentPlaceHolder1_lblDias">Dias/Horas:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <input type="text" id="txtDias" class="form-control">
+                                                    <input type="text" id="txtDias"
+                                                        name="ctl00$ContentPlaceHolder1$txtDias" class="form-control">
                                                 </div>
                                                 <!-- Comentarios -->
                                                 <div class="col-md-6 mb-3">
-                                                    <label>Comentarios:</label>
+                                                    <label id="ContentPlaceHolder1_lblComentarios">Comentarios:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <textarea id="txtComentarios"></textarea>
+                                                    <textarea id="txtComentarios"
+                                                        name="ctl00$ContentPlaceHolder1$txtComentarios"></textarea>
                                                 </div>
                                                 <!-- Quincena -->
                                                 <div class="col-md-6 mb-3">
-                                                    <label>Quincena:</label>
+                                                    <label id="ContentPlaceHolder1_lblQuincena">Quincena:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
                                                     <select class="form-select" id="ddlQuincena"
+                                                        name="ctl00$ContentPlaceHolder1$ddlQuincena"
                                                         aria-label="Default select example">
-                                                        <option selected>Seleccione una opcion</option>
+                                                        <option selected disabled>Seleccione una opcion</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>
@@ -361,9 +386,7 @@
                                             </div>
 
                                         </form>
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -374,7 +397,7 @@
                     <!-- Tabla de historial de guardias -->
                     <div class="row mt-5 mb-5">
                         <div class="col-md-12 col-sm-12">
-                            <h2 class="text-center mb-5">Historial de guardias</h2>
+                            <h2 class="text-center black mb-5">Historial de guardias</h2>
                             <div class="table table-responsive-sm">
                                 <table class="table">
                                     <thead class="table-dark text-center">
@@ -397,8 +420,13 @@
                                             <td>Dato 4</td>
                                             <td>Dato 5</td>
                                             <td>Dato 6</td>
-                                            <td><a class="btn btn-outline-warning">Editar</a></td>
-                                            <td><a class="btn btn-outline-danger">Eliminar</a></td>
+                                            <td>
+                                                <a type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop">
+                                                    Editar
+                                                </a>
+                                            </td>
+                                            <td><a href="#" class="btn btn-outline-danger">Eliminar</a></td>
                                         </tr>
                                         <tr>
                                             <td>Dato 1</td>
@@ -407,22 +435,117 @@
                                             <td>Dato 4</td>
                                             <td>Dato 5</td>
                                             <td>Dato 6</td>
-                                            <td><a class="btn btn-outline-warning">Editar</a></td>
-                                            <td><a class="btn btn-outline-danger">Eliminar</a></td>
+                                            <td>
+                                                <a type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop">
+                                                    Editar
+                                                </a>
+                                            </td>
+                                            <td><a href="#" class="btn btn-outline-danger">Eliminar</a></td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <!--  -->
-                    <!--  -->
+                    <!-- Modal -->
+                    <!-- El id del modal no se puede modificar -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modificar guardia</h5>
+                                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                                        <i class="fas fa-window-close"></i>
+                                    </button>
+                                </div>
+                                <form action="">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6 mb-3">
+                                                <label><strong>Folio de autorización</strong></label>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 mb-3">
+                                                <input type="text" class="form-control" id="txtFolioModal"
+                                                    name="ctl00$ContentPlaceHolder1$txtFolioModal" required>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Movimiento</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <!-- Select -->
+                                                <select class="form-select"
+                                                    name="ctl00$ContentPlaceHolder1$ddlMovimientoModal"
+                                                    id="ddlMovimientoModal" aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opcion</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Motivo</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <!-- Select -->
+                                                <select class="form-select"
+                                                    name="ctl00$ContentPlaceHolder1$ddlMotivoModal" id="ddlMotivoModal"
+                                                    aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opcion</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Riesgos profesionales</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <!-- Select -->
+                                                <select class="form-select"
+                                                    name="ctl00$ContentPlaceHolder1$ddlRiesgosModal"
+                                                    id="ddlRiesgosModal" aria-label="Default select example">
+                                                    <option selected disabled>Seleccione una opcion</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Dias/Horas</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <input type="text" class="form-control"
+                                                    name="ctl00$ContentPlaceHolder1$txtDiasModal" id="txtDiasModal" required>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Comentarios</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <input type="text" class="form-control"
+                                                    name="ctl00$ContentPlaceHolder1$txtComentariosModal"
+                                                    id="txtComentariosModal" required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" id="btnActualizar"
+                                            class="btn btn-primary">Actualizar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin del modal -->
 
                 </div>
                 <!-- Fin del contenido editable por página -->
-
             </div>
-
 
             <!-- Footer -->
             <div th:insert="fragments/footer::pie-pagina"></div>
@@ -433,8 +556,6 @@
 
     </div>
     <!-- End of Page Wrapper -->
-
-
 
     <!-- Scroll to Top Button-->
     <a th:insert="fragments/boton-scroll::boton-scroll-up"></a>
