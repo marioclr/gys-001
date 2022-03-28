@@ -33,6 +33,18 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.authorizeRequests()
+		// //Recursos estaticos
+        // .antMatchers(
+        //     "/css/**",
+        //     "/img/**",
+        //     "/js/**",
+        //     "/vendor/**"
+        // ).permitAll()
+        // //Permitir vista de login
+        // .antMatchers("/login").permitAll()
+
+        // .anyRequest().authenticated()
+
 		//.anyRequest().authenticated()
 		.and().formLogin().loginPage("/login").permitAll()
         .defaultSuccessUrl("/", true)
