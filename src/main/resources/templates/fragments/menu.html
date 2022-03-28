@@ -30,9 +30,8 @@
             <div class="bg-dark py-2 collapse-inner rounded px-auto">
                 <!-- <h6 class="collapse-header text-white">Custom Components:</h6> -->
                 <div th:each="usuario : ${permisos}">
-                    <a class="collapse-item text-white black text-wrap pt-3 pb-2" href="#"><span th:text="${usuario.nombreOpcion}"></span></a>
+                    <a class="collapse-item text-white text-wrap pt-3 pb-2" href="#"><span th:text="${usuario.nombreOpcion}"></span></a>
                 </div>
-               
             </div>
         </div>
     </li>
