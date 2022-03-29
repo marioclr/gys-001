@@ -188,9 +188,7 @@
                                                                 name="ctl00$ContentPlaceHolder1$ddlAscripcion"
                                                                 aria-label="Default select example">
                                                                 <option selected disabled>Seleccione una opcion</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
+																<option th:each="adsc : ${adscripciones}" th:value="${adsc.id + ';;;' + adsc.tipo + ';;;' + adsc.zona}" th:text="${adsc.id + '-' + adsc.descripcion}"></option>
                                                             </select>
                                                         </div>
 
@@ -567,7 +565,8 @@
     <div th:insert="fragments/scripts::scripts-js"></div>
     <!-- Script para animacion de cambio de tarjeta -->
     <script th:src="@{/js/bootstrap.js}"></script>
-
+	<script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
+	<script th:src="@{/js/guardia.js}"></script>
 </body>
 
 </html>
