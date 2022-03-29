@@ -20,3 +20,7 @@ select{
 .navbar-nav{
     height: 100%;
 }
+
+ul li a{
+    color:  #a72c4d;
+}
