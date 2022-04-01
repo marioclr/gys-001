@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/head::head-main">
+</head>
+
+<body id="page-top">
+
+    <!-- Div que contienen todos los elementos de la página-->
+    <div id="wrapper" class="text-dark">
+
+        <!-- Sidebar -->
+        <div th:insert="fragments/menu::menu-lateral"></div>
+        <!-- End of Sidebar -->
+
+        <!-- Contenido principal -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <div th:insert="fragments/nav::navbar"></div>
+
+                <!-- Contenido editable por página -->
+                <div class="container-fluid mt-4">
+                    <h1 class="text-center black mt-3">Control presupuestal de guardias</h1>
+                    <form action="" method="post">
+                        <div class="row mt-3 mb-5">
+                            <!-- Tarjeta 1 -->
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mt-3">
+                                <div class="card card-primary">
+                                    <div class="card-header issste-v">
+                                        <h4 class="card-title text-center text-white">Datos de usuario</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12 mb-3">
+                                                <label><strong>Unidad administrativa</strong></label>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 mb-3">
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="unidadAdministrativa" id="unidadAdministrativa">
+                                                    <option selected></option>
+                                                    <option value="1">AGUASCALIENTES</option>
+                                                    <option value="2">BAJA CALIFORNIA</option>
+                                                    <option value="3">BAJA CALIFORNIA SUR</option>
+                                                    <option value="4">COAHUILA</option>
+                                                    <option value="5">COLIMA</option>
+                                                    <option value="6">DURANGO</option>
+                                                </select>
+
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label><strong>Ejercicio</strong></label>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="ejercicio" id="ejercicio">
+                                                    <option selected></option>
+                                                    <option value="1">2022</option>
+                                                    <option value="2">2021</option>
+                                                    <option value="3">2020</option>
+                                                    <option value="4">2019</option>
+                                                    <option value="5">2018</option>
+                                                    <option value="6">2017</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label><strong>Mes</strong></label>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="mes" id="mes">
+                                                    <option selected></option>
+                                                    <option value="1">ENERO</option>
+                                                    <option value="2">FEBRERO</option>
+                                                    <option value="3">MARZO</option>
+                                                    <option value="4">ABRIL</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label><strong>Importe</strong></label>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <input type="text" class="form-control" name="importe" id="importe"
+                                                    placeholder="Ingrese una cantidad" required>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- Tarjeta 2 -->
+                            <div class="col-xl-6 col-lg-6 col-md-12 mt-3">
+                                <div class="card card-primary">
+                                    <div class="card-header issste-v">
+                                        <h4 class="card-title text-center text-white">Información de soporte</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label><strong>Motivo</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="motivo" id="motivo">
+                                                    <option selected></option>
+                                                    <option value="1">Motivo 1</option>
+                                                    <option value="2">Motivo 2</option>
+                                                    <option value="3">Motivo 3</option>
+                                                    <option value="4">Motivo 4</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label><strong>Documento</strong></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="documento" id="documento"
+                                                    placeholder="Nombre del documento" required>
+                                            </div>
+                                            <div class="col-md-6 mb-2 mt-2">
+                                                <label><strong>Observaciones</strong></label>
+                                            </div>
+                                            <div class="col-md-6 mb-1 mt-3">
+                                                <textarea name="observaciones" id="observaciones" rows="3"
+                                                    required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-3 text-center">
+                                <input type="submit" class="btn issste text-white" value="Guardar">
+
+                            </div>
+                        </div>
+                    </form>
+                    <hr>
+                    <!-- Tabla -->
+                    <div class="row">
+                        <div class="col-xl-12 mt-3">
+                            <h2 class="text-center black mb-5">Historial de guardias</h2>
+                            <div class="table table-responsive-sm">
+                                <table class="table">
+                                    <thead class="issste-v text-white text-center">
+                                        <tr>
+                                            <th>U. Administrativa</th>
+                                            <th>Ejercicio</th>
+                                            <th>Mes</th>
+                                            <th>Importe</th>
+                                            <th>Motivo</th>
+                                            <th>Documento</th>
+                                            <th>Observaciones</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center text-dark">
+                                        <tr>
+                                            <td>Dato 1</td>
+                                            <td>Dato 2</td>
+                                            <td>Dato 3</td>
+                                            <td>Dato 4</td>
+                                            <td>Dato 5</td>
+                                            <td>Dato 6</td>
+                                            <td>Dato 7</td>
+                                            <td><a type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop">Editar</a></td>
+                                            <td><a href="#" class="btn btn-outline-danger">Eliminar</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dato 1</td>
+                                            <td>Dato 2</td>
+                                            <td>Dato 3</td>
+                                            <td>Dato 4</td>
+                                            <td>Dato 5</td>
+                                            <td>Dato 6</td>
+                                            <td>Dato 7</td>
+                                            <td><a type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop">Editar</a></td>
+                                            <td><a href="#" class="btn btn-outline-danger">Eliminar</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <!-- El id del modal no se puede modificar -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modificar control presupuestal guardia</h5>
+                                    <button type="button" data-bs-dismiss="modal" aria-label="Close">
+                                        <i class="fas fa-window-close"></i>
+                                    </button>
+                                </div>
+                                <form action="">
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6 mb-3">
+                                                <label><strong>Unidad administrativa</strong></label>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 mb-3">
+                                                <select class="form-select" aria-label="Default select example"
+                                                    id="unidadAdminModal" name="unidadAdminModal">
+                                                    <option selected></option>
+                                                    <option value="1">AGUASCALIENTES</option>
+                                                    <option value="2">BAJA CALIFORNIA</option>
+                                                    <option value="3">BAJA CALIFORNIA SUR</option>
+                                                    <option value="4">COAHUILA</option>
+                                                    <option value="5">COLIMA</option>
+                                                    <option value="6">DURANGO</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Ejercicio</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <!-- Select -->
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="ejercicioModal" id="ejercicioModal">
+                                                    <option selected></option>
+                                                    <option value="1">2022</option>
+                                                    <option value="2">2021</option>
+                                                    <option value="3">2020</option>
+                                                    <option value="4">2019</option>
+                                                    <option value="5">2018</option>
+                                                    <option value="6">2017</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Mes</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="mesModal" id="mesModal">
+                                                    <option selected></option>
+                                                    <option value="1">ENERO</option>
+                                                    <option value="2">FEBRERO</option>
+                                                    <option value="3">MARZO</option>
+                                                    <option value="4">ABRIL</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Importe</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <input type="text" class="form-control" name="importeModal"
+                                                    id="importeModal" placeholder="Ingrese la cantidad" required>
+                                            </div>
+                                            <hr>
+                                            <div class="col-md-12 mt-3 mb-3">
+                                                <h3 class="text-center">Informacion de soporte</h3>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Motivo</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="motivoModal" id="motivoModal">
+                                                    <option selected></option>
+                                                    <option value="1">Motivo 1</option>
+                                                    <option value="2">Motivo 2</option>
+                                                    <option value="3">Motivo 3</option>
+                                                    <option value="4">Motivo 4</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Documento</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <input type="text" class="form-control" name="documentoModal"
+                                                    id="documentoModal" required>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <strong>Comentarios</strong>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <input type="text" class="form-control" name="comentariosModal"
+                                                    id="comentariosModal" required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" id="btnActualizar"
+                                            class="btn btn-primary">Actualizar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin del modal -->
+
+
+                </div>
+                <!-- Fin del contenido editable por página -->
+            </div>
+
+            <!-- Footer -->
+            <div th:insert="fragments/footer::pie-pagina"></div>
+
+        </div>
+        <!--Fin del div que contiene todos los elementos de la pagina -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a th:insert="fragments/boton-scroll::boton-scroll-up"></a>
+
+    <!-- Logout Modal-->
+    <div th:insert="fragments/modal :: msgSalir"></div>
+
+    <!-- Scripts -->
+    <div th:insert="fragments/scripts::scripts-js"></div>
+    <!-- Script para animacion de cambio de tarjeta -->
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
+    <script th:src="@{/js/guardia.js}"></script>
+</body>
+
+</html>
