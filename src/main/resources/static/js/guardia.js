@@ -289,7 +289,7 @@ function estatusPresupuestal() {
 
 $(document).ready(function () {
 
-	alert( "JQuery ready. ");
+	//alert( "JQuery ready. ");
 
     //initDataTable();
     //carga_lista_guardias();
@@ -298,7 +298,7 @@ $(document).ready(function () {
 
 $("#ddlAscripcion").change(function () {
 	var i = 0;
-	alert( "Cambio de Ascripcion. " + $("#ddlAscripcion").val() );
+	//alert( "Cambio de Ascripcion. " + $("#ddlAscripcion").val() );
     var oAdsc = $("#ddlAscripcion").val().split(';;;');
     //alert("Cambio de Adscripción. " + oAdsc[0] + " " + oAdsc[1] + " " + oAdsc[2]);
     var obj = JSON.stringify({ adsc: oAdsc[0] });
@@ -406,6 +406,12 @@ $("#ddlNivel").change(function () {
 
 $("#btnValidaPuesto").on("click", function (event) {
     event.preventDefault();
+    
+    if ($("#ddlAscripcion").val() == 0 || $("#ddlPuesto").val() == 0 || $("#ddlServicio").val() == 0 || $("#ddlNivel").val() == 0 || $("#ddlJornada").val() == 0) {
+		alert("Favor de seleccionar todas las carácteristicas");
+		return 0;
+	}
+    
     var oAdsc = $("#ddlAscripcion").val().split(';;;');
     var oPuesto = $("#ddlPuesto").val().split(';;;');
 
@@ -413,7 +419,7 @@ $("#btnValidaPuesto").on("click", function (event) {
     console.log(obj);
     $.ajax({
         type: "POST",
-        url: "RegistraGuardias.aspx/ValidaPuestoAutorizado",
+        url: "http://localhost:8080/rest_guardias/ValidaPuestoAutorizado",
         data: obj,
         contentType: 'application/json; charset=utf-8',
         error: function (xhr, ajaxOptions, thrownError) {
@@ -422,9 +428,15 @@ $("#btnValidaPuesto").on("click", function (event) {
         },
         success: function (data) {
             //console.log(data.d);
-            if (data.d > 0) {
-                alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data.d);
-                return data.d;
+            if (data > 0) {
+                alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
+//                $(document).Toasts('create', {
+//                    class: 'bg-warning',
+//                    title: 'NOTIFICACION',
+//                    subtitle: 'Guardia',
+//                    body: 'Las caracteristicas del puesto están autorizadas. No. de registro: ' + data
+//                });
+                return data;
             } else {
                 alert("Las caracteristicas del puesto no están autorizadas.");
                 return 0;

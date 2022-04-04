@@ -1,8 +1,6 @@
 package com.example.demo.model;
 
-public interface IDatosAdscripcion {
+public interface IDatosJornada {
 	String getClave();
 	String getDescripcion();
-	String getTipo();
-	String getZona();
 }

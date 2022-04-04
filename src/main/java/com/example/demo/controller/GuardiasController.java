@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.model.IDatosUsuario;
 import com.example.demo.model.Usuario;
 import com.example.demo.service.IAdscripcionService;
+import com.example.demo.service.IGuardiaInternaService;
 import com.example.demo.service.IUsuarioService;
 
 @Controller
@@ -24,6 +25,8 @@ public class GuardiasController {
 	IUsuarioService serviceUsuarios;
 	@Autowired
 	IAdscripcionService servicioAdsc;
+	@Autowired
+	IGuardiaInternaService servicioGuardiaInt;
 
 	@GetMapping("/registro")
 	String registro(Authentication authentication, HttpSession session, Model modelo) {
@@ -39,7 +42,11 @@ public class GuardiasController {
 		}
 		List<IDatosUsuario> datosUsuario = serviceUsuarios.datosUsuario(usuario.getIdUsuario());
 		modelo.addAttribute("permisos", datosUsuario);
-		modelo.addAttribute("adscripciones", servicioAdsc.buscarTodos());
+		modelo.addAttribute("adscripciones", servicioGuardiaInt.getDatosAdscripciones());
+		modelo.addAttribute("puestos", servicioGuardiaInt.getDatosPuestosGuardia());
+		modelo.addAttribute("servicios", servicioGuardiaInt.getDatosServiciosGuardia());
+		modelo.addAttribute("niveles", servicioGuardiaInt.getDatosNivelesGuardia());
+		modelo.addAttribute("jornadas", servicioGuardiaInt.getDatosJornadasGuardia());
 		return "/guardias/registro";
 	}
 }

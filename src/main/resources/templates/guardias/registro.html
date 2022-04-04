@@ -185,8 +185,8 @@
                                                             <select class="form-select" id="ddlAscripcion"
                                                                 name="ascripcionExt"
                                                                 aria-label="Default select example">
-                                                                <option selected disabled>Seleccione una opcion</option>
-																<option th:each="adsc : ${adscripciones}" th:value="${adsc.id + ';;;' + adsc.tipo + ';;;' + adsc.zona}" th:text="${adsc.id + '-' + adsc.descripcion}"></option>
+                                                                <option value="0" selected>Seleccione una opcion</option>
+																<option th:each="adsc : ${adscripciones}" th:value="${adsc.clave + ';;;' + adsc.tipo + ';;;' + adsc.zona}" th:text="${adsc.clave + '-' + adsc.descripcion}"></option>
                                                             </select>
                                                         </div>
 
@@ -198,10 +198,8 @@
                                                             <select class="form-select" id="ddlPuesto"
                                                                 name="puestoExt"
                                                                 aria-label="Default select example">
-                                                                <option selected disabled>Seleccione una opcion</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
+                                                                <option value="0" selected>Seleccione una opcion</option>
+                                                                <option th:each="puesto : ${puestos}" th:value="${puesto.clave + ';;;' + puesto.tipotabulador}" th:text="${puesto.clave + '-' + puesto.descripcion}"></option>
                                                             </select>
                                                         </div>
 
@@ -213,10 +211,8 @@
                                                             <select class="form-select" id="ddlServicio"
                                                                 name="servicioExt"
                                                                 aria-label="Default select example">
-                                                                <option selected disabled>Seleccione una opcion</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
+                                                                <option value="0" selected>Seleccione una opcion</option>
+                                                                <option th:each="servicio : ${servicios}" th:value="${servicio.clave}" th:text="${servicio.clave + '-' + servicio.descripcion}"></option>
                                                             </select>
                                                         </div>
 
@@ -227,10 +223,8 @@
                                                             <select class="form-select" id="ddlNivel"
                                                                 name="nivelExt"
                                                                 aria-label="Default select example">
-                                                                <option selected disabled>Seleccione una opcion</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
+                                                                <option value="0" selected>Seleccione una opcion</option>
+                                                                <option th:each="nivel : ${niveles}" th:value="${nivel.nivel+nivel.subnivel}" th:text="${nivel.nivel + '/' + nivel.subnivel}"></option>
                                                             </select>
                                                         </div>
 
@@ -242,10 +236,8 @@
                                                             <select class="form-select" id="ddlJornada"
                                                                 name="jornadaExt"
                                                                 aria-label="Default select example">
-                                                                <option selected disabled>Seleccione una opcion</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
+                                                                <option value="0" selected>Seleccione una opcion</option>
+                                                                <option th:each="jornada : ${jornadas}" th:value="${jornada.clave}" th:text="${jornada.clave + '-' + jornada.descripcion}"></option>
                                                             </select>
                                                         </div>
 
