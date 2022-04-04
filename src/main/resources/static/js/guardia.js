@@ -429,7 +429,9 @@ $("#btnValidaPuesto").on("click", function (event) {
         success: function (data) {
             //console.log(data.d);
             if (data > 0) {
-                alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
+                $('.toast-success').toast('show')
+                console.log(data);
+                // alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
 //                $(document).Toasts('create', {
 //                    class: 'bg-warning',
 //                    title: 'NOTIFICACION',
@@ -438,7 +440,8 @@ $("#btnValidaPuesto").on("click", function (event) {
 //                });
                 return data;
             } else {
-                alert("Las caracteristicas del puesto no están autorizadas.");
+                // alert("Las caracteristicas del puesto no están autorizadas.");
+                $('.toast-error').toast('show')
                 return 0;
             }
         }
