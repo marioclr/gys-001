@@ -531,6 +531,41 @@
                     </div>
                     <!-- Fin del modal -->
 
+                    <!-- Toast erro-->
+                    <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 5%; top: 45px;">
+                        <div id="liveToast" class="toast toast-error hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                          <div class="toast-header bg-danger text-white">
+                            <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+                            <strong class="mr-auto">Validacion de guardia</strong>
+                            <small>Ahora</small>
+                            <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button> -->
+                          </div>
+                          <div class="toast-body bg-danger text-white">
+                            Las caracteristicas del puesto no están autorizadas
+                          </div>
+                        </div>
+                      </div>
+                    <!-- Fin Toast Error-->
+                    <!-- Toast validación correcta-->
+                    <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 5%; top: 45px;">
+                        <div id="liveToast" class="toast toast-success hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                          <div class="toast-header bg-success text-white">
+                            <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+                            <strong class="mr-auto">Validacion de guardia</strong>
+                            <small>Ahora</small>
+                            <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button> -->
+                          </div>
+                          <div class="toast-body bg-success text-white">
+                            Las caracteristicas del puesto están autorizadas. Validación correcta
+                          </div>
+                        </div>
+                      </div>
+                    <!-- Fin Toast validacion correcta-->
+
                 </div>
                 <!-- Fin del contenido editable por página -->
             </div>
@@ -553,8 +588,8 @@
     <!-- Scripts -->
     <div th:insert="fragments/scripts::scripts-js"></div>
     <!-- Script para animacion de cambio de tarjeta -->
-    <script th:src="@{/js/bootstrap.js}"></script>
-	<script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
+    <!-- <script th:src="@{/js/bootstrap.min.js}"></script> -->
+	<!-- <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script> -->
 	<script th:src="@{/js/guardia.js}"></script>
 </body>
 
