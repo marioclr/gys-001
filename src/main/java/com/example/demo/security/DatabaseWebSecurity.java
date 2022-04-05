@@ -44,7 +44,9 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
         // //Permitir vista de login
         // .antMatchers("/login").permitAll()
 
-        // .anyRequest().authenticated()
+		// .antMatchers("/guardias/**").hasAnyAuthority("ROOT","Administrador Guardias")
+		// .antMatchers("/suplencias/**").hasAnyAuthority("ROOT","Administrador Suplencias")
+		// .antMatchers("/presupuesto/**").hasAnyAuthority("ROOT","Presupuesto")
 
 		//.anyRequest().authenticated()
 		.and().formLogin().loginPage("/login").permitAll()
