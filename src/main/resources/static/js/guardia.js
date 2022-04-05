@@ -408,7 +408,8 @@ $("#btnValidaPuesto").on("click", function (event) {
     event.preventDefault();
     
     if ($("#ddlAscripcion").val() == 0 || $("#ddlPuesto").val() == 0 || $("#ddlServicio").val() == 0 || $("#ddlNivel").val() == 0 || $("#ddlJornada").val() == 0) {
-		alert("Favor de seleccionar todas las carácteristicas");
+		// alert("Favor de seleccionar todas las carácteristicas");
+        $('.toast-warning').toast('show')
 		return 0;
 	}
     
