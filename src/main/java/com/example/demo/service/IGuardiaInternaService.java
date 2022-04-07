@@ -1,14 +1,17 @@
 package com.example.demo.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.example.demo.model.GuardiaInterna;
 import com.example.demo.model.IDatosAdscripcion;
 import com.example.demo.model.IDatosEmpleado;
+import com.example.demo.model.IDatosGuardia;
 import com.example.demo.model.IDatosJornada;
 import com.example.demo.model.IDatosNivel;
 import com.example.demo.model.IDatosPuesto;
 import com.example.demo.model.IDatosServicio;
+import com.example.demo.model.IEmpleadoInterno;
 
 public interface IGuardiaInternaService {
 
@@ -27,4 +30,7 @@ public interface IGuardiaInternaService {
 	List<IDatosJornada> getDatosJornadasGuardia();
 	List<IDatosJornada> getDatosJornadasGuardia(String adsc, String puesto, String servicio, String niveles);
 	long ValidaPuestoAutorizado(String tipo_ct, String clave_servicio, String puesto, String nivel, String sub_nivel, String tipo_jornada, String tipo_guardia);
+	IEmpleadoInterno ValidaEmpleadoInt(String fecha, String empleado);
+	List<IDatosGuardia> ConsultaGuardiasInternas(String claveEmpleado);
+	List<IDatosGuardia> ConsultaGuardiasExternas(String claveEmpleado);
 }
