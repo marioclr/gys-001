@@ -242,7 +242,26 @@ function initDataTable() {
             { "sType": "date-uk" },
             null,
             null
-            ]
+            ],
+        "language":{
+            "lengthMenu":"Mostrar _MENU_ resultados",
+            "info":"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "zeroRecords":"No se encontraron resultados",
+            "sSearch": "Buscar: ",
+            "infoEmpty":"Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sProccessing":"Procesando ...",
+            "oPaginate":{
+                "sFirst":"Primero",
+                "sLast":"Ultimo",
+                "sNext":" Siguiente",
+                "sPrevious":"Anterior "
+
+            }
+        }
+        // ,
+        // "aoColumnDefs": [
+        //     { "bSearchable": false, "aTargets": [ 0, 1 ,4, 5 ] }
+        // ]
     });
 }
 
