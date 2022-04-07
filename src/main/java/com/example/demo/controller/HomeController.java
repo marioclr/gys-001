@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +32,11 @@ public class HomeController {
 		
 		if (session.getAttribute("usuario") == null){
 			usuario = serviceUsuarios.buscarPorUsername(username);
+			usuario.setPassword(null);
 			session.setAttribute("usuario", usuario);
+			for(GrantedAuthority rol: authentication.getAuthorities()){
+				System.out.println("ROL: " + rol.getAuthority());	
+			}
 			System.out.println(usuario);
 		} else {
 			usuario = (Usuario) session.getAttribute("usuario");

@@ -24,3 +24,30 @@ select{
 ul li a{
     color:  #a72c4d;
 }
+
+/* Menu desplegable */
+
+.dropdown-menu .test{
+    text-decoration: none;
+    color: black;
+    /* padding-left: 18%;
+    padding-right: 17%; */
+
+}
+
+.submenu:hover{
+    background-color: rgb(235, 239, 242);
+}
+
+.test:hover{
+    background-color: dimgray;
+    color: white;
+    border-radius: 5px;
+    width: 100%;
+
+}
+
+.icon, submenu{
+    color: black;
+}
+
