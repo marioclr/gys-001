@@ -521,6 +521,15 @@ $("#consultarEmpInt").on("click", function (event) {
 					//alert("El número de empleado no está autorizado.");
 					$('.toast-error .toast-body').html('El empleado no cumple con las condiciones para registro de guardias.')
 					$('.toast-error').toast('show')
+                    // $("#nombresInt").text('');
+                    // $("#apellidosInt").text('');
+                    // $("#rfcInt").text('');
+                    // $("#adscripcionInt").text('');
+                    // $("#servicioInt").text('');
+                    // $("#puestoInt").text('');
+                    // $("#horarioInt").text('');
+                    // $("#nivelInt").text('');
+                    // $("#horasInt").text('');
 					$("#btnAgregarGuardia").attr('disabled','disabled');
                 	return 0;
 				}

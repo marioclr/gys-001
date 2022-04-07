@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/head::head-main">
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper" class="text-dark">
+
+        <!-- Sidebar -->
+        <div th:insert="fragments/menu :: menu-lateral">
+
+        </div>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <div th:insert="fragments/nav::navbar"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="mb-4 mt-3 text-center black">Crear Perfil</h1>
+
+                    <!-- Formulario -->
+                    <div class="container mt-5">
+
+                        <form autocomplete="off" method="post">
+                            <div class="form-row pb-5 mt-2">
+                                <div class="form-group col-md-12">
+                                    <label>Descripción:</label>  
+                                </div>
+                                <textarea name="descripcion" id="descripcion" col="50" rows="3" minlength="1" maxlength="80" required></textarea>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4 text-center">
+                                    <button type="submit" class="btn btn-block issste text-white">Enviar</button>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- Fin del formulario -->
+                </div>
+
+
+            </div>
+            <!-- Fin del contenido -->
+
+            <!-- Footer -->
+            <div th:insert="fragments/footer::pie-pagina"></div>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    
+    <!-- Scroll to Top Button-->
+    <a th:insert="fragments/boton-scroll::boton-scroll-up"></a>
+    <!-- Logout Modal-->
+    <div th:insert="fragments/modal :: msgSalir"></div>
+
+    <div th:insert="fragments/scripts::scripts-js"></div>
+
+</body>
+
+</html>
