@@ -34,6 +34,7 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception{
 		http.cors().and().csrf().disable();
 		http.authorizeRequests()
+
 		// //Recursos estaticos
         // .antMatchers(
         //     "/css/**",
@@ -44,11 +45,12 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
         // //Permitir vista de login
         // .antMatchers("/login").permitAll()
 
+		// .antMatchers("/perfil/**").hasAnyAuthority("ROOT")
 		// .antMatchers("/guardias/**").hasAnyAuthority("ROOT","Administrador Guardias")
 		// .antMatchers("/suplencias/**").hasAnyAuthority("ROOT","Administrador Suplencias")
 		// .antMatchers("/presupuesto/**").hasAnyAuthority("ROOT","Presupuesto")
+		// .anyRequest().authenticated()
 
-		//.anyRequest().authenticated()
 		.and().formLogin().loginPage("/login").permitAll()
         .defaultSuccessUrl("/", true)
         .and().logout().permitAll();
