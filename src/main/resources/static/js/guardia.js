@@ -141,11 +141,14 @@ function carga_lista_guardias() {
     else
         emp = $("#txtRFC").val();
 
-    var obj = JSON.stringify({ id: emp, tipo_guardia: tipo });
+    var obj = { "ClaveEmpleado" : emp };
 
+    //var numEmpInt = { "ClaveEmpleado" : emp };    
+	//url: "http://localhost:8080/rest_guardias/ValidaEmpleadoInt?" + $.param(numEmpInt),
+	
     $.ajax({
         type: "POST",
-        url: "RegistraGuardias.aspx/ListaGuardias",
+        url: "http://localhost:8080/rest_guardias/ConsultaGuardias?" + $.param(obj) + "&Tipo=" + tipo,
         data: obj,
         contentType: 'application/json; charset=utf-8',
         error: function (xhr, ajaxOptions, thrownError) {
@@ -154,8 +157,8 @@ function carga_lista_guardias() {
         success: function (data) {
             //console.log("éxito", data);
             tabla.clear().draw();
-            for (var i = 0; i < data.d.length; i++) {
-                addRow(data.d[i]);
+            for (var i = 0; i < data.length; i++) {
+                addRow(data[i]);
             }
         }
     });
@@ -167,15 +170,15 @@ function addRow(obj) {
 
     tabla.row.add(
         [
-            (obj.Estatus) ? '<button type="button" value="Modificar" id="btnModificar" class="btn btn-primary btn-sm" data-target="#ModificarGuardia" data-toggle="modal">Modificar</button>': '',
+            (obj.estado=='ACT') ? '<button type="button" value="Modificar" id="btnModificar" class="btn btn-primary btn-sm" data-target="#ModificarGuardia" data-toggle="modal">Modificar</button>': '',
             '',
-            obj.Empleado,
-            obj.Puesto,
-            moment(obj.Inicio).format('DD/MM/YYYY'),
-            moment(obj.Quincena).format('DD/MM/YYYY'),
-            obj.Horas,
-            obj.Importe,
-            obj.Ordinal
+            obj.clave_empleado,
+            obj.id_puesto_plaza,
+            obj.fec_inicio,
+            obj.fec_paga,
+            obj.horas,
+            obj.importe,
+            obj.id_ordinal
         ]
     ).draw();
 }
@@ -291,7 +294,7 @@ $(document).ready(function () {
 
 	//alert( "JQuery ready. ");
 
-    //initDataTable();
+    initDataTable();
     //carga_lista_guardias();
     //estatusPresupuestal();
 });
@@ -443,6 +446,64 @@ $("#btnValidaPuesto").on("click", function (event) {
                 // alert("Las caracteristicas del puesto no están autorizadas.");
                 $('.toast-error').toast('show')
                 return 0;
+            }
+        }
+    });
+    
+});
+
+$("#consultarEmpInt").on("click", function (event) {
+    event.preventDefault();
+    
+    if ($("#txtNumero").val() == "" || $("#txtNumero").val().length == 0) {
+		alert("Favor de ingresar el número de empleado");
+		return 0;
+	}
+    
+    var numEmpInt = { "emp_int" : $("#txtNumero").val() };    
+    console.log(numEmpInt);
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/rest_guardias/ValidaEmpleadoInt?" + $.param(numEmpInt),
+        data: { emp_int: $("#txtNumero").val() },
+        contentType: 'application/json; charset=utf-8',
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+            return 0;
+        },
+        success: function (data) {
+            console.log(data);
+            if (data.empleado === null) {
+                //alert("El número de empleado no está autorizado.");
+                $('.toast-error .toast-body').html('El empleado no se encuentra registrado en la base de datos.')
+                $('.toast-error').toast('show')
+                $("#btnAgregarGuardia").attr('disabled','disabled');
+                return 0;
+            } else {
+				$("#nombresInt").text(data.empleado.nombre);
+				$("#apellidosInt").text(data.empleado.apellido_1+ ' ' + data.empleado.apellido_2);
+				$("#rfcInt").text(data.empleado.id_legal);
+				$("#adscripcionInt").text(data.empleado.id_centro_trabajo);
+				$("#servicioInt").text(data.empleado.id_clave_servicio);
+				$("#puestoInt").text(data.empleado.id_puesto_plaza);
+				$("#horarioInt").text(data.empleado.id_turno);
+				$("#nivelInt").text(data.empleado.id_nivel+data.empleado.id_sub_nivel);
+				$("#horasInt").text(data.empleado.id_tipo_jornada);
+				if (data.esValido) {
+					$('.toast-success .toast-body').html('El empleado cumple con las condiciones para registro de guardias.')
+					$('.toast-success').toast('show')
+					$("#btnAgregarGuardia").removeAttr('disabled');
+					carga_lista_guardias();
+	                //alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
+	                return data;
+	            } else {
+					//alert("El número de empleado no está autorizado.");
+					$('.toast-error .toast-body').html('El empleado no cumple con las condiciones para registro de guardias.')
+					$('.toast-error').toast('show')
+					$("#btnAgregarGuardia").attr('disabled','disabled');
+                	return 0;
+				}
             }
         }
     });

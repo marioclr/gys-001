@@ -8,10 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import com.example.demo.model.GuardiaInterna;
 import com.example.demo.model.IDatosAdscripcion;
 import com.example.demo.model.IDatosEmpleado;
+import com.example.demo.model.IDatosGuardia;
 import com.example.demo.model.IDatosJornada;
 import com.example.demo.model.IDatosNivel;
 import com.example.demo.model.IDatosPuesto;
 import com.example.demo.model.IDatosServicio;
+import com.example.demo.model.IEmpleadoInterno;
 
 public interface GuardiaInternaRepository extends JpaRepository<GuardiaInterna, Integer> {
 
@@ -103,4 +105,58 @@ public interface GuardiaInternaRepository extends JpaRepository<GuardiaInterna, 
 			+ "And id_sub_nivel = ?5 And id_tipo_jornada = ?6  \r\n"
 			+ "And id_tipo_per = ?7", nativeQuery = true)
 	long ValidaPuestoAutorizado(String tipo_ct, String clave_servicio, String puesto, String nivel, String sub_nivel, String tipo_jornada, String tipo_guardia);
+	
+	@Query(value = "SELECT E.nombre, E.apellido_1, E.apellido_2, E.id_legal, C.id_tipo_ct, DI.id_centro_trabajo, " +
+			"DI.id_clave_servicio, DI.id_puesto_plaza, DI.id_turno, DI.id_nivel, DI.id_sub_nivel," +
+			"J.id_tipo_jornada,DI.id_tipo_tabulador,DI.Id_zona " +
+            "FROM M4_DATOS_INDIVIDUO DI,  m4_hist_jornada_plaza J, m4_centros_trab C, m4t_empleados E " +
+            "WHERE DI.id_sociedad = E.id_sociedad And DI.id_empleado = E.id_empleado And " +
+            "DI.id_plaza_empleado = J.id_plaza_empleado AND DI.id_centro_trabajo=C.id_centro_trabajo AND " +
+            "(C.fec_fin >= ?1 OR C.fec_fin IS NULL) AND " +
+            "J.fec_inicio <= ?1 AND (J.fec_fin >= ?1 OR J.fec_fin IS NULL) AND " +
+            "DI.F_INICIO_PLAZA <= ?1 AND (DI.F_FIN_PLAZA >= ?1 OR DI.F_FIN_PLAZA IS NULL) " +
+            "AND DI.F_INICIO_EMPRESA <= ?1 AND (DI.F_FIN_EMPRESA >= ?1 OR DI.F_FIN_EMPRESA IS NULL) " +
+            "AND DI.F_INICIO_CT <= ?1 AND (DI.F_FIN_CT >= ?1 OR DI.F_FIN_CT IS NULL) " +
+            "AND DI.F_INICIO_CS <= ?1 AND (DI.F_FIN_CS >= ?1 OR DI.F_FIN_CS IS NULL) " +
+            "AND DI.F_INICIO_PTO <= ?1 AND (DI.F_FIN_PTO >= ?1 OR DI.F_FIN_PTO IS NULL) " +
+            "AND DI.F_INICIO_JOR <= ?1 AND (DI.F_FIN_JOR >= ?1 OR DI.F_FIN_JOR IS NULL) " +
+            "AND DI.F_INICIO_TURNO <= ?1 AND (DI.F_FIN_TURNO >= ?1 OR DI.F_FIN_TURNO IS NULL) " +
+            "AND DI.F_INICIO_SITPZA <= ?1 AND (DI.F_FIN_SITPZA >= ?1 OR DI.F_FIN_SITPZA IS NULL) " +
+            "AND DI.F_INICIO_SITEMP <= ?1 AND (DI.F_FIN_SITEMP >= ?1 OR DI.F_FIN_SITEMP IS NULL) " +
+            "And di.id_tipo_tabulador<>'H' And DI.id_empleado=?2", nativeQuery = true)
+	IEmpleadoInterno ValidaEmpleadoInt(String fecha, String empleado);	
+
+//	@Query(value = "Select rowid, * from m4t_gys_matriz_puestos "
+//			+ "Where id_tipo_ct = ?1 And id_clave_servicio = ?2 And "
+//			+ "TRIM(id_puesto_plaza) = ?3 And id_nivel = ?4 And id_sub_nivel = ?5 And "
+//			+ "id_tipo_jornada = ?6 And id_tipo_per = ?7", nativeQuery = true)
+//	IPuestoAutorizado ValidaPuestoAutorizado(String tipo_ct, String clave_servicio, String puesto, String nivel, String sub_nivel, String tipo_jornada, String tipo_guardia);
+
+	@Query(value = "Select G.id_empleado Clave_empleado, G.id_centro_trabajo, G.id_clave_servicio, G.id_puesto_plaza, "
+			+ "G.id_nivel, G.id_sub_nivel, G.id_tipo_jornada, G.horas, G.fec_inicio, G.fec_fin, "
+			+ "G.importe, PU.id_tipo_tabulador, G.fec_paga, C.id_zona, G.riesgos, P.estado, G.id_ordinal "
+			+ "From mclr_guardias_emp G, m4sys_hist_pagas P, m4t_centros_trab C, m4t_puestos_plaza PU "
+			+ "Where G.fec_paga = P.fec_paga And "
+			+ "G.id_centro_trabajo = C.id_centro_trabajo And "
+			+ "G.id_puesto_plaza = PU.id_puesto_plaza And "
+			+ "id_empleado = ?1 And "
+			+ "PU.id_sociedad = '01' And "
+			+ "PU.id_empresa = '01' "
+			+ "Order by G.fec_paga desc, G.fec_inicio", nativeQuery = true)
+	List<IDatosGuardia> ConsultaGuardiasInternas(String claveEmpleado);
+
+	@Query(value = "Select rfc Clave_empleado, id_centro_trabajo, id_clave_servicio, id_puesto_plaza, "
+			+ "id_nivel, id_sub_nivel, id_tipo_jornada, horas, fec_inicio, fec_fin, "
+			+ "importe, id_tipo_tabulador, fec_paga, id_zona, riesgos, estado, id_ordinal "
+			+ "From mclr_guardias_ext G, m4sys_hist_pagas P, m4t_centros_trab C, m4t_puestos_plaza PU "
+			+ "Where G.fec_paga = P.fec_paga And "
+			+ "G.id_centro_trabajo = C.id_centro_trabajo And "
+			+ "G.id_puesto_plaza = PU.id_puesto_plaza And "
+			+ "rfc = ?1 And "
+			+ "PU.id_sociedad = '01' And "
+			+ "PU.id_empresa = '01' "
+			+ "Order by G.fec_paga desc, G.fec_inicio", nativeQuery = true)
+	List<IDatosGuardia> ConsultaGuardiasExternas(String claveEmpleado);
+	
+
 }
