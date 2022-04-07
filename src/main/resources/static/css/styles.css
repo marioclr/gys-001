@@ -27,17 +27,30 @@ ul li a{
 
 /* Menu desplegable */
 
+
+
+ul:hover > li  {
+    display:block !important;
+}
+
+ul .test{
+    margin-left: 0px;
+}
+
 .dropdown-menu .test{
     text-decoration: none;
     color: black;
-    /* padding-left: 18%;
-    padding-right: 17%; */
+    padding-left: 0% !important;
+    padding-right: 17%;
 
 }
 
-.submenu:hover{
+
+/* .submenu:hover > .dropdown-submenu a{
     background-color: rgb(235, 239, 242);
-}
+    list-style-type: none;
+    text-decoration: none;
+} */
 
 .test:hover{
     background-color: dimgray;
@@ -47,7 +60,27 @@ ul li a{
 
 }
 
-.icon, submenu{
-    color: black;
+/* Submenu de perfil */
+.sub{
+    list-style-type: none;
+    overflow: hidden;
+    display: none;
+    float: left;
 }
+
+.sub li{
+    float: left;
+}
+
+/* .dropdown-menu:hover > .sub{
+    display: block;
+} */
+
+.perfil:hover > .sub{
+    display: inline-block;
+    visibility: visible;
+
+}
+
+
 
