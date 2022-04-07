@@ -1,5 +1,6 @@
 package com.example.demo.service.db;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,10 +10,12 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.GuardiaInterna;
 import com.example.demo.model.IDatosAdscripcion;
 import com.example.demo.model.IDatosEmpleado;
+import com.example.demo.model.IDatosGuardia;
 import com.example.demo.model.IDatosJornada;
 import com.example.demo.model.IDatosNivel;
 import com.example.demo.model.IDatosPuesto;
 import com.example.demo.model.IDatosServicio;
+import com.example.demo.model.IEmpleadoInterno;
 import com.example.demo.repository.GuardiaInternaRepository;
 import com.example.demo.service.IGuardiaInternaService;
 
@@ -100,5 +103,20 @@ public class GuardiaInternaServiceJpa implements IGuardiaInternaService {
 			String sub_nivel, String tipo_jornada, String tipo_guardia) {
 		
 		return repoGuardiaInterna.ValidaPuestoAutorizado(tipo_ct, clave_servicio, puesto, nivel, sub_nivel, tipo_jornada, tipo_guardia);
+	}
+
+	@Override
+	public IEmpleadoInterno ValidaEmpleadoInt(String fecha, String empleado) {
+		return repoGuardiaInterna.ValidaEmpleadoInt(fecha, empleado);
+	}
+
+	@Override
+	public List<IDatosGuardia> ConsultaGuardiasInternas(String claveEmpleado) {
+		return repoGuardiaInterna.ConsultaGuardiasInternas(claveEmpleado);
+	}
+
+	@Override
+	public List<IDatosGuardia> ConsultaGuardiasExternas(String claveEmpleado) {
+		return repoGuardiaInterna.ConsultaGuardiasExternas(claveEmpleado);
 	}
 }
