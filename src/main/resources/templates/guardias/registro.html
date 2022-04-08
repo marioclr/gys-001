@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="fragments/head::head-main">
+<head th:replace="fragments/head::head-main">
 </head>
 
 <body id="page-top">
@@ -377,9 +377,9 @@
                     <hr>
 
                     <!-- Tabla de historial de guardias -->
-                    <div class="row mt-5 mb-5">
+                    <div class="row mt-3 mb-5">
                         <div class="col-md-12 col-sm-12">
-                            <h2 class="text-center black mb-5">Historial de guardias</h2>
+                            <h2 class="text-center black mb-3">Historial de guardias</h2>
                             <div class="table table-responsive-sm">
                                 <table class="table" id="tbl_guardias" style="width: 100%;">
                                     <thead class="issste-v text-white text-center">
