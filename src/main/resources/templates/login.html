@@ -50,6 +50,12 @@
                                     <div class="text-center">
                                         <h1 class="h2 text-gray-900 mb-4">Bienvenido</h1>
                                     </div>
+                                    <div th:if="error == null"></div>
+                                    <div th:if="error != null">
+                                        <!-- <div class="alert alert-danger" role="alert"> -->
+                                            <p class="text-danger text-center" th:text="${error}"></p>
+                                        <!-- </div>  -->
+                                    </div>
                                     <form class="user" name="form" th:action="@{/login}" method="POST">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="username"
