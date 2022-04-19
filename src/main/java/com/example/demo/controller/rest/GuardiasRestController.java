@@ -77,7 +77,7 @@ public class GuardiasRestController {
 		}
 		return validaEmpInterno;
 	}
-	
+
 	@PostMapping("/ConsultaGuardias") 
 	List<IDatosGuardia> ConsultaGuardias(@RequestParam("ClaveEmpleado") String claveEmpleado, @RequestParam("Tipo") String tipo){
 		if (tipo.equals(String.valueOf("I")))
@@ -85,6 +85,17 @@ public class GuardiasRestController {
 		else
 			return servicioGuardiaInt.ConsultaGuardiasExternas(claveEmpleado);
 	}
-	
-	
+
+	@PostMapping("/ValidaPersonalExt")
+	String ValidaPersonalExterno(@RequestParam("emp_ext") String rfc){
+		String nombre = "";
+		try
+		{
+			nombre = servicioGuardiaInt.ValidaPersonalExterno(rfc);
+		} catch (Exception ex) {
+			nombre = "";
+		}		
+		return nombre;
+	}
+
 }

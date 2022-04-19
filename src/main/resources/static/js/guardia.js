@@ -18,7 +18,12 @@ $("#btnAgregarGuardia").on("click", function (event) {
 
     var obj;
     if (tipo == 'I') {
-        obj = JSON.stringify({ tipo_ct: $("#hdnTipoCT").val(), clave_servicio: $("#lblServicio").text(), puesto: $("#lblPuesto").text(), nivel: $("#hdnNivel").val(), sub_nivel: $("#hdnSubNivel").val(), tipo_jornada: $("#lblHoras").text(), tipo_guardia: tipo });
+        obj = JSON.stringify({ tipo_ct: $("#hdnTipoCT").val(), 
+        	clave_servicio: $("#servicioInt").text().substring(0, $("#servicioInt").text().indexOf("-")), 
+        	puesto: $("#puestoInt").text().substring(0, $("#puestoInt").text().indexOf("-")),
+        	nivel: $("#nivelInt").text().substring(0, $("#nivelInt").text().indexOf("/")),
+        	sub_nivel: $("#nivelInt").text().substring($("#nivelInt").text().indexOf("/")+1, $("#nivelInt").text().length), 
+        	tipo_jornada: $("#horasInt").text(), tipo_guardia: tipo });
     } else {
         obj = JSON.stringify({ tipo_ct: oAdsc[1], clave_servicio: $("#ddlServicio").val(), puesto: oPuesto[0], nivel: $("#ddlNivel").val().substring(0, 2), sub_nivel: $("#ddlNivel").val().substring(2), tipo_jornada: $("#ddlJornada").val(), tipo_guardia: tipo });
     }
@@ -26,7 +31,7 @@ $("#btnAgregarGuardia").on("click", function (event) {
 
     $.ajax({
         type: "POST",
-        url: "RegistraGuardias.aspx/ValidaPuestoAutorizado",
+        url: "http://localhost:8080/rest_guardias/ValidaPuestoAutorizado",
         data: obj,
         contentType: 'application/json; charset=utf-8',
         error: function (xhr, ajaxOptions, thrownError) {
@@ -269,7 +274,7 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     // here is the new selected tab id
     var selectedTabId = e.target.id;
 
-    if (selectedTabId == 'hinterno') {
+    if (selectedTabId == 'interno-tab') {
         tipo = 'I';
         //$("#hdnTipo").val("I");
     } else {
@@ -429,6 +434,8 @@ $("#ddlNivel").change(function () {
 $("#btnValidaPuesto").on("click", function (event) {
     event.preventDefault();
     
+    tipo = 'E';
+    
     if ($("#ddlAscripcion").val() == 0 || $("#ddlPuesto").val() == 0 || $("#ddlServicio").val() == 0 || $("#ddlNivel").val() == 0 || $("#ddlJornada").val() == 0) {
 		// alert("Favor de seleccionar todas las carácteristicas");
         $('.toast-warning').toast('show')
@@ -475,6 +482,8 @@ $("#btnValidaPuesto").on("click", function (event) {
 $("#consultarEmpInt").on("click", function (event) {
     event.preventDefault();
     
+    tipo = 'I';
+
     if ($("#txtNumero").val() == "" || $("#txtNumero").val().length == 0) {
 		alert("Favor de ingresar el número de empleado");
 		return 0;
@@ -501,14 +510,15 @@ $("#consultarEmpInt").on("click", function (event) {
                 $("#btnAgregarGuardia").attr('disabled','disabled');
                 return 0;
             } else {
+				$("#hdnTipoCT").val(data.empleado.id_tipo_ct);
 				$("#nombresInt").text(data.empleado.nombre);
 				$("#apellidosInt").text(data.empleado.apellido_1+ ' ' + data.empleado.apellido_2);
 				$("#rfcInt").text(data.empleado.id_legal);
-				$("#adscripcionInt").text(data.empleado.id_centro_trabajo);
-				$("#servicioInt").text(data.empleado.id_clave_servicio);
-				$("#puestoInt").text(data.empleado.id_puesto_plaza);
-				$("#horarioInt").text(data.empleado.id_turno);
-				$("#nivelInt").text(data.empleado.id_nivel+data.empleado.id_sub_nivel);
+				$("#adscripcionInt").text(data.empleado.id_centro_trabajo + '-' + data.empleado.n_centro_trabajo);
+				$("#servicioInt").text(data.empleado.id_clave_servicio + '-' + data.empleado.n_clave_servicio);
+				$("#puestoInt").text(data.empleado.id_puesto_plaza + '-' + data.empleado.n_puesto_plaza);
+				//$("#horarioInt").text(data.empleado.id_turno);
+				$("#nivelInt").text(data.empleado.id_nivel+ '/' + data.empleado.id_sub_nivel);
 				$("#horasInt").text(data.empleado.id_tipo_jornada);
 				if (data.esValido) {
 					$('.toast-success .toast-body').html('El empleado cumple con las condiciones para registro de guardias.')
@@ -537,6 +547,53 @@ $("#consultarEmpInt").on("click", function (event) {
         }
     });
     
+});
+
+$("#consultaRFCExt").on("click", function (event) {
+    event.preventDefault();
+    
+	tipo = 'E';
+
+    if ($("#txtRFC").val() == "" || $("#txtRFC").val().length == 0) {
+		alert("Favor de ingresar el RFC del personal");
+		return 0;
+	}
+    
+    var numEmpExt = { "emp_ext" : $("#txtRFC").val() };    
+    console.log(numEmpExt);
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/rest_guardias/ValidaPersonalExt?" + $.param(numEmpExt),
+        data: { emp_int: $("#txtRFC").val() },
+        contentType: 'application/json; charset=utf-8',
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+            $('.toast-error .toast-body').html('El personal no se encuentra registrado en la base de datos.')
+            $('.toast-error').toast('show')
+            $("#btnAgregarGuardia").attr('disabled','disabled');
+            return 0;
+        },
+        success: function (data) {
+            console.log(data);
+            if (data === null || data == '') {
+                //alert("El número de empleado no está autorizado.");
+                $('.toast-error .toast-body').html('El personal no se encuentra registrado en la base de datos.')
+                $('.toast-error').toast('show')
+                $("#btnAgregarGuardia").attr('disabled','disabled');
+                return 0;
+            } else {
+				$("#nombreExt").text(data);
+				$('.toast-success .toast-body').html('El personal se encuentra registrado en la base de datos.')
+				$('.toast-success').toast('show')
+				$("#btnAgregarGuardia").removeAttr('disabled');
+				//carga_lista_guardias();
+                //alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
+                return data;
+				//$("#btnAgregarGuardia").attr('disabled','disabled');
+            }
+        }
+    });
 });
 
 // evento click para boton Modificar

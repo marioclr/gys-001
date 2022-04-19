@@ -33,4 +33,5 @@ public interface IGuardiaInternaService {
 	IEmpleadoInterno ValidaEmpleadoInt(String fecha, String empleado);
 	List<IDatosGuardia> ConsultaGuardiasInternas(String claveEmpleado);
 	List<IDatosGuardia> ConsultaGuardiasExternas(String claveEmpleado);
+	String ValidaPersonalExterno(String rfc);
 }

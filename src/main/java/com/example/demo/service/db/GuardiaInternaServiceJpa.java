@@ -119,4 +119,9 @@ public class GuardiaInternaServiceJpa implements IGuardiaInternaService {
 	public List<IDatosGuardia> ConsultaGuardiasExternas(String claveEmpleado) {
 		return repoGuardiaInterna.ConsultaGuardiasExternas(claveEmpleado);
 	}
+
+	@Override
+	public String ValidaPersonalExterno(String rfc) {
+		return repoGuardiaInterna.ValidaPersonalExterno(rfc);
+	}
 }

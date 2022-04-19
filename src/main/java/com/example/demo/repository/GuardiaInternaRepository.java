@@ -106,14 +106,15 @@ public interface GuardiaInternaRepository extends JpaRepository<GuardiaInterna, 
 			+ "And id_tipo_per = ?7", nativeQuery = true)
 	long ValidaPuestoAutorizado(String tipo_ct, String clave_servicio, String puesto, String nivel, String sub_nivel, String tipo_jornada, String tipo_guardia);
 	
-	@Query(value = "SELECT E.nombre, E.apellido_1, E.apellido_2, E.id_legal, C.id_tipo_ct, DI.id_centro_trabajo, " +
-			"DI.id_clave_servicio, DI.id_puesto_plaza, DI.id_turno, DI.id_nivel, DI.id_sub_nivel," +
-			"J.id_tipo_jornada,DI.id_tipo_tabulador,DI.Id_zona " +
-            "FROM M4_DATOS_INDIVIDUO DI,  m4_hist_jornada_plaza J, m4_centros_trab C, m4t_empleados E " +
-            "WHERE DI.id_sociedad = E.id_sociedad And DI.id_empleado = E.id_empleado And " +
+	@Query(value = "SELECT E.nombre, E.apellido_1, E.apellido_2, E.id_legal, C.id_tipo_ct, DI.id_centro_trabajo, n_centro_trabajo, " +
+			"DI.id_clave_servicio, n_clave_servicio, DI.id_puesto_plaza, n_puesto_plaza, DI.id_turno, DI.id_nivel, DI.id_sub_nivel, " +
+			"J.id_tipo_jornada, DI.id_tipo_tabulador, DI.Id_zona " +
+            "FROM M4_DATOS_INDIVIDUO DI,  m4_hist_jornada_plaza J, m4_centros_trab C, m4t_empleados E, m4t_clave_servicio S, m4t_puestos_plaza P " +
+            "WHERE DI.id_sociedad = E.id_sociedad And DI.id_empleado = E.id_empleado AND " +
             "DI.id_plaza_empleado = J.id_plaza_empleado AND DI.id_centro_trabajo=C.id_centro_trabajo AND " +
-            "(C.fec_fin >= ?1 OR C.fec_fin IS NULL) AND " +
-            "J.fec_inicio <= ?1 AND (J.fec_fin >= ?1 OR J.fec_fin IS NULL) AND " +
+            "DI.id_clave_servicio = S.id_clave_servicio AND DI.id_sociedad = S.id_sociedad AND DI.id_empresa = S.id_empresa AND " +
+            "DI.id_puesto_plaza = P.id_puesto_plaza AND DI.id_sociedad = P.id_sociedad AND DI.id_empresa = P.id_empresa AND " +
+            "(C.fec_fin >= ?1 OR C.fec_fin IS NULL) AND J.fec_inicio <= ?1 AND (J.fec_fin >= ?1 OR J.fec_fin IS NULL) AND " +
             "DI.F_INICIO_PLAZA <= ?1 AND (DI.F_FIN_PLAZA >= ?1 OR DI.F_FIN_PLAZA IS NULL) " +
             "AND DI.F_INICIO_EMPRESA <= ?1 AND (DI.F_FIN_EMPRESA >= ?1 OR DI.F_FIN_EMPRESA IS NULL) " +
             "AND DI.F_INICIO_CT <= ?1 AND (DI.F_FIN_CT >= ?1 OR DI.F_FIN_CT IS NULL) " +
@@ -157,6 +158,8 @@ public interface GuardiaInternaRepository extends JpaRepository<GuardiaInterna, 
 			+ "PU.id_empresa = '01' "
 			+ "Order by G.fec_paga desc, G.fec_inicio", nativeQuery = true)
 	List<IDatosGuardia> ConsultaGuardiasExternas(String claveEmpleado);
-	
+
+	@Query(value="Select nombre From mclr_gys_bolsa_trabajo Where id_legal = ?", nativeQuery = true)
+	String ValidaPersonalExterno(String rfc);
 
 }

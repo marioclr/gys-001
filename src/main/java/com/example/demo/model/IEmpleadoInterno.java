@@ -7,8 +7,11 @@ public interface IEmpleadoInterno {
 	String getId_legal();
 	String getId_tipo_ct();
 	String getId_centro_trabajo();
+	String getN_centro_trabajo();
 	String getId_clave_servicio();
+	String getN_clave_servicio();
 	String getId_puesto_plaza();
+	String getN_puesto_plaza();
 	String getId_turno();
 	String getId_nivel();
 	String getId_sub_nivel();
