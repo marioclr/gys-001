@@ -248,6 +248,7 @@ function initDataTable() {
             null,
             null
             ],
+        "processing": true,
         "language":{
             "lengthMenu":"Mostrar _MENU_ resultados",
             "info":"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
@@ -261,7 +262,8 @@ function initDataTable() {
                 "sNext":" Siguiente",
                 "sPrevious":"Anterior "
 
-            }
+            },
+            "processing": '<div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>'
         }
         // ,
         // "aoColumnDefs": [
@@ -270,30 +272,40 @@ function initDataTable() {
     });
 }
 
-$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    // here is the new selected tab id
-    var selectedTabId = e.target.id;
+// $('myTabContent').on('shown.bs.tab', function (e) {
+//     // here is the new selected tab id
+//     var selectedTabId = e.target.id;
 
-    if (selectedTabId == 'interno-tab') {
-        tipo = 'I';
-        //$("#hdnTipo").val("I");
-    } else {
-        tipo = 'E';
-        //$("#hdnTipo").val("E");
-    }
+//     if (selectedTabId == 'interno-tab') {
+//         tipo = 'I';
+//         //$("#hdnTipo").val("I");
+//     } else {
+//         tipo = 'E';
+//         //$("#hdnTipo").val("E");
+//     }
+// });
+
+$('#interno-tab').click(function(){
+    tipo = 'I';
+    limpiarCamposExterno();
 });
 
-function muestraPanelExterno() {
-    $(".nav-link#hexterno").addClass("active");
-    $(".nav-link#hinterno").removeClass('active');
-    $(".tab-pane#pexterno").addClass("active").siblings().removeClass('active');
-}
+$('#externo-tab').click(function(){
+    tipo = 'E';
+    limpiarCamposInterno();
+});
 
-function muestraPanelInterno() {
-    $(".nav-link#hinterno").addClass("active");
-    $(".nav-link#hexterno").removeClass('active');
-    $(".tab-pane#pinterno").addClass("active").siblings().removeClass('active');
-}
+// function muestraPanelExterno() {
+//     $(".nav-link#hexterno").addClass("active");
+//     $(".nav-link#hinterno").removeClass('active');
+//     $(".tab-pane#pexterno").addClass("active").siblings().removeClass('active');
+// }
+
+// function muestraPanelInterno() {
+//     $(".nav-link#hinterno").addClass("active");
+//     $(".nav-link#hexterno").removeClass('active');
+//     $(".tab-pane#pinterno").addClass("active").siblings().removeClass('active');
+// }
 
 function estatusPresupuestal() {
     //alert("Cambio de Servicio. " + $("#ddlDivision").val());
@@ -317,7 +329,6 @@ function estatusPresupuestal() {
 $(document).ready(function () {
 
 	//alert( "JQuery ready. ");
-
     initDataTable();
     //carga_lista_guardias();
     //estatusPresupuestal();
@@ -722,3 +733,30 @@ $('#tbl_guardias tbody').on('click', 'div', function (e) {
         });
     }
 });
+
+//Al dar clic en la pestaña de externos se limpian los campos de internos
+function limpiarCamposInterno(){
+    $("#btnAgregarGuardia").attr('disabled','disabled');
+    $('#txtNumero').val('');
+    $('#nombresInt').text('');
+    $('#apellidosInt').text('');
+    $('#rfcInt').text('');
+    $('#adscripcionInt').text('');
+    $('#servicioInt').text('');
+    $('#puestoInt').text('');
+    $('#nivelInt').text('');
+    $('#horasInt').text('');
+    tabla.clear().draw();
+}
+//Al dar clic en la pestaña de internos se limpian los campos de externos
+function limpiarCamposExterno(){
+    $("#btnAgregarGuardia").attr('disabled','disabled');
+    $('#txtRFC').val('');
+    $('#nombreExt').text('');
+    $('#ddlAscripcion').val($('#ddlAscripcion > option:first').val());
+    $('#ddlPuesto').val($('#ddlPuesto > option:first').val());
+    $('#ddlServicio').val($('#ddlServicio > option:first').val());
+    $('#ddlNivel').val($('#ddlNivel > option:first').val());
+    $('#ddlJornada').val($('#ddlJornada > option:first').val());
+    tabla.clear().draw();
+}
