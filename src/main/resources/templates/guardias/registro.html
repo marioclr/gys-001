@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="fragments/head::head-main">
+<head th:replace="fragments/head::head-main">
 </head>
 
 <body id="page-top">
@@ -39,12 +39,12 @@
                                             <li class="nav-item" role="presentation">
                                                 <a class="nav-link active" id="interno-tab" data-bs-toggle="tab"
                                                     data-bs-target="#interno" type="button" role="tab"
-                                                    aria-controls="interno" aria-selected="true">Interno</a>
+                                                    aria-controls="interno">Interno</a>
                                             </li>
                                             <li class="nav-item" role="presentation">
                                                 <a class="nav-link" id="externo-tab" data-bs-toggle="tab"
                                                     data-bs-target="#externo" type="button" role="tab"
-                                                    aria-controls="externo" aria-selected="false">Externo</a>
+                                                    aria-controls="externo">Externo</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -365,7 +365,7 @@
                                                 <!-- Boton de agregar guardia -->
                                                 <div class="col-md-12">
                                                     <button type="submit" id="btnAgregarGuardia"
-                                                        class="btn issste text-white btn-block">Agregar Guardia</button>
+                                                        class="btn issste text-white btn-block" disabled>Agregar Guardia</button>
                                                 </div>
                                             </div>
                                             <input type="hidden" id="hdnTipoCT"/>
@@ -379,9 +379,9 @@
                     <hr>
 
                     <!-- Tabla de historial de guardias -->
-                    <div class="row mt-5 mb-5">
+                    <div class="row mt-3 mb-5">
                         <div class="col-md-12 col-sm-12">
-                            <h2 class="text-center black mb-5">Historial de guardias</h2>
+                            <h2 class="text-center black mb-3">Historial de guardias</h2>
                             <div class="table table-responsive-sm">
                                 <table class="table" id="tbl_guardias" style="width: 100%;">
                                     <thead class="issste-v text-white text-center">

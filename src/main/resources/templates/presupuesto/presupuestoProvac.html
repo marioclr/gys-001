@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="fragments/head::head-main">
+<head th:replace="fragments/head::head-main">
 </head>
 
 <body id="page-top">
@@ -124,18 +124,24 @@
                                                 <label><strong>Observaciones</strong></label>
                                             </div>
                                             <div class="col-md-6 mb-1 mt-3">
-                                                <textarea name="observaciones" id="observaciones" rows="3"
-                                                    required></textarea>
+                                                <textarea name="observaciones" id="observaciones" rows="3"></textarea>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="col-md-12 mt-3 text-center">
+                            <!-- <div class="col-md-12 mt-3 text-center">
                                 <input type="submit" class="btn issste text-white" value="Guardar">
 
+                            </div> -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center">
+                                <button type="submit" class="btn btn-block issste text-white">Guardar</button>
                             </div>
+                            <div class="col-md-4"></div>
                         </div>
                     </form>
                     <hr>

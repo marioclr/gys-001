@@ -18,7 +18,6 @@ public class UsuarioServiceJpa implements IUsuarioService {
 	
 	@Override
 	public List<IDatosUsuario> datosUsuario(Integer idUsuario) {
-		// TODO Auto-generated method stub
 		return repoUsuario.getDatosUsuarios(idUsuario);
 	}
 
