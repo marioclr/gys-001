@@ -10,6 +10,12 @@ if ($("#txtRFC").val().length > 0) {
 $("#btnAgregarGuardia").on("click", function (event) {
     event.preventDefault();
 
+    if ($("#txtFolio").val() == 0 || $('#txtFechaInicio').val() == "" || $("#txtFechaFin").val() == "" || $('#ddlMovimiento').val() == 0 || $("#ddlMotivo").val() == 0 || $("#ddlRiesgos").val() == 0|| $("#txtDias").val() == 0 || $("#txtComentarios").val() == 0 || $("#ddlQuincena").val() == 0) { 
+		//alert("Favor de seleccionar todas las carácteristicas");
+        $('.toast-warning').toast('show')
+		return 0;
+	}
+
     var oAdsc = $("#ddlAscripcion").val().split(';;;');
     var oPuesto = $("#ddlPuesto").val().split(';;;');
 
@@ -288,11 +294,13 @@ function initDataTable() {
 $('#interno-tab').click(function(){
     tipo = 'I';
     limpiarCamposExterno();
+    limpiarCriteriosGuardia();
 });
 
 $('#externo-tab').click(function(){
     tipo = 'E';
     limpiarCamposInterno();
+    limpiarCriteriosGuardia();
 });
 
 // function muestraPanelExterno() {
@@ -569,7 +577,7 @@ $("#consultaRFCExt").on("click", function (event) {
 		alert("Favor de ingresar el RFC del personal");
 		return 0;
 	}
-    
+
     var numEmpExt = { "emp_ext" : $("#txtRFC").val() };    
     console.log(numEmpExt);
 
@@ -594,6 +602,12 @@ $("#consultaRFCExt").on("click", function (event) {
                 $("#btnAgregarGuardia").attr('disabled','disabled');
                 return 0;
             } else {
+
+                // if(data.length>200){      
+                //     console.log("Error del servidor");
+                //     window.location.href="/guardias/registro";
+                //     return 0;
+                // }
 				$("#nombreExt").text(data);
 				$('.toast-success .toast-body').html('El personal se encuentra registrado en la base de datos.')
 				$('.toast-success').toast('show')
@@ -759,4 +773,16 @@ function limpiarCamposExterno(){
     $('#ddlNivel').val($('#ddlNivel > option:first').val());
     $('#ddlJornada').val($('#ddlJornada > option:first').val());
     tabla.clear().draw();
+}
+
+function limpiarCriteriosGuardia(){
+    $("#txtFolio").val('');
+    $('#txtFechaInicio').val('');
+    $("#txtFechaFin").val('');
+    $('#ddlMovimiento').val($('#ddlMovimiento > option:first').val());
+    $('#ddlMotivo').val($('#ddlMotivo > option:first').val());
+    $('#ddlRiesgos').val($('#ddlRiesgos > option:first').val());
+    $(" #txtDias").val('');
+    $("#txtComentarios").val('');
+    $('#ddlQuincena').val($('#ddlQuincena > option:first').val());
 }

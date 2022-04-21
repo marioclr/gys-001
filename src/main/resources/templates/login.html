@@ -18,7 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -50,7 +50,7 @@
                                     <div class="text-center">
                                         <h1 class="h2 text-gray-900 mb-4">Bienvenido</h1>
                                     </div>
-                                    <div th:if="error == null"></div>
+        
                                     <div th:if="error != null">
                                         <!-- <div class="alert alert-danger" role="alert"> -->
                                             <p class="text-danger text-center" th:text="${error}"></p>
