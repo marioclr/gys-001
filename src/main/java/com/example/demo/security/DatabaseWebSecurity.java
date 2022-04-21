@@ -32,7 +32,7 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		http.cors().and().csrf().disable();
+		
 		http.authorizeRequests()
 		
 		//Recursos estaticos
@@ -53,9 +53,13 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 
 		.and().formLogin().loginPage("/login").permitAll()
         .defaultSuccessUrl("/", true)
-        .and().logout().permitAll();
+        .and().logout().invalidateHttpSession(true).permitAll();
 		
-		http.sessionManagement().maximumSessions(1).expiredUrl("/login");
+		http.sessionManagement().maximumSessions(1).expiredUrl("/login?logout=true")
+		.and().invalidSessionUrl("/login?invalid-session=true");
+
+		http.cors().and().csrf().disable();
+
 	}
 	
 	/**
@@ -66,6 +70,13 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 	    return new BCryptPasswordEncoder();
 	}
+
+	// @Bean
+	// public SessionRegistry sessionRegistry(){
+	// 	SessionRegistry sessionRegistry = new SessionRegistryImp();
+	// 	return sessionRegistry;	
+		
+	// }
 	
 //	@Autowired
 //	public void configureGlobal(AuthenticationManagerBuilder auth) 
