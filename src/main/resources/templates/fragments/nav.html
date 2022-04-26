@@ -26,27 +26,28 @@
 
                 <!-- <i sec:authorize="hasAnyAuthority('ROOT')" class="fas fa-user icon"></i> -->
                 <!-- <div class="desplegar"> -->
-                <div class="perfil" sec:authorize="hasAnyAuthority('ROOT')">
+                <div class="perfil  text-center" sec:authorize="hasAnyAuthority('ROOT')">
                     <a class="btn btn-default dropdown btn-sub dropdown-item" type="button"
                         data-toggle="dropdown">Perfil
                         <i class="fas fa-caret-down"></i></span></a>
                     <!-- <div class="opc-per"> -->
-
+                    
                     <ul class="dropdown-submenu sub animated--grow-in shadow mt-3">
                         <li class="dropdown-submenu text-center mt-2 mb-2">
                             <a class="test text-wrap px-2 pt-1 pb-1" tabindex="-1" th:href="@{/perfil/crear}"><i
                                     class="far fa-plus-square"></i> Crear perfil <span class="caret"></span></a><br>
                         </li>
+                        <br>
                         <li class="dropdown-submenu mb-2 text-center">
                             <a class="test text-wrap px-1 pt-1 pb-1" tabindex="-1" th:href="@{/perfil/opcion}"><i class="fas fa-bars"></i>
                                 Seleccionar opciones<span class="caret"></span></a><br>
                         </li>
+                        <br>
                         <li class="dropdown-submenu mb-2 text-center">
                             <a class="test text-wrap px-3 pt-1 pb-1" tabindex="-1" th:href="@{/perfil/acceso}"><i
                                     class="fas fa-door-open"></i> Acceso por perfil<span class="caret"></span></a><br>
                         </li>
                     </ul>
-                    <!-- </div> -->
                
                 <!-- </div> -->
                 <span></span>

@@ -56,11 +56,11 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
         .and().logout().invalidateHttpSession(true).permitAll();
 		
 		http.sessionManagement().maximumSessions(1).expiredUrl("/login?logout=true")
-		.and().invalidSessionUrl("/login?invalid-session=true");
+		.and().invalidSessionUrl("/login");
 
 		http.cors().and().csrf().disable();
 
-	}
+	} 
 	
 	/**
 	 *  Implementación de Spring Security que encripta passwords con el algoritmo Bcrypt
