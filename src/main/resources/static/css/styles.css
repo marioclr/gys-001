@@ -65,7 +65,7 @@ ul .test{
     list-style-type: none;
     overflow: hidden;
     display: none;
-    float: left;
+    float: center;
 }
 
 .sub li{

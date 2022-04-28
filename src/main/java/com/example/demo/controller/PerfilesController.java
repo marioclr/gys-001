@@ -44,6 +44,11 @@ public class PerfilesController {
 		return "perfil/accesoPerfil";
 	}
 
+	@GetMapping("/usuario")
+	public String usuario(){
+		return "perfil/usuario";
+	}
+
 
 	//Funcion que mantiene al usuario y a las opciones en todas las rutas
 	@ModelAttribute

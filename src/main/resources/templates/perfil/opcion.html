@@ -26,7 +26,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="mb-4 mt-3 text-center black">Opción</h1>
+                    <h1 class="mb-4 mt-3 text-center black">Opciones</h1>
 
                     <!-- Formulario -->
                     <div class="container mt-5">
@@ -36,7 +36,7 @@
                             <div class="form-row pb-2">
                                 <div class="form-group col-md-12">
                                     <label>Nombre:</label>
-                                    <input type="text" class="form-control" name="nombre" id="nombre" minlength="1" maxlength="50"
+                                    <input type="text" class="form-control" name="Nombre" id="Nombre" minlength="1" maxlength="50"
                                         placeholder="Ingrese el nombre" required>
                                 </div>
                             </div>
@@ -44,20 +44,20 @@
                             <div class="form-row pb-2">
                                 <div class="form-group col-md-12">
                                     <label>Descripción:</label>
-                                    <input type="text" class="form-control" name="descripcion" id="descripcion" minlength="1"
+                                    <input type="text" class="form-control" name="Descripcion" id="Descripcion" minlength="1"
                                         maxlength="180" placeholder="Ingrese una Descripción" required>
                                 </div>
                             </div>
 
                             <div class="form-row pb-5">
                                 <div class="form-group col-md-6">
-                                    <label>Componente:</label>
-                                    <input type="text" class="form-control" name="componente" id="componente" minlength="1"
+                                    <label>Controlador:</label>
+                                    <input type="text" class="form-control" name="Componente" id="Componente" minlength="1"
                                         maxlength="80" placeholder="Ingrese el nombre del componente" required>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Tipo:</label>
-                                    <input type="number" min="1" class="form-control" name="tipo" id="tipo"
+                                    <input type="number" min="1" class="form-control" name="Tipo" id="Tipo"
                                         placeholder="Ingrese el tipo" required>
                                 </div>
                             </div>
@@ -70,6 +70,53 @@
                                 <div class="col-md-4"></div>
                             </div>
                         </form>
+
+                        <hr>
+                        <div class="mt-5">
+                            <div class="table table-responsive-sm">
+                                <table class="table" id="tbl_guardias" style="width: 100%;">
+                                    <thead class="issste-v text-white text-center">
+                                        <tr>
+                                        	<th></th>
+                                        	<th></th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Componente</th>
+                                            <th>Tipo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbl_body_table" class="text-center">
+                                        
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="black">Todas</td>
+                                            <td class="black">Todas</td>
+                                            <td class="black">/todas</td>
+                                            <td class="black">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Registro Personal externo</td>
+                                            <td>Registro en el padrón de prestadores de servicios externos</td>
+                                            <td>/RegistraExterno</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Registro Guardias</td>
+                                            <td>Registra servicios prestados por guardias</td>
+                                            <td>/RegistraGuardias</td>
+                                            <td>1</td>
+                                        </tr>
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
 
                     </div>
                     <!-- Fin del formulario -->
