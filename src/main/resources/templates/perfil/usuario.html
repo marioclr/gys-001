@@ -76,15 +76,38 @@
                              <!-- Datos para llenar -->
                              <div class="col-md-6 col-lg-6 mt-2 mb-2">Sociedad:</div>
                              <div class="col-md-6 col-lg-6 mt-2 mb-2">
-                                 <input type="text" class="form-control" placeholder="Ingrese la sociedad" id="idSociedad" name="id_sociedad">
-                             </div>
-                             <div class="col-md-6 col-lg-6 mt-2 mb-2">Clave:</div>
+                                 <!-- <input type="text" class="form-control" placeholder="Ingrese la sociedad" id="idSociedad" name="id_sociedad"> -->
+                                 <select class="form-select" id="id_sociedad" name="id_sociedad"
+                                 aria-label="Default select example">
+                                    <option value="sel" disabled="disabled">Seleccione una opcion</option>
+                                    <option value="0">01</option>
+                                    <option value="1">01</option>
+                                    <option value="2">01</option>
+                                    <option value="3">01</option>
+                                </select>
+                            </div>
+                             <!-- <div class="col-md-6 col-lg-6 mt-2 mb-2">Clave:</div>
                              <div class="col-md-6 col-lg-6 mt-2 mb-2">
                                  <input type="text" class="form-control" placeholder="Ingrese la clave" id="clave" name="Clave">
+                             </div> -->
+                             <div class="col-md-6 col-lg-6 mt-2 mb-2">Username:</div>
+                             <div class="col-md-6 col-lg-6 mt-2 mb-2">
+                                 <input type="text" class="form-control" placeholder="Ingrese su nombre de usuario" id="username" name="username">
                              </div>
                              <div class="col-md-6 col-lg-6 mt-2 mb-2">Password:</div>
                              <div class="col-md-6 col-lg-6 mt-2 mb-2">
                                  <input type="password" class="form-control" placeholder="Ingrese la contraseña" id="password" name="Password">
+                             </div>
+                             <div class="col-md-6 col-lg-6 mt-2 mb-2">División geografica:</div>
+                             <div class="col-md-6 col-lg-6 mt-2 mb-2">
+                                <select class="form-select" id="id_div_geografica" name="id_div_geografica"
+                                        aria-label="Default select example">
+                                        <option value="sel" disabled="disabled">Seleccione una opcion</option>
+                                        <option value="0">00</option>
+                                        <option value="1">02</option>
+                                        <option value="2">20</option>
+                                        <option value="3">44</option>
+                                </select>
                              </div>
                         </div>
                         <hr>
