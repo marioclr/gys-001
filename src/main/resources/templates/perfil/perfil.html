@@ -39,11 +39,10 @@
                                 <div class="form-group col-md-12">
                                     <label>Descripción:</label>  
                                 </div>
-                                <textarea name="descripcion" id="descripcion" col="50" rows="3" minlength="1" maxlength="80" required></textarea>
-
+                                <input type="text" id="Descripcion" name="Descripcion" class="form-control" required>
                             </div>
 
-                            <div class="row">
+                            <div class="row mb-5">
                                 <div class="col-md-4"></div>
                                 <div class="col-md-4 text-center">
                                     <button type="submit" class="btn btn-block issste text-white">Enviar</button>
@@ -51,7 +50,48 @@
                                 <div class="col-md-4"></div>
                             </div>
                         </form>
+                        <hr>
+                        <div class="mt-5">
+                            <div class="table table-responsive-sm">
+                                <table class="table" id="tbl_guardias" style="width: 100%;">
+                                    <thead class="issste-v text-white text-center">
+                                        <tr>
+                                        	<th></th>
+                                        	<th></th>
+                                            <th>Id perfil</th>
+                                            <th>Nombre del perfil</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbl_body_perfil" class="text-center">
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="black">0</td>
+                                            <td class="black">ROOT</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>1</td>
+                                            <td>Administrador Guardias</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>2</td>
+                                            <td>Administrador Suplencias</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>3</td>
+                                            <td>Presupuesto</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
+                        </div>
                     </div>
                     <!-- Fin del formulario -->
                 </div>

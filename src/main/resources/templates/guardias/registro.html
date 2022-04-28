@@ -382,6 +382,12 @@
                     <div class="row mt-3 mb-5">
                         <div class="col-md-12 col-sm-12">
                             <h2 class="text-center black mb-3">Historial de guardias</h2>
+                            <div class="row mt-2 mb-3">
+                                <div class="col-md-12  d-flex justify-content-end">
+                                    <a class="btn btn-success" th:href="@{/guardias/registro (format=xlsx)}" target="_blank">Excel</a>&nbsp&nbsp      
+                                    <a class="btn btn-danger" th:href="@{/guardias/registro (format=pdf)}"  target="_blank">PDF</a>                           
+                                </div>
+                            </div>
                             <div class="table table-responsive-sm">
                                 <table class="table" id="tbl_guardias" style="width: 100%;">
                                     <thead class="issste-v text-white text-center">
@@ -397,37 +403,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_body_table" class="text-center">
-                                        <!-- <tr>
-                                            <td>238916</td>
-                                            <td>M02082</td>
-                                            <td>10/01/2022</td>
-                                            <td>30/03/2220</td>
-                                            <td>12</td>
-                                            <td>770</td>
-                                            <td>
-                                                <a type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#staticBackdrop">
-                                                    Editar
-                                                </a>
-                                            </td>
-                                            <td><a href="#" class="btn btn-outline-danger">Eliminar</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>238916</td>
-                                            <td>M02082</td>
-                                            <td>10/01/2022</td>
-                                            <td>30/03/2220</td>
-                                            <td>12</td>
-                                            <td>770</td>
-                                            <td>
-                                                <a type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
-                                                    data-bs-target="#staticBackdrop">
-                                                    Editar
-                                                </a>
-                                            </td>
-                                            <td><a href="#" class="btn btn-outline-danger">Eliminar</a></td>
-                                        </tr>
-                                        -->
+                                        
                                     </tbody>
                                 </table>
                             </div>
