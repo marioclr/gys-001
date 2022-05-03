@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head::head-main">
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper" class="text-dark">
+
+        <!-- Sidebar -->
+        <div th:insert="fragments/menu::menu-lateral"></div>
+
+        <!-- Contenido central -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <div th:insert="fragments/nav::navbar"></div>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="mb-4 mt-3 text-center black">Bolsa de Trabajo</h1>
+                    <div th:if="${msg}" class="alert alert-success">
+                        <h5 class="text-center" th:text="${msg}"></h5>
+                    </div>
+                    
+                    <div class="container">
+                        <div class="formulario">
+                            <form th:action="@{/guardias/guardarPerExt}" th:object="${bolsaTrabajoGuardias}"
+                                method="post">
+                                <div class="card card-primary">
+                                    <div class="card-header issste-v">
+                                        <h4 class="card-title text-center text-white">Registro de personal externo</h4>
+                                    </div>
+                                    <div class="row px-5 pb-3 pt-2">
+
+                                        <!-- <input type="hidden" th:field="*{id}"> -->
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2 text-center black">
+                                            <label>RFC:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2">
+                                            <input type="text" class="form-control" placeholder="Ingrese el RFC"
+                                                id="rfc" name="rfc" th:field="*{rfc}">
+                                            <div class="alert alert-danger text-center"
+                                                th:if="${#fields.hasErrors('rfc')}" th:errors="*{rfc}"></div>
+                                        </div>
+
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2 text-center black">
+                                            <label>Nombre(s):</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2">
+                                            <input type="text" class="form-control" placeholder="Ingrese el nombre"
+                                                id="nombre" name="nombre" th:field="*{nombre}" required>
+                                            <div class="alert alert-danger text-center"
+                                                th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2 text-center black">
+                                            <label>Apellido Paterno:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2">
+                                            <input type="text" class="form-control"
+                                                placeholder="Ingrese el apellido paterno" id="apellidoPat"
+                                                name="apellidoPat" th:field="*{apellidoPat}" required>
+                                            <div class="alert alert-danger text-center"
+                                                th:if="${#fields.hasErrors('apellidoPat')}" th:errors="*{apellidoPat}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2 text-center black">
+                                            <label>Apellido Materno:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2">
+                                            <input type="text" class="form-control"
+                                                placeholder="Ingrese el apellido materno" id="apellidoMat"
+                                                name="apellidoMat" th:field="*{apellidoMat}" required>
+                                            <div class="alert alert-danger text-center"
+                                                th:if="${#fields.hasErrors('apellidoMat')}" th:errors="*{apellidoMat}">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2 text-center black">
+                                            <label>División geográfica:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2">
+                                            <select class="form-select" id="id_div_geografica" name="id_div_geografica"
+                                                th:field="*{id_div_geografica}" aria-label="Default select example"
+                                                style=" width:100%">
+                                                <option value="0">Seleccione una opcion</option>
+                                                <option th:each="del : ${delegaciones}" th:value="${del.divGeo}"
+                                                    th:text="${del.nombre}"></option>
+                                            </select>
+                                            <div class="alert alert-danger text-center"
+                                                th:if="${#fields.hasErrors('id_div_geografica')}"
+                                                th:errors="*{id_div_geografica}"></div>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2 text-center black">
+                                            <label>Centro de trabajo:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2">
+                                            <select class="form-select black" id="id_centro_trabajo"
+                                                name="id_centro_trabajo" th:field="*{id_centro_trabajo}"
+                                                aria-label="Default select example" style=" width:100%">
+                                                <option value="0">Seleccione una opcion</option>
+                                                <option th:each="adsc : ${adscripciones}" th:value="${adsc.clave}"
+                                                    th:text="${adsc.clave + '-' + adsc.descripcion}" class="black">
+                                                </option>
+                                            </select>
+                                            <div class="alert alert-danger text-center"
+                                                th:if="${#fields.hasErrors('id_centro_trabajo')}"
+                                                th:errors="*{id_centro_trabajo}"></div>
+                                        </div>
+
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-4 text-center mt-5">
+                                            <!-- <button type="submit" id="btnAgregarBolsaTrab" class="btn btn-block issste text-white">Guardar registro</button> -->
+                                            <input type="submit" id="btnAgregarBolsaTrab"
+                                                class="btn btn-block issste text-white" value="Guardar registro">
+                                        </div>
+                                        <div class="col-md-4"></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-sm-12">
+                                <div class="table table-responsive-sm">
+                                    <table class="table" id="tbl_guardias" style="width: 100%;">
+                                        <thead class="issste-v text-white text-center">
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>RFC</th>
+                                                <th>Nombre</th>
+                                                <th>Apellido paterno</th>
+                                                <th>Apellido materno</th>
+                                                <th>Div. geografica</th>
+                                                <th>Centro de trabajo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbl_body_table" class="text-center">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Toast -->
+                    <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 5%; top: 45px;">
+                        <div id="liveToast" class="toast toast-warning hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                          <div class="toast-header bg-warning text-white">
+                            <strong class="mr-auto">Validacion de campos</strong>
+                          </div>
+                          <div class="toast-body bg-warning text-white">
+                            
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Fin toast -->
+                </div>
+
+            </div>
+            <!-- Fin del contenido -->
+
+            <!-- Footer -->
+            <div th:insert="fragments/footer::pie-pagina"></div>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a th:insert="fragments/boton-scroll::boton-scroll-up"></a>
+    <!-- Logout Modal-->
+    <div th:insert="fragments/modal :: msgSalir"></div>
+
+    <div th:insert="fragments/scripts::scripts-js"></div>
+
+    <script>
+        // var tabla;
+
+        $(document).ready(function () {
+            $("#id_div_geografica").select2();
+            $("#id_centro_trabajo").select2();
+            // $("#btnAgregarBolsaTrab").attr('disabled','disabled');
+        });
+
+        $("#btnAgregarBolsaTrab").on("click", function (event) {
+            // event.preventDefault();
+            let rfc = document.getElementById('rfc').value.length;
+            let nombre = document.getElementById('nombre').value;
+            let apellidoPat = document.getElementById('apellidoPat').value;
+            let apellidoMat = document.getElementById('apellidoMat').value;
+            let id_div_geografica = document.getElementById('id_div_geografica').value;
+            let id_centro_trabajo = document.getElementById('id_centro_trabajo').value;
+
+
+            if (rfc == 0 || (rfc < 12 && rfc >13)) {
+                $('.toast-warning').toast('show');
+                $('.toast-body').text("El RFC esta vacio");
+                return false;
+            }
+
+            if (nombre == 0) {
+                $('.toast-warning').toast('show');
+                $('.toast-body').text("El nombre esta vacio");
+                return false;
+            }
+
+            if (apellidoPat == 0) {
+              $('.toast-warning').toast('show');
+              $('.toast-body').text("El apellido paterno esta vacio");  
+                return false;
+            }
+
+            if (apellidoMat == 0) {
+                $('.toast-warning').toast('show');
+                $('.toast-body').text("El apellido materno esta vacio");
+                return false;
+            }
+
+            if (id_div_geografica == 0 || $("#id_div_geografica").val() == 00) {
+                $('.toast-warning').toast('show');
+                $('.toast-body').text("No ha seleccionado ninguna división geografica");
+                return false;
+            }
+
+            if (id_centro_trabajo == 0) {
+                $('.toast-warning').toast('show');
+                $('.toast-body').text("No ha seleccionado ningun centro de trabajo");
+                return false;
+            }
+            // if(rfc && nombre && apellidoPat && apellidoMat && id_div_geografica && id_centro_trabajo){
+            //     $("#btnAgregarBolsaTrab").attr('enabled','enabled');
+            // }
+            // console.log("Datos enviados:" + rfc + " ," + nombre + " ," + apellidoPat + " ," + apellidoMat + " ," + id_div_geografica + " ," + id_centro_trabajo);
+
+        });
+
+       
+    </script>
+</body>
+
+</html>
