@@ -25,6 +25,10 @@ public class BolsaTrabajoGuardiaServiceJpa implements IBolsaTrabajoGuardiasServi
 		}
 		return null;
 	}
+
+	public  void eliminar(Integer id){
+		bolsaTrabRepo.deleteById(id);
+	}
 	
 	// @Override
 	public List<BolsaTrabajoGuardias> buscarTodos(){

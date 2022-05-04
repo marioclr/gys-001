@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 // import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +30,7 @@ import com.example.demo.service.IDelegacionService;
 import com.example.demo.service.IGuardiaInternaService;
 import com.example.demo.service.IUsuarioService;
 import com.example.demo.service.IBolsaTrabajoGuardiasService;
+
 
 @Controller
 @RequestMapping("/guardias")
@@ -77,11 +79,25 @@ public class GuardiasController {
 		System.out.println("Registro: "+ bolsaTrabajo);
 		System.out.println("---------------------------------------------------------------------------------");
 		
-		// servicioBolsaTrabGuardias.guardar(bolsaTrabajo);
+		servicioBolsaTrabGuardias.guardar(bolsaTrabajo);
 		attribute.addFlashAttribute("msg","Registro guardado");
 
 		return "redirect:/guardias/RegPersonalExt";
 	}
+
+	@GetMapping("/eliminar/{id}")
+	public String eliminarRegistroPersonal(@PathVariable("id") int id) {
+		servicioBolsaTrabGuardias.eliminar(id);
+		return "redirect: /";
+	}
+	
+	// @GetMapping("/editar/{id}")
+	// public String editarRegistroPersonal(@PathVariable("id") int id, Model modelo){
+	// 	BolsaTrabajoGuardias bolsaTrabajo =  servicioBolsaTrabGuardias.buscarId(id);
+	// 	modelo.addAttribute("bolsaTrabajo", bolsaTrabajo);
+	// 	return "";
+	// }
+
 
 
 

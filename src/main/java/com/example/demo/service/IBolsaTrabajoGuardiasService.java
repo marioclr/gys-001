@@ -12,6 +12,8 @@ public interface IBolsaTrabajoGuardiasService {
 
 	void guardar(BolsaTrabajoGuardias bolsaTrabajo);
 
+	void eliminar(Integer id);
+
 	List<BolsaTrabajoGuardias> buscarTodos();
 	
 	List<IDatosDelegacion> getDatosDelegacion();
