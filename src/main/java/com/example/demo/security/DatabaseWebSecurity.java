@@ -46,7 +46,7 @@ public class DatabaseWebSecurity extends WebSecurityConfigurerAdapter {
         .antMatchers("/login").permitAll()
 
 		.antMatchers("/perfil/**").hasAnyAuthority("ROOT")
-		.antMatchers("/guardias/**").hasAnyAuthority("ROOT","Administrador Guardias","Administrador Suplencias")
+		.antMatchers("/guardias/**").hasAnyAuthority("ROOT","Administrador Guardias")
 		.antMatchers("/suplencias/**").hasAnyAuthority("ROOT","Administrador Suplencias")
 		.antMatchers("/presupuesto/**").hasAnyAuthority("ROOT","Presupuesto")
 		.anyRequest().authenticated()

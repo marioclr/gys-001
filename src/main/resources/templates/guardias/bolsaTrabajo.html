@@ -27,27 +27,27 @@
 
                     <!-- Page Heading -->
                     <h1 class="mb-4 mt-3 text-center black">Bolsa de Trabajo</h1>
-                    <div th:if="${msg}" class="alert alert-success">
-                        <h5 class="text-center" th:text="${msg}"></h5>
-                    </div>
-
+                    
                     <div class="container">
+                        <div th:if="${msg}" class="alert alert-success">
+                            <h5 class="text-center" th:text="${msg}"></h5>
+                        </div>
                         <div class="formulario">
                             <form th:action="@{/guardias/guardarPerExt}" th:object="${bolsaTrabajoGuardias}"
                                 method="post">
                                 <div class="card card-primary">
                                     <div class="card-header issste-v">
-                                        <h4 class="card-title text-center text-white">Registro de personal externo</h4>
+                                        <h4 class="card-title text-center text-white" th:text="${titulo}"></h4>
                                     </div>
                                     <div class="row px-5 pb-3 pt-2">
 
-                                        <!-- <input type="hidden" th:field="*{id}"> -->
+                                        <input type="hidden" th:field="*{id}">
                                         <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2 text-center black">
                                             <label>RFC:</label>
                                         </div>
                                         <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2">
                                             <input type="text" class="form-control" placeholder="Ingrese el RFC"
-                                                id="rfc" name="rfc" th:field="*{rfc}">
+                                                id="rfc" name="rfc" th:field="*{rfc}" maxlength="13">
                                             <div class="alert alert-danger text-center"
                                                 th:if="${#fields.hasErrors('rfc')}" th:errors="*{rfc}"></div>
                                         </div>
@@ -177,12 +177,13 @@
             </div>
             <!-- Fin del contenido -->
             <!-- Modal -->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">¿Esta seguro de querer eliminar este registro?</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">¿Esta seguro de querer eliminar este
+                                registro?</h5>
                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -212,248 +213,8 @@
     <div th:insert="fragments/modal :: msgSalir"></div>
 
     <div th:insert="fragments/scripts::scripts-js"></div>
-
-    <script>
-        //Inicializar tabal para datatables
-        var tabla;
-
-        //funcion al cargar la página
-        $(document).ready(function () {
-            $("#id_div_geografica").select2();
-            $("#id_centro_trabajo").select2();
-            mostrarTabla();
-        });
-
-        //Validacion de campos vacios
-        $("#btnAgregarBolsaTrab").on("click", function (event) {
-            // event.preventDefault();
-            let rfc = document.getElementById('rfc').value.length;
-            let nombre = document.getElementById('nombre').value;
-            let apellidoPat = document.getElementById('apellidoPat').value;
-            let apellidoMat = document.getElementById('apellidoMat').value;
-            let id_div_geografica = document.getElementById('id_div_geografica').value;
-            let id_centro_trabajo = document.getElementById('id_centro_trabajo').value;
-
-
-            if (rfc == 0 || (rfc < 12 && rfc > 13)) {
-                $('.toast-warning').toast('show');
-                $('.toast-body').text("El RFC esta vacio");
-                return false;
-            }
-
-            if (nombre == 0) {
-                $('.toast-warning').toast('show');
-                $('.toast-body').text("El nombre esta vacio");
-                return false;
-            }
-
-            if (apellidoPat == 0) {
-                $('.toast-warning').toast('show');
-                $('.toast-body').text("El apellido paterno esta vacio");
-                return false;
-            }
-
-            if (apellidoMat == 0) {
-                $('.toast-warning').toast('show');
-                $('.toast-body').text("El apellido materno esta vacio");
-                return false;
-            }
-
-            if (id_div_geografica == 0 || $("#id_div_geografica").val() == 00) {
-                $('.toast-warning').toast('show');
-                $('.toast-body').text("No ha seleccionado ninguna división geografica");
-                return false;
-            }
-
-            if (id_centro_trabajo == 0) {
-                $('.toast-warning').toast('show');
-                $('.toast-body').text("No ha seleccionado ningun centro de trabajo");
-                return false;
-            }
-            if (rfc && nombre && apellidoPat && apellidoMat && id_div_geografica && id_centro_trabajo) {
-                // $("#btnAgregarBolsaTrab").attr('enabled','enabled');
-                // mostrarTabla();
-            }
-            // console.log("Datos enviados:" + rfc + " ," + nombre + " ," + apellidoPat + " ," + apellidoMat + " ," + id_div_geografica + " ," + id_centro_trabajo);
-
-        });
-
-        function mostrarTabla() {
-            $('#tbl_bolsaTrabajo').DataTable({
-                pageLength: 1,
-                ajax: {
-                    url: '/rest_bolsaTrabajo/registros',
-                    dataSrc: ''
-                },
-                columnDefs: [
-                    {
-                        targets: 0,
-                        data: "id",
-                        orderable: false,
-                        render:
-                            function (data, type, row, meta) {
-                                return '<div class="btn-toolbar" role="toolbar"><a href="/guardias/eliminar/' + data + '" class="btn btn-danger"><i class="fa fa-trash"></i></a>';
-                                    // return '<a class="dropdown-item" href="/guardias/eliminar/' + data + '" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-trash"></i></a>';
-                            }
-                    },
-                    {
-                        targets: 1,
-                        data: "id",
-                        orderable: false,
-                        render:
-                            function (data, type, row, meta) {
-                                return '<div class="btn-toolbar" role="toolbar"><a href="/guardias/editar/' + data + '" class="btn btn-warning"><i class="fa fa-edit"></i></a>';
-                            }
-
-                    },
-                    {
-                        targets: 2,
-                        data: "rfc"
-
-                    },
-                    {
-                        targets: 3,
-                        data: "nombre"
-
-                    },
-                    {
-                        targets: 4,
-                        data: "apellidoPat"
-
-                    },
-                    {
-                        targets: 5,
-                        data: "apellidoMat"
-
-                    },
-                    {
-                        targets: 6,
-                        data: "id_div_geografica",
-                        searchable: false
-
-                    },
-                    {
-                        targets: 7,
-                        data: "id_centro_trabajo",
-                        "searchable": false
-                    },
-
-                ],
-
-                "language": {
-                    "lengthMenu": "Mostrar _MENU_ resultados",
-                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "zeroRecords": "No se encontraron resultados",
-                    "sSearch": "Buscar: ",
-                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "sProccessing": "Procesando ...",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Ultimo",
-                        "sNext": " Siguiente",
-                        "sPrevious": "Anterior "
-
-                    }
-                }
-            });
-        }
-
-        // function initDataTable() {
-
-        //     tabla = $("#tbl_bolsaTrabajo").DataTable({
-        //         "columnDefs":
-        //             [{
-        //                 "targets": [0, 1],
-        //                 "orderable": false
-        //             },
-        //             {
-        //                 "targets": 1,
-        //                 data: null,
-        //                 "defaultContent": '<div id="info_bolsaTrabajo" class="btn-group btn-group-sm"><a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a></div >'
-        //             },
-        //             {
-        //                 "targets": 5,
-        //                 "orderable": true
-        //             },
-        //             {
-        //                 "targets": 8,
-        //                 visible: false
-        //             }],
-        //         "order":
-        //             [
-        //                 [5, "desc"]
-        //             ],
-        //         "aoColumns": [
-        //             null,
-        //             null,
-        //             null,
-        //             null,
-        //             null,
-        //             { "sType": "date-uk" },
-        //             null,
-        //             null
-        //         ],
-        //         "processing": true,
-        //         "language": {
-        //             "lengthMenu": "Mostrar _MENU_ resultados",
-        //             "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        //             "zeroRecords": "No se encontraron resultados",
-        //             "sSearch": "Buscar: ",
-        //             "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-        //             "sProccessing": "Procesando ...",
-        //             "oPaginate": {
-        //                 "sFirst": "Primero",
-        //                 "sLast": "Ultimo",
-        //                 "sNext": " Siguiente",
-        //                 "sPrevious": "Anterior "
-
-        //             },
-        //             "processing": '<div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>'
-        //         }
-        //         // ,
-        //         // "aoColumnDefs": [
-        //         //     { "bSearchable": false, "aTargets": [ 0, 1 ,4, 5 ] }
-        //         // ]
-        //     });
-        // }
-
-        // function addRow(obj) {
-
-        //     tabla.row.add(
-        //         [
-        //             // (obj.estado == 'ACT') ? '<button type="button" value="Modificar" id="btnModificar" class="btn btn-primary btn-sm" data-target="#ModificarGuardia" data-toggle="modal">Modificar</button>' : '',
-        //             '',
-        //             obj.rfc,
-        //             obj.nombre,
-        //             obj.apellidoPat,
-        //             obj.apellidoMat,
-        //             obj.id_div_geografica,
-        //             obj.id_centro_trabajo
-        //         ]
-        //     ).draw();
-        // }
-        // function carga_lista_guardias() {
-        //     // Obtener registros
-
-        //     $.ajax({
-        //         type: "GET",
-        //         url: "http://localhost:8080/rest_bolsaTrabajo/registros",
-        //         data: obj,
-        //         contentType: 'application/json; charset=utf-8',
-        //         error: function (xhr, ajaxOptions, thrownError) {
-        //             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
-        //         },
-        //         success: function (data) {
-        //             //console.log("éxito", data);
-        //             tabla.clear().draw();
-        //                 addRow(data[i]);
-        //             }
-        //         }
-        //              for (var i = 0; i < data.length; i++) {
-        //    });
-        // }
-
-    </script>
+    <!-- <script th:src="@{/js/guardia.js}"></script> -->
+    <script th:src="@{/js/guardias/regBolsaTrabajo.js}"></script>
 </body>
 
 </html>
