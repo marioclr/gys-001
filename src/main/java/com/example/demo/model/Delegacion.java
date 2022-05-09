@@ -59,4 +59,12 @@ public class Delegacion {
 		this.observaciones = observaciones;
 	}
 
+	@Override
+	public String toString() {
+		return "Delegacion [id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + ", observaciones=" + observaciones
+				+ "]";
+	}
+	
+	
+
 }
