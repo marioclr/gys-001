@@ -15,6 +15,7 @@ import com.example.demo.model.IDatosUsuario;
 import com.example.demo.model.Usuario;
 import com.example.demo.service.IAdscripcionService;
 import com.example.demo.service.IGuardiaInternaService;
+import com.example.demo.service.IPagaService;
 import com.example.demo.service.IUsuarioService;
 
 @Controller
@@ -27,13 +28,15 @@ public class GuardiasController {
 	IAdscripcionService servicioAdsc;
 	@Autowired
 	IGuardiaInternaService servicioGuardiaInt;
+	@Autowired
+	IPagaService servicioPagas;
 
 	@GetMapping("/registro")
 	String registro(Authentication authentication, HttpSession session, Model modelo) {
 		String username = authentication.getName();
 		Usuario usuario;
 		
-		if (session.getAttribute("usuario") == null){
+		if (session.getAttribute("usuario") == null) {
 			usuario = serviceUsuarios.buscarPorUsername(username);
 			session.setAttribute("usuario", usuario);
 			System.out.println(usuario);
@@ -41,12 +44,14 @@ public class GuardiasController {
 			usuario = (Usuario) session.getAttribute("usuario");
 		}
 		List<IDatosUsuario> datosUsuario = serviceUsuarios.datosUsuario(usuario.getIdUsuario());
+		modelo.addAttribute("userName", username);
 		modelo.addAttribute("permisos", datosUsuario);
 		modelo.addAttribute("adscripciones", servicioGuardiaInt.getDatosAdscripciones());
 		modelo.addAttribute("puestos", servicioGuardiaInt.getDatosPuestosGuardia());
 		modelo.addAttribute("servicios", servicioGuardiaInt.getDatosServiciosGuardia());
 		modelo.addAttribute("niveles", servicioGuardiaInt.getDatosNivelesGuardia());
 		modelo.addAttribute("jornadas", servicioGuardiaInt.getDatosJornadasGuardia());
+		modelo.addAttribute("pagas", servicioPagas.buscarPorEstado("ACT"));
 		return "/guardias/registro";
 	}
 }

@@ -297,10 +297,10 @@
                                                         name="movimiento"
                                                         aria-label="Default select example">
                                                         <option selected disabled>Seleccione una opcion</option>
-                                                        <option value="1">NOCTURNA</option>
-                                                        <option value="2">DOMINICAL Y SABATINA,11 HORAS Y 24 HORAS</option>
-                                                        <option value="3">GUARDIAS PARA TRANSPORTES</option>
-                                                        <option value="4">PERSONAL ADMINISTRATIVO</option>
+                                                        <option value="06">NOCTURNA</option>
+                                                        <option value="07">DOMINICAL Y SABATINA,11 HORAS Y 24 HORAS</option>
+                                                        <option value="08">GUARDIAS PARA TRANSPORTES</option>
+                                                        <option value="09">PERSONAL ADMINISTRATIVO</option>
                                                     </select>
                                                 </div>
                                                 <!-- Motivo -->
@@ -312,8 +312,8 @@
                                                         name="motivo"
                                                         aria-label="Default select example">
                                                         <option selected disabled>Seleccione una opcion</option>
-                                                        <option value="1">G1 POR CONTINUIDAD EN EL SERVICIO</option>
-                                                        <option value="2">G2 CARACTERISTICAS DEL SERVICIO</option>
+                                                        <option value="G1">G1 POR CONTINUIDAD EN EL SERVICIO</option>
+                                                        <option value="G2">G2 CARACTERISTICAS DEL SERVICIO</option>
                                                     </select>
                                                 </div>
                                                 <!-- Riesgos profesionales -->
@@ -326,8 +326,8 @@
                                                         name="riesgosProf"
                                                         aria-label="Default select example">
                                                         <option selected disabled>Seleccione una opcion</option>
-                                                        <option value="1">&</option>
-                                                        <option value="2">*</option>
+                                                        <option value="&">&</option>
+                                                        <option value="*">*</option>
                                                     </select>
                                                 </div>
                                                 <!-- Dias/horas -->
@@ -355,11 +355,8 @@
                                                         name="quincena"
                                                         aria-label="Default select example">
                                                         <option selected disabled>Seleccione una opcion</option>
-                                                        <option value="1">QUINCENA 06 DEL 2022 (HONORARIOS SUPERIORES)</option>
-                                                        <option value="2">QUINCENA 06 DEL 2022 (TEMPORALES COVID)</option>
-                                                        <option value="3">QUINCENA 06 DEL 2022 (TEMPORALES)</option>
-                                                        <option value="4">QUINCENA 06 DEL 2022 (HONORARIOS)</option>
-                                                        <option value="5">QUINCENA 06 DEL 2022</option>
+                                                        <option th:each="paga : ${pagas}" th:value="${paga.fecha}" th:text="${paga.fecha + '-' + paga.descripcion}"></option>
+                                                        <option value="31/03/2022">QUINCENA 06 DEL 2022</option>
                                                     </select>
                                                 </div>
                                                 <!-- Boton de agregar guardia -->
@@ -369,6 +366,9 @@
                                                 </div>
                                             </div>
                                             <input type="hidden" id="hdnTipoCT"/>
+                                            <input type="hidden" id="hdnTabulador"/>
+                                            <input type="hidden" id="hdnZona"/>
+                                            <input type="hidden" id="hdnUserName" th:value="${userName}"/>
                                         </form>
                                     </div>
                                 </div>
