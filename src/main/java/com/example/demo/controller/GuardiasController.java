@@ -41,9 +41,9 @@ public class GuardiasController {
 	@Autowired
 	IGuardiaInternaService servicioGuardiaInt;
 	@Autowired
-	IBolsaTrabajoGuardiasService servicioBolsaTrabGuardias;
-	@Autowired
 	IPagaService servicioPagas;
+	@Autowired
+	IBolsaTrabajoGuardiasService servicioBolsaTrabGuardias;
 
 	@GetMapping("/registro")
 	String registro(Authentication authentication, HttpSession session, Model modelo) {
