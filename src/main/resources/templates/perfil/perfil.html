@@ -29,35 +29,43 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="mb-4 mt-3 text-center black">Crear Perfil</h1>
+                    <!-- <h1 class="mb-4 mt-3 text-center black">Crear Perfil</h1> -->
 
                     <!-- Formulario -->
                     <div class="container mt-5">
-
-                        <form autocomplete="off" method="post">
-                            <div class="form-row pb-5 mt-2">
-                                <div class="form-group col-md-12">
-                                    <label>Descripción:</label>  
-                                </div>
-                                <input type="text" id="Descripcion" name="Descripcion" class="form-control" required>
+                        <div class="card card-primary">
+                            <div class="card-header issste-v">
+                                <h4 class="card-title text-center text-white">Crear perfil</h4>
                             </div>
+                            <div class="card-body">
+                                <form autocomplete="off" method="post">
+                                    <div class="form-row pb-5 mt-2">
+                                        <div class="form-group col-md-12">
+                                            <label>Descripción:</label>
+                                        </div>
+                                        <input type="text" id="Descripcion" name="Descripcion" class="form-control"
+                                            required>
+                                    </div>
 
-                            <div class="row mb-5">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-4 text-center">
-                                    <button type="submit" class="btn btn-block issste text-white">Enviar</button>
-                                </div>
-                                <div class="col-md-4"></div>
+                                    <div class="row mb-5">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-4 text-center">
+                                            <button type="submit"
+                                                class="btn btn-block issste text-white">Enviar</button>
+                                        </div>
+                                        <div class="col-md-4"></div>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                         <hr>
                         <div class="mt-5">
                             <div class="table table-responsive-sm">
                                 <table class="table" id="tbl_guardias" style="width: 100%;">
                                     <thead class="issste-v text-white text-center">
                                         <tr>
-                                        	<th></th>
-                                        	<th></th>
+                                            <th></th>
+                                            <th></th>
                                             <th>Id perfil</th>
                                             <th>Nombre del perfil</th>
                                         </tr>
@@ -110,7 +118,7 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    
+
     <!-- Scroll to Top Button-->
     <a th:insert="fragments/boton-scroll::boton-scroll-up"></a>
     <!-- Logout Modal-->

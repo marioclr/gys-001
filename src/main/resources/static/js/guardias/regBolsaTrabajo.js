@@ -87,15 +87,15 @@ function mostrarTabla() {
         // ],
 
         columnDefs: [
-           
+
             {
                 targets: 0,
                 data: "id",
                 orderable: false,
                 render:
                     function (data) {
-                        return '<div class="btn-toolbar" id="eliminar" role="toolbar"><a href="/guardias/eliminar/' + data + '" class="btn btn-danger" onclick="return confirm("¿Estas seguro?")"><i class="fa fa-trash"></i></a>';
-                        // return '<div class="btn-toolbar" id="eliminar" role="toolbar"><a  sec:authorize="hasAnyAuthority("'+"ROOT"+'")" href="/guardias/eliminar/' + data + '" class="btn btn-danger" onclick="return confirm("¿Estas seguro?")"><i class="fa fa-trash"></i></a>';
+                        return '<div class="btn-toolbar" id="eliminar" role="toolbar"><a href="/guardias/eliminar/' + data + '" class="btn btn-danger"><i class="fa fa-trash"></i></a>';
+                        // return '<div class="btn-toolbar" id="eliminar" role="toolbar"><a class="btn btn-danger" onclick="return eliminar('+data+')"><i class="fa fa-trash"></i></a>';
                     }
             },
             {
@@ -105,6 +105,7 @@ function mostrarTabla() {
                 render:
                     function (data) {
                         return '<div class="btn-toolbar" id="editar" role="toolbar"><a href="/guardias/editar/' + data + '" class="btn btn-warning"><i class="fa fa-edit"></i></a>';
+                        // return '<div class="btn-toolbar" id="editar" role="toolbar"><a class="btn btn-warning" onclick="return editar('+data+')"><i class="fa fa-edit"></i></a>';
                     }
 
             },
@@ -160,3 +161,21 @@ function mostrarTabla() {
         }
     });
 }
+
+// function eliminar(id) {
+
+//     if (confirm("Seguro que quieres eliminar el siguiente pastel?")) {
+//         window.location = ("/guardias/eliminar/" + id);
+//         alert("Borrado el usuario con id: " + id);
+//     }
+
+// }
+
+// function editar(id) {
+
+//     if (confirm("Seguro que quieres editar el siguiente pastel?")) {
+//         window.location = ("/guardias/editar/" + id);
+//         // alert("Borrado el usuario con id: " + id);
+//     }
+
+// }
