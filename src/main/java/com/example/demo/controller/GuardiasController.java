@@ -12,6 +12,7 @@ import com.example.demo.service.IAdscripcionService;
 import com.example.demo.service.IBolsaTrabajoGuardiasService;
 import com.example.demo.service.IDelegacionService;
 import com.example.demo.service.IGuardiaInternaService;
+import com.example.demo.service.IPagaService;
 import com.example.demo.service.IUsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 @Controller
 @RequestMapping("/guardias")
 public class GuardiasController {
@@ -40,6 +40,8 @@ public class GuardiasController {
 	IDelegacionService servicioDel;
 	@Autowired
 	IGuardiaInternaService servicioGuardiaInt;
+	@Autowired
+	IPagaService servicioPagas;
 	@Autowired
 	IBolsaTrabajoGuardiasService servicioBolsaTrabGuardias;
 
@@ -120,12 +122,18 @@ public class GuardiasController {
 			usuario = (Usuario) session.getAttribute("usuario");
 		}
 		List<IDatosUsuario> datosUsuario = serviceUsuarios.datosUsuario(usuario.getIdUsuario());
+		modelo.addAttribute("userName", username);
 		modelo.addAttribute("permisos", datosUsuario);
 
 		//Llenado de los select para la vista de registro y editar
 		modelo.addAttribute("adscripciones", servicioGuardiaInt.getDatosAdscripciones());
+
 		// Se invoca el metodo que muestra las delegaciones
 		modelo.addAttribute("delegaciones", servicioBolsaTrabGuardias.getDatosDelegacion());
-
+		modelo.addAttribute("puestos", servicioGuardiaInt.getDatosPuestosGuardia());
+		modelo.addAttribute("servicios", servicioGuardiaInt.getDatosServiciosGuardia());
+		modelo.addAttribute("niveles", servicioGuardiaInt.getDatosNivelesGuardia());
+		modelo.addAttribute("jornadas", servicioGuardiaInt.getDatosJornadasGuardia());
+		modelo.addAttribute("pagas", servicioPagas.buscarPorEstado("ACT"));
 	}
 }

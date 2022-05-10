@@ -46,34 +46,33 @@ $("#btnAgregarGuardia").on("click", function (event) {
         },
         success: function (data) {
             //console.log(data.d);
-            if (data.d > 0) {
+            if (data > 0) {
                 //alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data.d);
 
                 //obtener los valores de los campos
                 if (tipo == 'I') {
                     empleado = $("#txtNumero").val();
                     tipo_ct = $("#hdnTipoCT").val();
-                    centro_trabajo = $("#lblAdscripcion").text();
-                    clave_servicio = $("#lblServicio").text();
-                    puesto = $("#lblPuesto").text();
-                    nivel = $("#hdnNivel").val();
-                    sub_nivel = $("#hdnSubNivel").val();
-                    tipo_jornada = $("#lblHoras").text();
+                    centro_trabajo = $("#adscripcionInt").text().substring(0, $("#adscripcionInt").text().indexOf("-"));
+                    clave_servicio = $("#servicioInt").text().substring(0, $("#servicioInt").text().indexOf("-"));
+                    puesto = $("#puestoInt").text().substring(0, $("#puestoInt").text().indexOf("-"));
+                    nivel = $("#nivelInt").text().substring(0, $("#nivelInt").text().indexOf("/"));
+                    sub_nivel = $("#nivelInt").text().substring($("#nivelInt").text().indexOf("/")+1, $("#nivelInt").text().length);
+                    tipo_jornada = $("#horasInt").text();
                     horas = $("#txtDias").val();
-                    ini = moment($("#txtFechaInicio").val(), "DD/MM/YYYY").format("MM/DD/YYYY");
-                    fin = moment($("#txtFechaFin").val(), "DD/MM/YYYY").format("MM/DD/YYYY");
+                    ini = $("#txtFechaInicio").val(); //moment($("#txtFechaInicio").val(), "DD/MM/YYYY").format("MM/DD/YYYY");
+                    fin = $("#txtFechaFin").val(); //moment($("#txtFechaFin").val(), "DD/MM/YYYY").format("MM/DD/YYYY");
                     tipo_guardia = tipo;
                     tabulador = $("#hdnTabulador").val();
                     zona = $("#hdnZona").val();
                     folio = $("#txtFolio").val();
-                    motivo = $("#ddlMotivo option:selected").text();
-                    movimiento = $("#ddlMovimiento option:selected").text();
-                    riesgos = $("#ddlRiesgos option:selected").text();
+                    motivo = $("#ddlMotivo option:selected").val();
+                    movimiento = $("#ddlMovimiento option:selected").val();
+                    riesgos = $("#ddlRiesgos option:selected").val();
                     quincena = $("#ddlQuincena option:selected").val();
                     usuario = $("#hdnUserName").val();
                     coment = $("#txtComentarios").val();
-                }
-                else {
+                } else {
                     empleado = $("#txtRFC").val();
                     tipo_ct = oAdsc[1];
                     centro_trabajo = oAdsc[0];
@@ -83,8 +82,8 @@ $("#btnAgregarGuardia").on("click", function (event) {
                     sub_nivel = $("#ddlNivel option:selected").val().substring(2);
                     tipo_jornada = $("#ddlJornada option:selected").val();
                     horas = $("#txtDias").val();
-                    ini = moment($("#txtFechaInicio").val(), "DD/MM/YYYY").format("MM/DD/YYYY");
-                    fin = moment($("#txtFechaFin").val(), "DD/MM/YYYY").format("MM/DD/YYYY");
+                    ini = $("#txtFechaInicio").val(); //moment($("#txtFechaInicio").val(), "DD/MM/YYYY").format("MM/DD/YYYY");
+                    fin = $("#txtFechaFin").val(); //moment($("#txtFechaFin").val(), "DD/MM/YYYY").format("MM/DD/YYYY");
                     tipo_guardia = tipo;
                     tabulador = oPuesto[1];
                     zona = oAdsc[2];
@@ -222,6 +221,7 @@ function editarDatosGuardia(obj) {
 function initDataTable() {
 
     tabla = $("#tbl_guardias").DataTable({
+		"procesing" : true,
         "columnDefs":
             [{
                 "targets": [0, 1],
@@ -530,6 +530,8 @@ $("#consultarEmpInt").on("click", function (event) {
                 return 0;
             } else {
 				$("#hdnTipoCT").val(data.empleado.id_tipo_ct);
+				$("#hdnTabulador").val(data.empleado.id_tipo_tabulador);
+				$("#hdnZona").val(data.empleado.id_zona);
 				$("#nombresInt").text(data.empleado.nombre);
 				$("#apellidosInt").text(data.empleado.apellido_1+ ' ' + data.empleado.apellido_2);
 				$("#rfcInt").text(data.empleado.id_legal);
