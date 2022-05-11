@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.BolsaTrabajoGuardias;
+import com.example.demo.model.IDatosBolsaTrabajo;
 import com.example.demo.model.IDatosDelegacion;
 import com.example.demo.repository.BolsaTrabajoGuardiasRepository;
 import com.example.demo.service.IBolsaTrabajoGuardiasService;
@@ -46,7 +47,15 @@ public class BolsaTrabajoGuardiaServiceJpa implements IBolsaTrabajoGuardiasServi
 		bolsaTrabRepo.save(bolsaTrabajo);
 		
 	}
-	
-	
 
+	//@Override
+	// public List<IDatosBolsaTrabajo> buscarTodos2() {
+	// 	return bolsaTrabRepo.getBuscarRegistros();
+	// }
+
+	@Override
+	public List<IDatosBolsaTrabajo> buscarRegistros() {
+		return bolsaTrabRepo.getBuscarRegistros();
+	}
+	
 }

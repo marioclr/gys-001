@@ -131,12 +131,12 @@ function mostrarTabla() {
             },
             {
                 targets: 6,
-                data: "id_div_geografica",
+                data: "n_Div_Geografica",
                 searchable: false
             },
             {
                 targets: 7,
-                data: "id_centro_trabajo",
+                data: "n_Centro_Trabajo",
                 "searchable": false
             },
 

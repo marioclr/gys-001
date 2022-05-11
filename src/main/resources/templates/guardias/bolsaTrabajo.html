@@ -33,7 +33,7 @@
                             <h5 class="text-center" th:text="${msg}"></h5>
                         </div>
                         <div class="formulario">
-                            <form th:action="@{/guardias/guardarPerExt}" th:object="${bolsaTrabajoGuardias}"
+                            <form th:action="@{/guardias/guardarPerExt}" th:object="${bolsaTrabajoGuardias}" id="bolsaTrabajoExt"
                                 method="post">
                                 <div class="card card-primary">
                                     <div class="card-header issste-v">
@@ -45,7 +45,7 @@
                                         <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2 text-center black">
                                             <label>RFC:</label>
                                         </div>
-                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2">
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2" id="grupo__rfc">
                                             <input type="text" class="form-control" placeholder="Ingrese el RFC"
                                                 id="rfc" name="rfc" th:field="*{rfc}" maxlength="13">
                                             <div class="alert alert-danger text-center"

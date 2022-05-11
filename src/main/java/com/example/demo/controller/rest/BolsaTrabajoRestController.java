@@ -3,6 +3,7 @@ package com.example.demo.controller.rest;
 import java.util.List;
 
 import com.example.demo.model.BolsaTrabajoGuardias;
+import com.example.demo.model.IDatosBolsaTrabajo;
 import com.example.demo.service.IBolsaTrabajoGuardiasService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class BolsaTrabajoRestController {
 	IBolsaTrabajoGuardiasService servicioBolsaTrabGuardias;
 
     //Regresa todos los registros de bolsaTrabajo en formato json
-    @GetMapping("/registros")
-    List<BolsaTrabajoGuardias> getRegistros(){
+    @GetMapping("/reg")
+    List<BolsaTrabajoGuardias> getRegistro(){
         return servicioBolsaTrabGuardias.buscarTodos();
     } 
 
@@ -29,4 +30,9 @@ public class BolsaTrabajoRestController {
     //     return "redirect: /guardias/RegPersonalExt";
 		
 	// }
+
+    @GetMapping("/registros")
+    List<IDatosBolsaTrabajo> getRegistros(){
+        return servicioBolsaTrabGuardias.buscarRegistros();
+    }
 }
