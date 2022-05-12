@@ -20,7 +20,7 @@ public interface BolsaTrabajoGuardiasRepository extends JpaRepository<BolsaTraba
 	
 	@Query(value ="Select b.id id, b.rfc rfc, b.nombre nombre, b.apellidopat apellidopat, b.apellidomat apellidomat, d.n_div_geografica n_div_geografica, (c.id_centro_trabajo||' - '||c.n_centro_trabajo) n_centro_trabajo \r\n"
 	 +"From gys_bolsatrabajo b, m4t_delegaciones d, m4t_centros_trab c \r\n"
-	 +"Where b.id_div_geografica=d.id_div_geografica and b.id_centro_trabajo = c.id_centro_trabajo", nativeQuery = true)
+	 +"Where b.id_div_geografica=d.id_div_geografica and b.id_centro_trabajo = c.id_centro_trabajo order by id desc", nativeQuery = true)
 	List<IDatosBolsaTrabajo> getBuscarRegistros();
 	
 	//Se hace la consulta para extraer los datos de las delegaciones ordenandolos del menor a mayor(id_div_geografica)

@@ -132,12 +132,17 @@ function mostrarTabla() {
             {
                 targets: 6,
                 data: "n_Div_Geografica",
-                searchable: false
+                // searchable: false
             },
             {
                 targets: 7,
                 data: "n_Centro_Trabajo",
-                "searchable": false
+                render:
+                    function (data) {
+                        return '<span class="badge badge-primary text-wrap issste">'+data+'</span>';
+                    },
+
+                // "searchable": false
             },
 
         ],

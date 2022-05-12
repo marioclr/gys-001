@@ -135,5 +135,9 @@ public class GuardiasController {
 		modelo.addAttribute("niveles", servicioGuardiaInt.getDatosNivelesGuardia());
 		modelo.addAttribute("jornadas", servicioGuardiaInt.getDatosJornadasGuardia());
 		modelo.addAttribute("pagas", servicioPagas.buscarPorEstado("ACT"));
+		
+
+		//Para pdf y excel
+		modelo.addAttribute("reg", servicioBolsaTrabGuardias.buscarRegistros());
 	}
 }
