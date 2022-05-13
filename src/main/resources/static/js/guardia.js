@@ -165,6 +165,7 @@ function carga_lista_guardias() {
             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
         success: function (data) {
+            //initDataTable();
             //console.log("éxito", data);
             tabla.clear().draw();
             for (var i = 0; i < data.length; i++) {
@@ -221,6 +222,58 @@ function editarDatosGuardia(obj) {
 function initDataTable() {
 
     tabla = $("#tbl_guardias").DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: "excel", 
+                title: 'Guardias',
+                exportOptions: { 
+                    columns: [ 2, 3, 4, 5, 6, 7] ,
+                    // columns: ':not(.notexport)'
+                },            // Extend the excel button
+                pageStyle : {
+                    horizontalCentered: true,
+                    verticalCentered: true,
+
+                },
+                className:'btn btn-outline-success',
+                excelStyles: {                // Add an excelStyles definition
+                    template: "green_medium",  // Apply the 'blue_medium' template
+                },
+            },
+            {
+                extend: "pdf", 
+                title: 'Guardias',
+                customize:function(doc) {
+                    doc.styles.title = {
+                        color: '#a72c4d',
+                        fontSize: '20',
+                        alignment: 'center'
+                    }
+                    doc.styles.tableHeader = {
+                        fillColor:'#a72c4d',
+                        color:'white',
+                        fontSize:'12'
+
+                    }
+
+                },
+
+                exportOptions: { 
+                    columns: [ 2, 3, 4, 5, 6, 7] ,
+                },              // Extend the excel button
+                pageStyle : {
+                    horizontalCentered: true,
+                    verticalCentered: true,
+
+                },
+                className:'btn btn-outline-danger',
+                excelStyles: {                // Add an excelStyles definition
+                    template: "green_medium",  // Apply the 'blue_medium' template
+                },
+            },
+        ],
+
 		"procesing" : true,
         "columnDefs":
             [{

@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.example.demo.model.IDatosBolsaTrabajo;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
-import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
+
 import com.lowagie.text.Image;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Phrase;
