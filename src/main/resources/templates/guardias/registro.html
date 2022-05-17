@@ -180,7 +180,7 @@
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-control" id="ddlAscripcion"
-                                                                name="ascripcionExt"
+                                                                name="ascripcionExt" style=" width:100%"
                                                                 aria-label="Default select example">
                                                                 <option value="0" selected>Seleccione una opcion</option>
 																<option th:each="adsc : ${adscripciones}" th:value="${adsc.clave + ';;;' + adsc.tipo + ';;;' + adsc.zona}" th:text="${adsc.clave + '-' + adsc.descripcion}"></option>
@@ -193,7 +193,7 @@
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-control" id="ddlPuesto"
-                                                                name="puestoExt"
+                                                                name="puestoExt" style=" width:100%"
                                                                 aria-label="Default select example">
                                                                 <option value="0" selected>Seleccione una opcion</option>
                                                                 <option th:each="puesto : ${puestos}" th:value="${puesto.clave + ';;;' + puesto.tipotabulador}" th:text="${puesto.clave + '-' + puesto.descripcion}"></option>
@@ -206,7 +206,7 @@
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-control" id="ddlServicio"
-                                                                name="servicioExt"
+                                                                name="servicioExt" style=" width:100%"
                                                                 aria-label="Default select example">
                                                                 <option value="0" selected>Seleccione una opcion</option>
                                                                 <option th:each="servicio : ${servicios}" th:value="${servicio.clave}" th:text="${servicio.clave + '-' + servicio.descripcion}"></option>
@@ -218,7 +218,7 @@
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-control" id="ddlNivel"
-                                                                name="nivelExt"
+                                                                name="nivelExt" style=" width:100%"
                                                                 aria-label="Default select example">
                                                                 <option value="0" selected>Seleccione una opcion</option>
                                                                 <option th:each="nivel : ${niveles}" th:value="${nivel.nivel+nivel.subnivel}" th:text="${nivel.nivel + '/' + nivel.subnivel}"></option>
@@ -231,7 +231,7 @@
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
                                                             <select class="form-control" id="ddlJornada"
-                                                                name="jornadaExt"
+                                                                name="jornadaExt" style=" width:100%"
                                                                 aria-label="Default select example">
                                                                 <option value="0" selected>Seleccione una opcion</option>
                                                                 <option th:each="jornada : ${jornadas}" th:value="${jornada.clave}" th:text="${jornada.clave + '-' + jornada.descripcion}"></option>
@@ -393,8 +393,8 @@
                                 <table class="table" id="tbl_guardias" style="width: 100%;">
                                     <thead class="issste-v text-white text-center">
                                         <tr class="noExl">
-                                            <th></th>
-                                        	<th class="notexport">Acciones</th>
+                                            <th>Acciones</th>
+                                        	<th><i class="fas fa-tasks"></i></th>
                                             <th>Empleado</th>
                                             <th>Puesto</th>
                                             <th>Fecha Inicio</th>

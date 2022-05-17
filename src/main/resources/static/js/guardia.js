@@ -10,11 +10,11 @@ if ($("#txtRFC").val().length > 0) {
 $("#btnAgregarGuardia").on("click", function (event) {
     event.preventDefault();
 
-    if ($("#txtFolio").val() == 0 || $('#txtFechaInicio').val() == "" || $("#txtFechaFin").val() == "" || $('#ddlMovimiento').val() == 0 || $("#ddlMotivo").val() == 0 || $("#ddlRiesgos").val() == 0|| $("#txtDias").val() == 0 || $("#txtComentarios").val() == 0 || $("#ddlQuincena").val() == 0) { 
-		//alert("Favor de seleccionar todas las carácteristicas");
+    if ($("#txtFolio").val() == 0 || $('#txtFechaInicio').val() == "" || $("#txtFechaFin").val() == "" || $('#ddlMovimiento').val() == 0 || $("#ddlMotivo").val() == 0 || $("#ddlRiesgos").val() == 0 || $("#txtDias").val() == 0 || $("#txtComentarios").val() == 0 || $("#ddlQuincena").val() == 0) {
+        //alert("Favor de seleccionar todas las carácteristicas");
         $('.toast-warning').toast('show')
-		return 0;
-	}
+        return 0;
+    }
 
     var oAdsc = $("#ddlAscripcion").val().split(';;;');
     var oPuesto = $("#ddlPuesto").val().split(';;;');
@@ -24,12 +24,14 @@ $("#btnAgregarGuardia").on("click", function (event) {
 
     var obj;
     if (tipo == 'I') {
-        obj = JSON.stringify({ tipo_ct: $("#hdnTipoCT").val(), 
-        	clave_servicio: $("#servicioInt").text().substring(0, $("#servicioInt").text().indexOf("-")), 
-        	puesto: $("#puestoInt").text().substring(0, $("#puestoInt").text().indexOf("-")),
-        	nivel: $("#nivelInt").text().substring(0, $("#nivelInt").text().indexOf("/")),
-        	sub_nivel: $("#nivelInt").text().substring($("#nivelInt").text().indexOf("/")+1, $("#nivelInt").text().length), 
-        	tipo_jornada: $("#horasInt").text(), tipo_guardia: tipo });
+        obj = JSON.stringify({
+            tipo_ct: $("#hdnTipoCT").val(),
+            clave_servicio: $("#servicioInt").text().substring(0, $("#servicioInt").text().indexOf("-")),
+            puesto: $("#puestoInt").text().substring(0, $("#puestoInt").text().indexOf("-")),
+            nivel: $("#nivelInt").text().substring(0, $("#nivelInt").text().indexOf("/")),
+            sub_nivel: $("#nivelInt").text().substring($("#nivelInt").text().indexOf("/") + 1, $("#nivelInt").text().length),
+            tipo_jornada: $("#horasInt").text(), tipo_guardia: tipo
+        });
     } else {
         obj = JSON.stringify({ tipo_ct: oAdsc[1], clave_servicio: $("#ddlServicio").val(), puesto: oPuesto[0], nivel: $("#ddlNivel").val().substring(0, 2), sub_nivel: $("#ddlNivel").val().substring(2), tipo_jornada: $("#ddlJornada").val(), tipo_guardia: tipo });
     }
@@ -57,7 +59,7 @@ $("#btnAgregarGuardia").on("click", function (event) {
                     clave_servicio = $("#servicioInt").text().substring(0, $("#servicioInt").text().indexOf("-"));
                     puesto = $("#puestoInt").text().substring(0, $("#puestoInt").text().indexOf("-"));
                     nivel = $("#nivelInt").text().substring(0, $("#nivelInt").text().indexOf("/"));
-                    sub_nivel = $("#nivelInt").text().substring($("#nivelInt").text().indexOf("/")+1, $("#nivelInt").text().length);
+                    sub_nivel = $("#nivelInt").text().substring($("#nivelInt").text().indexOf("/") + 1, $("#nivelInt").text().length);
                     tipo_jornada = $("#horasInt").text();
                     horas = $("#txtDias").val();
                     ini = $("#txtFechaInicio").val(); //moment($("#txtFechaInicio").val(), "DD/MM/YYYY").format("MM/DD/YYYY");
@@ -100,7 +102,8 @@ $("#btnAgregarGuardia").on("click", function (event) {
                     var obj = JSON.stringify({
                         id: empleado, centro_trabajo: centro_trabajo, clave_servicio: clave_servicio, puesto: puesto, nivel: nivel, sub_nivel: sub_nivel, tipo_jornada: tipo_jornada, horas: horas, tipo_guardia: tipo_guardia, ini: ini, fin: fin,
                         tipo_tabulador: tabulador, zona: zona, riesgos: riesgos, userName: usuario, quincena: quincena,
-                        folio: folio, motivo: motivo, movimiento: movimiento, coment: coment});
+                        folio: folio, motivo: motivo, movimiento: movimiento, coment: coment
+                    });
                     // llamada a ajax
                     // string folio, string motivo, string movimiento, string coment
                     $.ajax({
@@ -151,11 +154,11 @@ function carga_lista_guardias() {
     else
         emp = $("#txtRFC").val();
 
-    var obj = { "ClaveEmpleado" : emp };
+    var obj = { "ClaveEmpleado": emp };
 
     //var numEmpInt = { "ClaveEmpleado" : emp };    
-	//url: "http://localhost:8080/rest_guardias/ValidaEmpleadoInt?" + $.param(numEmpInt),
-	
+    //url: "http://localhost:8080/rest_guardias/ValidaEmpleadoInt?" + $.param(numEmpInt),
+
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/rest_guardias/ConsultaGuardias?" + $.param(obj) + "&Tipo=" + tipo,
@@ -181,7 +184,7 @@ function addRow(obj) {
 
     tabla.row.add(
         [
-            (obj.estado=='ACT') ? '<button type="button" value="Modificar" id="btnModificar" class="btn btn-primary btn-sm" data-target="#ModificarGuardia" data-toggle="modal">Modificar</button>': '',
+            (obj.estado == 'ACT') ? '<button type="button" value="Modificar" id="btnModificar" class="btn btn-primary btn-sm" data-target="#ModificarGuardia" data-toggle="modal">Modificar</button>' : '',
             '',
             obj.clave_empleado,
             obj.id_puesto_plaza,
@@ -225,56 +228,64 @@ function initDataTable() {
         dom: 'Bfrtip',
         buttons: [
             {
-                extend: "excel", 
+                extend: "excel",
                 title: 'Guardias',
-                exportOptions: { 
-                    columns: [ 2, 3, 4, 5, 6, 7] ,
-                    // columns: ':not(.notexport)'
-                },            // Extend the excel button
-                pageStyle : {
-                    horizontalCentered: true,
-                    verticalCentered: true,
+                exportOptions: {
+                    columns: [2, 3, 4, 5, 6, 7],
 
-                },
-                className:'btn btn-outline-success',
+                },  
+
+                className: 'btn btn-outline-success',
                 excelStyles: {                // Add an excelStyles definition
                     template: "green_medium",  // Apply the 'blue_medium' template
                 },
             },
             {
-                extend: "pdf", 
+                extend: "pdf",
                 title: 'Guardias',
-                customize:function(doc) {
+                customize: function (doc) {
                     doc.styles.title = {
                         color: '#a72c4d',
                         fontSize: '20',
                         alignment: 'center'
                     }
                     doc.styles.tableHeader = {
-                        fillColor:'#a72c4d',
-                        color:'white',
-                        fontSize:'12'
+                        fillColor: '#a72c4d',
+                        color: 'white',
+                        fontSize: '12',
+                        alignment: 'center'
 
+                    }
+                    doc.content[1].table.widths =
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                    var rowCount = doc.content[1].table.body.length;
+                    for (i = 1; i < rowCount; i++) {
+                        doc.content[1].table.body[i][0].alignment = 'center';
+                        doc.content[1].table.body[i][1].alignment = 'center';
+                        doc.content[1].table.body[i][2].alignment = 'center';
+                        doc.content[1].table.body[i][3].alignment = 'center';
+                        doc.content[1].table.body[i][4].alignment = 'center';
+                        doc.content[1].table.body[i][5].alignment = 'center';
                     }
 
                 },
 
-                exportOptions: { 
-                    columns: [ 2, 3, 4, 5, 6, 7] ,
+                exportOptions: {
+                    columns: [2, 3, 4, 5, 6, 7],
                 },              // Extend the excel button
-                pageStyle : {
+                pageStyle: {
                     horizontalCentered: true,
                     verticalCentered: true,
 
                 },
-                className:'btn btn-outline-danger',
+                className: 'btn btn-outline-danger',
                 excelStyles: {                // Add an excelStyles definition
                     template: "green_medium",  // Apply the 'blue_medium' template
                 },
             },
         ],
 
-		"procesing" : true,
+        "procesing": true,
         "columnDefs":
             [{
                 "targets": [0, 1],
@@ -306,20 +317,20 @@ function initDataTable() {
             { "sType": "date-uk" },
             null,
             null
-            ],
+        ],
         "processing": true,
-        "language":{
-            "lengthMenu":"Mostrar _MENU_ resultados",
-            "info":"Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "zeroRecords":"No se encontraron resultados",
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ resultados",
+            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "zeroRecords": "No se encontraron resultados",
             "sSearch": "Buscar: ",
-            "infoEmpty":"Mostrando registros del 0 al 0 de un total de 0 registros",
-            "sProccessing":"Procesando ...",
-            "oPaginate":{
-                "sFirst":"Primero",
-                "sLast":"Ultimo",
-                "sNext":" Siguiente",
-                "sPrevious":"Anterior "
+            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sProccessing": "Procesando ...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Ultimo",
+                "sNext": " Siguiente",
+                "sPrevious": "Anterior "
 
             },
             "processing": '<div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div>'
@@ -344,13 +355,13 @@ function initDataTable() {
 //     }
 // });
 
-$('#interno-tab').click(function(){
+$('#interno-tab').click(function () {
     tipo = 'I';
     limpiarCamposExterno();
     limpiarCriteriosGuardia();
 });
 
-$('#externo-tab').click(function(){
+$('#externo-tab').click(function () {
     tipo = 'E';
     limpiarCamposInterno();
     limpiarCriteriosGuardia();
@@ -370,7 +381,7 @@ $('#externo-tab').click(function(){
 
 function estatusPresupuestal() {
     //alert("Cambio de Servicio. " + $("#ddlDivision").val());
-    var obj = JSON.stringify({ Suficiencia:1, deleg: $("#hdnUserDeleg").val() });
+    var obj = JSON.stringify({ Suficiencia: 1, deleg: $("#hdnUserDeleg").val() });
     console.log(obj);
 
     $.ajax({
@@ -389,15 +400,20 @@ function estatusPresupuestal() {
 
 $(document).ready(function () {
 
-	//alert( "JQuery ready. ");
+    //alert( "JQuery ready. ");
+    $("#ddlAscripcion").select2();
+    $("#ddlPuesto").select2();
+    $("#ddlServicio").select2();
+    $("#ddlNivel").select2();
+    $("#ddlJornada").select2();
     initDataTable();
     //carga_lista_guardias();
     //estatusPresupuestal();
 });
 
 $("#ddlAscripcion").change(function () {
-	var i = 0;
-	//alert( "Cambio de Ascripcion. " + $("#ddlAscripcion").val() );
+    var i = 0;
+    //alert( "Cambio de Ascripcion. " + $("#ddlAscripcion").val() );
     var oAdsc = $("#ddlAscripcion").val().split(';;;');
     //alert("Cambio de Adscripción. " + oAdsc[0] + " " + oAdsc[1] + " " + oAdsc[2]);
     var obj = JSON.stringify({ adsc: oAdsc[0] });
@@ -412,8 +428,8 @@ $("#ddlAscripcion").change(function () {
         },
         success: function (data) {
             for (i = 0; i < data.length; i++) {
-            	console.log(data[i]);
-            	//alert(i + ": " + data[i].nombre);
+                console.log(data[i]);
+                //alert(i + ": " + data[i].nombre);
             }
         }
     });
@@ -505,15 +521,15 @@ $("#ddlNivel").change(function () {
 
 $("#btnValidaPuesto").on("click", function (event) {
     event.preventDefault();
-    
+
     tipo = 'E';
-    
+
     if ($("#ddlAscripcion").val() == 0 || $("#ddlPuesto").val() == 0 || $("#ddlServicio").val() == 0 || $("#ddlNivel").val() == 0 || $("#ddlJornada").val() == 0) {
-		// alert("Favor de seleccionar todas las carácteristicas");
+        // alert("Favor de seleccionar todas las carácteristicas");
         $('.toast-warning').toast('show')
-		return 0;
-	}
-    
+        return 0;
+    }
+
     var oAdsc = $("#ddlAscripcion").val().split(';;;');
     var oPuesto = $("#ddlPuesto").val().split(';;;');
 
@@ -534,12 +550,12 @@ $("#btnValidaPuesto").on("click", function (event) {
                 $('.toast-success').toast('show')
                 console.log(data);
                 // alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
-//                $(document).Toasts('create', {
-//                    class: 'bg-warning',
-//                    title: 'NOTIFICACION',
-//                    subtitle: 'Guardia',
-//                    body: 'Las caracteristicas del puesto están autorizadas. No. de registro: ' + data
-//                });
+                //                $(document).Toasts('create', {
+                //                    class: 'bg-warning',
+                //                    title: 'NOTIFICACION',
+                //                    subtitle: 'Guardia',
+                //                    body: 'Las caracteristicas del puesto están autorizadas. No. de registro: ' + data
+                //                });
                 return data;
             } else {
                 // alert("Las caracteristicas del puesto no están autorizadas.");
@@ -548,20 +564,20 @@ $("#btnValidaPuesto").on("click", function (event) {
             }
         }
     });
-    
+
 });
 
 $("#consultarEmpInt").on("click", function (event) {
     event.preventDefault();
-    
+
     tipo = 'I';
 
     if ($("#txtNumero").val() == "" || $("#txtNumero").val().length == 0) {
-		alert("Favor de ingresar el número de empleado");
-		return 0;
-	}
-    
-    var numEmpInt = { "emp_int" : $("#txtNumero").val() };    
+        alert("Favor de ingresar el número de empleado");
+        return 0;
+    }
+
+    var numEmpInt = { "emp_int": $("#txtNumero").val() };
     console.log(numEmpInt);
 
     $.ajax({
@@ -579,32 +595,32 @@ $("#consultarEmpInt").on("click", function (event) {
                 //alert("El número de empleado no está autorizado.");
                 $('.toast-error .toast-body').html('El empleado no se encuentra registrado en la base de datos.')
                 $('.toast-error').toast('show')
-                $("#btnAgregarGuardia").attr('disabled','disabled');
+                $("#btnAgregarGuardia").attr('disabled', 'disabled');
                 return 0;
             } else {
-				$("#hdnTipoCT").val(data.empleado.id_tipo_ct);
-				$("#hdnTabulador").val(data.empleado.id_tipo_tabulador);
-				$("#hdnZona").val(data.empleado.id_zona);
-				$("#nombresInt").text(data.empleado.nombre);
-				$("#apellidosInt").text(data.empleado.apellido_1+ ' ' + data.empleado.apellido_2);
-				$("#rfcInt").text(data.empleado.id_legal);
-				$("#adscripcionInt").text(data.empleado.id_centro_trabajo + '-' + data.empleado.n_centro_trabajo);
-				$("#servicioInt").text(data.empleado.id_clave_servicio + '-' + data.empleado.n_clave_servicio);
-				$("#puestoInt").text(data.empleado.id_puesto_plaza + '-' + data.empleado.n_puesto_plaza);
-				//$("#horarioInt").text(data.empleado.id_turno);
-				$("#nivelInt").text(data.empleado.id_nivel+ '/' + data.empleado.id_sub_nivel);
-				$("#horasInt").text(data.empleado.id_tipo_jornada);
-				if (data.esValido) {
-					$('.toast-success .toast-body').html('El empleado cumple con las condiciones para registro de guardias.')
-					$('.toast-success').toast('show')
-					$("#btnAgregarGuardia").removeAttr('disabled');
-					carga_lista_guardias();
-	                //alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
-	                return data;
-	            } else {
-					//alert("El número de empleado no está autorizado.");
-					$('.toast-error .toast-body').html('El empleado no cumple con las condiciones para registro de guardias.')
-					$('.toast-error').toast('show')
+                $("#hdnTipoCT").val(data.empleado.id_tipo_ct);
+                $("#hdnTabulador").val(data.empleado.id_tipo_tabulador);
+                $("#hdnZona").val(data.empleado.id_zona);
+                $("#nombresInt").text(data.empleado.nombre);
+                $("#apellidosInt").text(data.empleado.apellido_1 + ' ' + data.empleado.apellido_2);
+                $("#rfcInt").text(data.empleado.id_legal);
+                $("#adscripcionInt").text(data.empleado.id_centro_trabajo + '-' + data.empleado.n_centro_trabajo);
+                $("#servicioInt").text(data.empleado.id_clave_servicio + '-' + data.empleado.n_clave_servicio);
+                $("#puestoInt").text(data.empleado.id_puesto_plaza + '-' + data.empleado.n_puesto_plaza);
+                //$("#horarioInt").text(data.empleado.id_turno);
+                $("#nivelInt").text(data.empleado.id_nivel + '/' + data.empleado.id_sub_nivel);
+                $("#horasInt").text(data.empleado.id_tipo_jornada);
+                if (data.esValido) {
+                    $('.toast-success .toast-body').html('El empleado cumple con las condiciones para registro de guardias.')
+                    $('.toast-success').toast('show')
+                    $("#btnAgregarGuardia").removeAttr('disabled');
+                    carga_lista_guardias();
+                    //alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
+                    return data;
+                } else {
+                    //alert("El número de empleado no está autorizado.");
+                    $('.toast-error .toast-body').html('El empleado no cumple con las condiciones para registro de guardias.')
+                    $('.toast-error').toast('show')
                     // $("#nombresInt").text('');
                     // $("#apellidosInt").text('');
                     // $("#rfcInt").text('');
@@ -614,26 +630,26 @@ $("#consultarEmpInt").on("click", function (event) {
                     // $("#horarioInt").text('');
                     // $("#nivelInt").text('');
                     // $("#horasInt").text('');
-					$("#btnAgregarGuardia").attr('disabled','disabled');
-                	return 0;
-				}
+                    $("#btnAgregarGuardia").attr('disabled', 'disabled');
+                    return 0;
+                }
             }
         }
     });
-    
+
 });
 
 $("#consultaRFCExt").on("click", function (event) {
     event.preventDefault();
-    
-	tipo = 'E';
+
+    tipo = 'E';
 
     if ($("#txtRFC").val() == "" || $("#txtRFC").val().length == 0) {
-		alert("Favor de ingresar el RFC del personal");
-		return 0;
-	}
+        alert("Favor de ingresar el RFC del personal");
+        return 0;
+    }
 
-    var numEmpExt = { "emp_ext" : $("#txtRFC").val() };    
+    var numEmpExt = { "emp_ext": $("#txtRFC").val() };
     console.log(numEmpExt);
 
     $.ajax({
@@ -645,7 +661,7 @@ $("#consultaRFCExt").on("click", function (event) {
             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
             $('.toast-error .toast-body').html('El personal no se encuentra registrado en la base de datos.')
             $('.toast-error').toast('show')
-            $("#btnAgregarGuardia").attr('disabled','disabled');
+            $("#btnAgregarGuardia").attr('disabled', 'disabled');
             return 0;
         },
         success: function (data) {
@@ -654,7 +670,7 @@ $("#consultaRFCExt").on("click", function (event) {
                 //alert("El número de empleado no está autorizado.");
                 $('.toast-error .toast-body').html('El personal no se encuentra registrado en la base de datos.')
                 $('.toast-error').toast('show')
-                $("#btnAgregarGuardia").attr('disabled','disabled');
+                $("#btnAgregarGuardia").attr('disabled', 'disabled');
                 return 0;
             } else {
 
@@ -663,14 +679,14 @@ $("#consultaRFCExt").on("click", function (event) {
                 //     window.location.href="/guardias/registro";
                 //     return 0;
                 // }
-				$("#nombreExt").text(data);
-				$('.toast-success .toast-body').html('El personal se encuentra registrado en la base de datos.')
-				$('.toast-success').toast('show')
-				$("#btnAgregarGuardia").removeAttr('disabled');
-				//carga_lista_guardias();
+                $("#nombreExt").text(data);
+                $('.toast-success .toast-body').html('El personal se encuentra registrado en la base de datos.')
+                $('.toast-success').toast('show')
+                $("#btnAgregarGuardia").removeAttr('disabled');
+                //carga_lista_guardias();
                 //alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
                 return data;
-				//$("#btnAgregarGuardia").attr('disabled','disabled');
+                //$("#btnAgregarGuardia").attr('disabled','disabled');
             }
         }
     });
@@ -804,8 +820,8 @@ $('#tbl_guardias tbody').on('click', 'div', function (e) {
 });
 
 //Al dar clic en la pestaña de externos se limpian los campos de internos
-function limpiarCamposInterno(){
-    $("#btnAgregarGuardia").attr('disabled','disabled');
+function limpiarCamposInterno() {
+    $("#btnAgregarGuardia").attr('disabled', 'disabled');
     $('#txtNumero').val('');
     $('#nombresInt').text('');
     $('#apellidosInt').text('');
@@ -818,8 +834,8 @@ function limpiarCamposInterno(){
     tabla.clear().draw();
 }
 //Al dar clic en la pestaña de internos se limpian los campos de externos
-function limpiarCamposExterno(){
-    $("#btnAgregarGuardia").attr('disabled','disabled');
+function limpiarCamposExterno() {
+    $("#btnAgregarGuardia").attr('disabled', 'disabled');
     $('#txtRFC').val('');
     $('#nombreExt').text('');
     $('#ddlAscripcion').val($('#ddlAscripcion > option:first').val());
@@ -830,7 +846,7 @@ function limpiarCamposExterno(){
     tabla.clear().draw();
 }
 
-function limpiarCriteriosGuardia(){
+function limpiarCriteriosGuardia() {
     $("#txtFolio").val('');
     $('#txtFechaInicio').val('');
     $("#txtFechaFin").val('');
