@@ -66,7 +66,7 @@ function mostrarTabla() {
             dataSrc: ''
         },
         order: [
-            [1, "desc"]
+            [0 , 1, "desc"]
         ],
 
         dom: 'Bfrtip',
