@@ -55,23 +55,21 @@
                                             aria-labelledby="interno-tab">
                                             <div class="busqueda">
                                                 <!-- <form action="" method="post"> -->
-                                                    <div class="row">
-                                                        <div class="col-md-3 col-lg-6 col-xl-3">
-                                                            <label for="txtNumero"><strong>Empleado:</strong></label>
-                                                        </div>
-                                                        <div class="col-md-5 col-lg-6 col-xl-5 mb-2">
-                                                            <input type="text" id="txtNumero"
-                                                                name="numEmp"
-                                                                class="form-control text-center"
-                                                                placeholder="Introduce número" required>
-                                                        </div>
-                                                        <div class="col-md-4 col-xl-4 text-center">
-                                                            <input type="submit" id="consultarEmpInt"
-                                                                class="btn issste text-white" value="Consultar">
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="col-md-3 col-lg-6 col-xl-3">
+                                                        <label for="txtNumero"><strong>Empleado:</strong></label>
                                                     </div>
+                                                    <div class="col-md-5 col-lg-6 col-xl-5 mb-2">
+                                                        <input type="text" id="txtNumero" name="numEmp"
+                                                            class="form-control text-center"
+                                                            placeholder="Introduce número" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-xl-4 text-center">
+                                                        <input type="submit" id="consultarEmpInt"
+                                                            class="btn issste text-white" value="Consultar">
+                                                    </div>
+                                                </div>
                                                 <!-- </form> -->
-
                                             </div>
                                             <hr>
                                             <div class="informacion-int">
@@ -86,7 +84,7 @@
                                                         <label class="fw-bold"><strong>Apellidos:</strong></label>
                                                     </div>
                                                     <div class="col-md-8 mb-3">
-                                                        <span id="apellidosInt"class="nombre"></span>
+                                                        <span id="apellidosInt" class="nombre"></span>
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <label class="fw-bold"><strong>RFC:</strong></label>
@@ -142,21 +140,21 @@
                                             aria-labelledby="externo-tab">
                                             <div class="busqueda">
                                                 <!-- <form action="" method="post"> -->
-                                                    <div class="row">
-                                                        <div class="col-md-3 col-lg-6 col-xl-3 col-sm-12">
-                                                            <label for="txtRFC"><strong>RFC:</strong></label>
-                                                        </div>
-                                                        <div class="col-md-5 col-lg-6 col-xl-5 col-sm-12">
-                                                            <input type="text" id="txtRFC"
-                                                                name="rfcExt"
-                                                                class="form-control text-center mb-2"
-                                                                placeholder="Introducir RFC" required>
-                                                        </div>
-                                                        <div class="col-md-4 col-xl-4 col-sm-12">
-                                                            <input type="submit" id="consultaRFCExt"
-                                                                class="btn issste text-white" value="Consultar">
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="col-md-3 col-lg-6 col-xl-2 col-sm-12">
+                                                        <label for="txtRFC"><strong>RFC:</strong></label>
                                                     </div>
+                                                    <div class="col-md-5 col-lg-6 col-xl-6 col-sm-12">
+                                                        <input type="text" id="txtRFC" name="rfcExt"
+                                                            class="form-control text-center mb-2"
+                                                            onkeyup="javascript:this.value=this.value.toUpperCase();"
+                                                            placeholder="Introducir RFC" autocomplete="off" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-xl-4 col-sm-12">
+                                                        <input type="submit" id="consultaRFCExt"
+                                                            class="btn issste text-white" value="Consultar">
+                                                    </div>
+                                                </div>
                                                 <!-- </form> -->
 
                                             </div>
@@ -182,21 +180,27 @@
                                                             <select class="form-control" id="ddlAscripcion"
                                                                 name="ascripcionExt" style=" width:100%"
                                                                 aria-label="Default select example">
-                                                                <option value="0" selected>Seleccione una opcion</option>
-																<option th:each="adsc : ${adscripciones}" th:value="${adsc.clave + ';;;' + adsc.tipo + ';;;' + adsc.zona}" th:text="${adsc.clave + '-' + adsc.descripcion}"></option>
+                                                                <option value="0" selected>Seleccione una opcion
+                                                                </option>
+                                                                <option th:each="adsc : ${adscripciones}"
+                                                                    th:value="${adsc.clave + ';;;' + adsc.tipo + ';;;' + adsc.zona}"
+                                                                    th:text="${adsc.clave + '-' + adsc.descripcion}">
+                                                                </option>
                                                             </select>
                                                         </div>
 
                                                         <div class="col-lg-4 mb-3">
-                                                            <label
-                                                                id="puestoExterno"><strong>Puesto</strong></label>
+                                                            <label id="puestoExterno"><strong>Puesto</strong></label>
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
-                                                            <select class="form-control" id="ddlPuesto"
-                                                                name="puestoExt" style=" width:100%"
-                                                                aria-label="Default select example">
-                                                                <option value="0" selected>Seleccione una opcion</option>
-                                                                <option th:each="puesto : ${puestos}" th:value="${puesto.clave + ';;;' + puesto.tipotabulador}" th:text="${puesto.clave + '-' + puesto.descripcion}"></option>
+                                                            <select class="form-control" id="ddlPuesto" name="puestoExt"
+                                                                style=" width:100%" aria-label="Default select example">
+                                                                <option value="0" selected>Seleccione una opcion
+                                                                </option>
+                                                                <option th:each="puesto : ${puestos}"
+                                                                    th:value="${puesto.clave + ';;;' + puesto.tipotabulador}"
+                                                                    th:text="${puesto.clave + '-' + puesto.descripcion}">
+                                                                </option>
                                                             </select>
                                                         </div>
 
@@ -208,8 +212,12 @@
                                                             <select class="form-control" id="ddlServicio"
                                                                 name="servicioExt" style=" width:100%"
                                                                 aria-label="Default select example">
-                                                                <option value="0" selected>Seleccione una opcion</option>
-                                                                <option th:each="servicio : ${servicios}" th:value="${servicio.clave}" th:text="${servicio.clave + '-' + servicio.descripcion}"></option>
+                                                                <option value="0" selected>Seleccione una opcion
+                                                                </option>
+                                                                <option th:each="servicio : ${servicios}"
+                                                                    th:value="${servicio.clave}"
+                                                                    th:text="${servicio.clave + '-' + servicio.descripcion}">
+                                                                </option>
                                                             </select>
                                                         </div>
 
@@ -217,11 +225,14 @@
                                                             <label><strong>Nivel/Subnivel</strong></label>
                                                         </div>
                                                         <div class="col-lg-8 mb-3">
-                                                            <select class="form-control" id="ddlNivel"
-                                                                name="nivelExt" style=" width:100%"
-                                                                aria-label="Default select example">
-                                                                <option value="0" selected>Seleccione una opcion</option>
-                                                                <option th:each="nivel : ${niveles}" th:value="${nivel.nivel+nivel.subnivel}" th:text="${nivel.nivel + '/' + nivel.subnivel}"></option>
+                                                            <select class="form-control" id="ddlNivel" name="nivelExt"
+                                                                style=" width:100%" aria-label="Default select example">
+                                                                <option value="0" selected>Seleccione una opcion
+                                                                </option>
+                                                                <option th:each="nivel : ${niveles}"
+                                                                    th:value="${nivel.nivel+nivel.subnivel}"
+                                                                    th:text="${nivel.nivel + '/' + nivel.subnivel}">
+                                                                </option>
                                                             </select>
                                                         </div>
 
@@ -233,8 +244,12 @@
                                                             <select class="form-control" id="ddlJornada"
                                                                 name="jornadaExt" style=" width:100%"
                                                                 aria-label="Default select example">
-                                                                <option value="0" selected>Seleccione una opcion</option>
-                                                                <option th:each="jornada : ${jornadas}" th:value="${jornada.clave}" th:text="${jornada.clave + '-' + jornada.descripcion}"></option>
+                                                                <option value="0" selected>Seleccione una opcion
+                                                                </option>
+                                                                <option th:each="jornada : ${jornadas}"
+                                                                    th:value="${jornada.clave}"
+                                                                    th:text="${jornada.clave + '-' + jornada.descripcion}">
+                                                                </option>
                                                             </select>
                                                         </div>
 
@@ -269,36 +284,33 @@
                                                         autorización:</label>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="text" id="txtFolio"
-                                                        name="folioAuth" class="form-control"
-                                                        placeholder="Introducir Folio..." required>
+                                                    <input type="text" id="txtFolio" name="folioAuth"
+                                                        class="form-control" placeholder="Introducir Folio..." required>
                                                 </div>
                                                 <!-- Fecha de inicio y fin -->
                                                 <div class="col-xl-2 col-sm-6 mt-3 mb-3">
                                                     <label>Fecha de inicio:</label>
                                                 </div>
                                                 <div class="col-xl-4 col-sm-6 mt-3 mb-3">
-                                                    <input type="date" id="txtFechaInicio"
-                                                        name="fechaInicio">
+                                                    <input type="date" id="txtFechaInicio" name="fechaInicio">
                                                 </div>
                                                 <div class="col-xl-2 col-sm-6 mt-3 mb-3">
                                                     <label>Fecha fin:</label>
                                                 </div>
                                                 <div class="col-xl-4 col-sm-6 mt-3 mb-3">
-                                                    <input type="date" id="txtFechaFin"
-                                                        name="fechaFin">
+                                                    <input type="date" id="txtFechaFin" name="fechaFin">
                                                 </div>
                                                 <!-- Movimiento -->
                                                 <div class="col-md-6 mb-3">
                                                     <label>Movimiento:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <select class="form-control" id="ddlMovimiento"
-                                                        name="movimiento"
+                                                    <select class="form-control" id="ddlMovimiento" name="movimiento"
                                                         aria-label="Default select example">
                                                         <option selected disabled>Seleccione una opcion</option>
                                                         <option value="06">NOCTURNA</option>
-                                                        <option value="07">DOMINICAL Y SABATINA,11 HORAS Y 24 HORAS</option>
+                                                        <option value="07">DOMINICAL Y SABATINA,11 HORAS Y 24 HORAS
+                                                        </option>
                                                         <option value="08">GUARDIAS PARA TRANSPORTES</option>
                                                         <option value="09">PERSONAL ADMINISTRATIVO</option>
                                                     </select>
@@ -308,8 +320,7 @@
                                                     <label>Motivo:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <select class="form-control" id="ddlMotivo"
-                                                        name="motivo"
+                                                    <select class="form-control" id="ddlMotivo" name="motivo"
                                                         aria-label="Default select example">
                                                         <option selected disabled>Seleccione una opcion</option>
                                                         <option value="G1">G1 POR CONTINUIDAD EN EL SERVICIO</option>
@@ -322,8 +333,7 @@
                                                         profesionales:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <select class="form-control" id="ddlRiesgos"
-                                                        name="riesgosProf"
+                                                    <select class="form-control" id="ddlRiesgos" name="riesgosProf"
                                                         aria-label="Default select example">
                                                         <option selected disabled>Seleccione una opcion</option>
                                                         <option value="&">&</option>
@@ -335,40 +345,42 @@
                                                     <label>Dias/Horas:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <input type="text" id="txtDias"
-                                                        name="diasHoras" placeholder="Introduzca los dias/horas" class="form-control" required>
+                                                    <input type="text" id="txtDias" name="diasHoras"
+                                                        placeholder="Introduzca los dias/horas" class="form-control"
+                                                        required>
                                                 </div>
                                                 <!-- Comentarios -->
                                                 <div class="col-md-6 mb-3">
                                                     <label>Comentarios:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <textarea id="txtComentarios"
-                                                        name="comentarios" rows="4" placeholder="Comentarios..." required></textarea>
+                                                    <textarea id="txtComentarios" name="comentarios" rows="4"
+                                                        placeholder="Comentarios..." required></textarea>
                                                 </div>
                                                 <!-- Quincena -->
                                                 <div class="col-md-6 mb-3">
                                                     <label>Quincena:</label>
                                                 </div>
                                                 <div class="col-md-6 mb-3">
-                                                    <select class="form-control" id="ddlQuincena"
-                                                        name="quincena"
+                                                    <select class="form-control" id="ddlQuincena" name="quincena"
                                                         aria-label="Default select example">
                                                         <option selected disabled>Seleccione una opcion</option>
-                                                        <option th:each="paga : ${pagas}" th:value="${paga.fecha}" th:text="${paga.fecha + '-' + paga.descripcion}"></option>
+                                                        <option th:each="paga : ${pagas}" th:value="${paga.fecha}"
+                                                            th:text="${paga.fecha + '-' + paga.descripcion}"></option>
                                                         <option value="31/03/2022">QUINCENA 06 DEL 2022</option>
                                                     </select>
                                                 </div>
                                                 <!-- Boton de agregar guardia -->
                                                 <div class="col-md-12">
                                                     <button type="submit" id="btnAgregarGuardia"
-                                                        class="btn issste text-white btn-block" disabled>Agregar Guardia</button>
+                                                        class="btn issste text-white btn-block" disabled>Agregar
+                                                        Guardia</button>
                                                 </div>
                                             </div>
-                                            <input type="hidden" id="hdnTipoCT"/>
-                                            <input type="hidden" id="hdnTabulador"/>
-                                            <input type="hidden" id="hdnZona"/>
-                                            <input type="hidden" id="hdnUserName" th:value="${userName}"/>
+                                            <input type="hidden" id="hdnTipoCT" />
+                                            <input type="hidden" id="hdnTabulador" />
+                                            <input type="hidden" id="hdnZona" />
+                                            <input type="hidden" id="hdnUserName" th:value="${userName}" />
                                         </form>
                                     </div>
                                 </div>
@@ -394,18 +406,18 @@
                                     <thead class="issste-v text-white text-center">
                                         <tr class="noExl">
                                             <th>Acciones</th>
-                                        	<th><i class="fas fa-tasks"></i></th>
+                                            <th><i class="fas fa-tasks"></i></th>
                                             <th>Empleado</th>
                                             <th>Puesto</th>
                                             <th>Fecha Inicio</th>
                                             <th>Fecha Pago</th>
                                             <th>Horas</th>
                                             <th>Importe</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_body_table" class="text-center">
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
@@ -439,8 +451,7 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <!-- Select -->
-                                                <select class="form-select"
-                                                    name="movimientoModal"
+                                                <select class="form-select" name="movimientoModal"
                                                     id="ddlMovimientoModal" aria-label="Default select example">
                                                     <option value="0" selected>Seleccione una opcion</option>
                                                     <option value="1">One</option>
@@ -453,8 +464,7 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <!-- Select -->
-                                                <select class="form-select"
-                                                    name="motivoModal" id="ddlMotivoModal"
+                                                <select class="form-select" name="motivoModal" id="ddlMotivoModal"
                                                     aria-label="Default select example">
                                                     <option value="0" selected>Seleccione una opcion</option>
                                                     <option value="1">One</option>
@@ -467,9 +477,8 @@
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <!-- Select -->
-                                                <select class="form-select"
-                                                    name="riesgosModal"
-                                                    id="ddlRiesgosModal" aria-label="Default select example">
+                                                <select class="form-select" name="riesgosModal" id="ddlRiesgosModal"
+                                                    aria-label="Default select example">
                                                     <option value="0" selected>Seleccione una opcion</option>
                                                     <option value="1">One</option>
                                                     <option value="2">Two</option>
@@ -480,15 +489,14 @@
                                                 <strong>Dias/Horas</strong>
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <input type="text" class="form-control"
-                                                    name="diasModal" id="txtDiasModal" required>
+                                                <input type="text" class="form-control" name="diasModal"
+                                                    id="txtDiasModal" required>
                                             </div>
                                             <div class="col-md-6 mb-3">
                                                 <strong>Comentarios</strong>
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <input type="text" class="form-control"
-                                                    name="comentariosModal"
+                                                <input type="text" class="form-control" name="comentariosModal"
                                                     id="txtComentariosModal" required>
                                             </div>
                                         </div>
@@ -508,54 +516,57 @@
 
                     <!-- Toast error-->
                     <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 5%; top: 45px;">
-                        <div id="liveToast" class="toast toast-error hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="500">
-                          <div class="toast-header bg-danger text-white">
-                            <!-- <img src="..." class="rounded mr-2" alt="..."> -->
-                            <strong class="mr-auto">Validacion de guardia</strong>
-                            <!-- <small>Ahora</small> -->
-                            <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <div id="liveToast" class="toast toast-error hide" role="alert" aria-live="assertive"
+                            aria-atomic="true" data-delay="500">
+                            <div class="toast-header bg-danger text-white">
+                                <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+                                <strong class="mr-auto">Validacion de guardia</strong>
+                                <!-- <small>Ahora</small> -->
+                                <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button> -->
-                          </div>
-                          <div class="toast-body bg-danger text-white">
-                            Las caracteristicas del puesto no están autorizadas
-                          </div>
+                            </div>
+                            <div class="toast-body bg-danger text-white">
+                                Las caracteristicas del puesto no están autorizadas
+                            </div>
                         </div>
-                      </div>
+                    </div>
                     <!-- Fin Toast Error-->
                     <!-- Toast validación correcta-->
                     <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 5%; top: 45px;">
-                        <div id="liveToast" class="toast toast-success hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="500">
-                          <div class="toast-header bg-success text-white">
-                            <!-- <img src="..." class="rounded mr-2" alt="..."> -->
-                            <strong class="mr-auto">Validacion de guardia</strong>
-                            <!-- <small>Ahora</small> -->
-                            <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <div id="liveToast" class="toast toast-success hide" role="alert" aria-live="assertive"
+                            aria-atomic="true" data-delay="500">
+                            <div class="toast-header bg-success text-white">
+                                <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+                                <strong class="mr-auto">Validacion de guardia</strong>
+                                <!-- <small>Ahora</small> -->
+                                <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button> -->
-                          </div>
-                          <div class="toast-body bg-success text-white">
-                            Las caracteristicas del puesto están autorizadas. Validación correcta
-                          </div>
+                            </div>
+                            <div class="toast-body bg-success text-white">
+                                Las caracteristicas del puesto están autorizadas. Validación correcta
+                            </div>
                         </div>
-                      </div>
+                    </div>
                     <!-- Fin Toast validacion correcta-->
-                     <!-- Toast validación por campos-->
-                     <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 5%; top: 45px;">
-                        <div id="liveToast" class="toast toast-warning hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
-                          <div class="toast-header bg-warning text-white">
-                            <!-- <img src="..." class="rounded mr-2" alt="..."> -->
-                            <strong class="mr-auto">Validacion de campos</strong>
-                            <!-- <small>Ahora</small> -->
-                            <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <!-- Toast validación por campos-->
+                    <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 5%; top: 45px;">
+                        <div id="liveToast" class="toast toast-warning hide" role="alert" aria-live="assertive"
+                            aria-atomic="true" data-delay="2000">
+                            <div class="toast-header bg-warning text-white">
+                                <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+                                <strong class="mr-auto">Validacion de campos</strong>
+                                <!-- <small>Ahora</small> -->
+                                <!-- <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button> -->
-                          </div>
-                          <div class="toast-body bg-warning text-white">
-                            Favor de seleccionar todas las carácteristicas
-                          </div>
+                            </div>
+                            <div class="toast-body bg-warning text-white">
+                                Favor de seleccionar todas las carácteristicas
+                            </div>
                         </div>
-                      </div>
+                    </div>
                     <!-- Fin Toast validacion por campos-->
 
                 </div>
@@ -579,10 +590,8 @@
 
     <!-- Scripts -->
     <div th:insert="fragments/scripts::scripts-js"></div>
-    <!-- Script para animacion de cambio de tarjeta -->
-    <!-- <script th:src="@{/js/bootstrap.min.js}"></script> -->
-	<!-- <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script> -->
-	<script th:src="@{/js/guardia.js}"></script>
+   
+    <script th:src="@{/js/guardia.js}"></script>
 </body>
 
 </html>

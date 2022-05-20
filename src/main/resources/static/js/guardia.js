@@ -233,7 +233,7 @@ function initDataTable() {
                 exportOptions: {
                     columns: [2, 3, 4, 5, 6, 7],
 
-                },  
+                },
 
                 className: 'btn btn-outline-success',
                 excelStyles: {                // Add an excelStyles definition
@@ -407,6 +407,7 @@ $(document).ready(function () {
     $("#ddlNivel").select2();
     $("#ddlJornada").select2();
     initDataTable();
+    autocompletar();
     //carga_lista_guardias();
     //estatusPresupuestal();
 });
@@ -665,9 +666,9 @@ $("#consultaRFCExt").on("click", function (event) {
             return 0;
         },
         success: function (data) {
-            console.log(data);
             if (data === null || data == '') {
                 //alert("El número de empleado no está autorizado.");
+                console.log("ERROR");
                 $('.toast-error .toast-body').html('El personal no se encuentra registrado en la base de datos.')
                 $('.toast-error').toast('show')
                 $("#btnAgregarGuardia").attr('disabled', 'disabled');
@@ -856,4 +857,36 @@ function limpiarCriteriosGuardia() {
     $(" #txtDias").val('');
     $("#txtComentarios").val('');
     $('#ddlQuincena').val($('#ddlQuincena > option:first').val());
+}
+
+function autocompletar() {
+    //Autocompletar campo de RFC externo en guardias/registro
+    $("#txtRFC").autocomplete({
+        minLength: 2,
+        dataType: "json",
+        autoFocus: false,
+        cache: false,
+        source: function (request, response) {
+            $.ajax({
+                url: "/rest_bolsaTrabajo/rfc",
+                dataType: "json",
+                method: 'GET',
+                data: {
+                    term: request.term,
+                },
+                success: function (data) {
+                    response(data.map(function (value) {
+                        console.log("Valor de consulta: "+value.rfc);
+                        return {
+                            label: value.rfc,
+                            value: value.rfc,
+                            description: value.rfc
+                        };
+                    }));
+                }
+            });
+        }
+
+    });
+
 }

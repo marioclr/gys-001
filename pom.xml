@@ -119,6 +119,12 @@
 		</dependency>
 
 	<!-- https://datatables.net/extensions/buttons/examples/initialisation/export.html -->
+	<!-- https://mvnrepository.com/artifact/org.webjars/jquery-ui -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery-ui</artifactId>
+			<version>1.13.1</version>
+		</dependency>
 
 	</dependencies>
 

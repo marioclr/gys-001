@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.BolsaTrabajoGuardias;
 import com.example.demo.model.IDatosBolsaTrabajo;
 import com.example.demo.model.IDatosDelegacion;
+import com.example.demo.model.IDatosRfc;
 
 @Repository
 public interface BolsaTrabajoGuardiasRepository extends JpaRepository<BolsaTrabajoGuardias, Integer> {
@@ -27,5 +28,10 @@ public interface BolsaTrabajoGuardiasRepository extends JpaRepository<BolsaTraba
 	@Query(value="Select id_div_geografica DivGeo, n_div_geografica Nombre From m4t_delegaciones order by DivGeo", nativeQuery = true)
 	List<IDatosDelegacion> getDatosDelegacion();
 
+	@Query(value="Select rfc From gys_bolsatrabajo", nativeQuery = true)
+	List<IDatosRfc> getBuscarRfc();
+
+	@Query(value="Select rfc From gys_bolsatrabajo Where rfc like %?% ", nativeQuery = true)
+	List<IDatosRfc> buscarPorRfc(String rfc);
 	
 }
