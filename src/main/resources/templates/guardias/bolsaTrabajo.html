@@ -33,7 +33,7 @@
                             <h5 class="text-center" th:text="${msg}"></h5>
                         </div>
                         <div class="formulario">
-                            <form th:action="@{/guardias/guardarPerExt}" th:object="${bolsaTrabajoGuardias}"
+                            <form th:action="@{/guardias/guardarPerExt}" th:object="${bolsaTrabajoGuardias}" id="bolsaTrabajoExt"
                                 method="post">
                                 <div class="card card-primary">
                                     <div class="card-header issste-v">
@@ -45,7 +45,7 @@
                                         <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2 text-center black">
                                             <label>RFC:</label>
                                         </div>
-                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2">
+                                        <div class="col-sm-12 col-lg-6 col-md-6 mt-3 mb-2" id="grupo__rfc">
                                             <input type="text" class="form-control" placeholder="Ingrese el RFC"
                                                 id="rfc" name="rfc" th:field="*{rfc}" maxlength="13">
                                             <div class="alert alert-danger text-center"
@@ -128,31 +128,28 @@
                         </div>
                         <div class="row mt-5">
                             <div class="col-sm-12">
+                                <div class="row mt-2 mb-3">
+                                    <!-- <div class="col-md-12 d-flex justify-content-end">
+                                        <a class="btn btn-success" th:href="@{/guardias/RegPersonalExt(format=xlsx)}" target="_blank">Excel</a>&nbsp&nbsp      
+                                        <a class="btn btn-danger" th:href="@{/guardias/RegPersonalExt (format=pdf)}"  target="_blank">PDF</a>                           
+                                    </div> -->
+                                </div>
                                 <div class="table table-responsive-sm">
                                     <table class="table" id="tbl_bolsaTrabajo" style="width: 100%;">
                                         <thead class="issste-v text-white text-center">
                                             <tr>
-                                                <th></th>
-                                                <th></th>
+                                                <th class="text-center">Acciones</th>
+                                                <th><i class="fas fa-tasks"></i></th>
                                                 <th>RFC</th>
-                                                <th>Nombre</th>
+                                                <th>Nombre(s)</th>
                                                 <th>Apellido paterno</th>
                                                 <th>Apellido materno</th>
-                                                <th>Div. geografica</th>
+                                                <th>Div. geográfica</th>
                                                 <th>Centro de trabajo</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_body_table" class="text-center black">
-                                            <!-- <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>MAHA980416884</td>
-                                                <td>Jose</td>
-                                                <td>Martinez</td>
-                                                <td>Hernandez</td>
-                                                <td>02</td>
-                                                <td>00008</td>
-                                            </tr> -->
+                                           
                                         </tbody>
                                     </table>
                                 </div>

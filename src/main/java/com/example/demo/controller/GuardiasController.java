@@ -90,7 +90,7 @@ public class GuardiasController {
 	public String eliminarRegistroPersonal(@PathVariable("id") int id, RedirectAttributes attribute) {
 		servicioBolsaTrabGuardias.eliminar(id);
 		System.out.println("Se borro el registro: "+id);
-		attribute.addFlashAttribute("msg","Registro "+id+" eliminado");
+		attribute.addFlashAttribute("msg","Registro eliminado");
 		return "redirect:/guardias/RegPersonalExt";
 	}
 
@@ -135,5 +135,9 @@ public class GuardiasController {
 		modelo.addAttribute("niveles", servicioGuardiaInt.getDatosNivelesGuardia());
 		modelo.addAttribute("jornadas", servicioGuardiaInt.getDatosJornadasGuardia());
 		modelo.addAttribute("pagas", servicioPagas.buscarPorEstado("ACT"));
+		
+
+		//Para pdf y excel
+		modelo.addAttribute("reg", servicioBolsaTrabGuardias.buscarRegistros());
 	}
 }

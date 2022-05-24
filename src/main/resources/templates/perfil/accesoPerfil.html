@@ -13,7 +13,6 @@
         <div th:insert="fragments/menu::menu-lateral"></div>
         <!-- End of Sidebar -->
 
-
         <!-- Contenido Central -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -26,59 +25,62 @@
 
                 <!-- Contenido principal de la pagina -->
                 <div class="container-fluid">
-                    <!-- Titulo-->
-                    <h1 class="mb-4 mt-3 text-center black">Acceso por Perfil</h1>
 
                     <!-- Formulario -->
                     <div class="container mt-5">
-
-                        <form method="post">
-
-                            <div class="row mb-5">
-                                <div class="col-md-3 text-center">
-                                    <label>Perfil:</label>
-                                </div>
-                                <div class="col-md-9">
-                                    <select class="form-select" id="perfil" name="perfil"
-                                        aria-label="Default select example">
-                                        <option value="sel" disabled="disabled">Seleccione una opcion</option>
-                                        <option value="0">ROOT</option>
-                                        <option value="1">Administrador guardias</option>
-                                        <option value="2">Administrador suplencias</option>
-                                        <option value="3">Presupuesto</option>
-                                    </select>
-
-                                </div>
+                        <div class="card card-primary">
+                            <div class="card-header issste-v">
+                                <h4 class="card-title text-center text-white">Acceso por Perfil</h4>
                             </div>
-                            <div class="row mb-5">
-                                <div class="col-md-3 col-sm-12 text-center">
-                                    <label>Opciones:</label>
-                                </div>
-                                <div class="col-md-7 col-sm-12">
-                                    <select class="form-select" id="opcion" name="opcion" multiple="multiple"
-                                        aria-label="Default select example" required>
-                                        <!-- <option value="0" disabled="disabled">Seleccione una opcion</option> -->
-                                        <option value="1">Registro de personal externo</option>
-                                        <option value="2">Registro de guardias</option>
-                                        <option value="3">Reporte de personal externo</option>
-                                        <option value="4">Reporte de guardias interna</option>
-                                        <option value="5">Reporte de guardias externa</option>
-                                        <option value="6">Registro de bolsa de trabajo</option>
-                                    </select>
-                                </div>
+                            <div class="card-body">
+                                <form method="post">
+                                    <div class="row mt-3 mb-5">
+                                        <div class="col-md-3 text-center">
+                                            <label>Perfil:</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <select class="form-select" id="perfil" name="perfil"
+                                                aria-label="Default select example">
+                                                <option value="sel" disabled="disabled">Seleccione una opcion</option>
+                                                <option value="0">ROOT</option>
+                                                <option value="1">Administrador guardias</option>
+                                                <option value="2">Administrador suplencias</option>
+                                                <option value="3">Presupuesto</option>
+                                            </select>
 
-                            </div>
-                            <div class="row mb-5">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-4 text-center">
-                                    <button type="submit" class="btn btn-block issste text-white">Guardar</button>
-                                </div>
-                                <div class="col-md-4"></div>
-                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-md-3 col-sm-12 text-center">
+                                            <label>Opciones:</label>
+                                        </div>
+                                        <div class="col-md-7 col-sm-12">
+                                            <select class="form-select" id="opcion" name="opcion" multiple="multiple"
+                                                aria-label="Default select example" required>
+                                                <!-- <option value="0" disabled="disabled">Seleccione una opcion</option> -->
+                                                <option value="1">Registro de personal externo</option>
+                                                <option value="2">Registro de guardias</option>
+                                                <option value="3">Reporte de personal externo</option>
+                                                <option value="4">Reporte de guardias interna</option>
+                                                <option value="5">Reporte de guardias externa</option>
+                                                <option value="6">Registro de bolsa de trabajo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-4 text-center">
+                                            <button type="submit"
+                                                class="btn btn-block issste text-white">Guardar</button>
+                                        </div>
+                                        <div class="col-md-4"></div>
+                                    </div>
 
-                        </form>
+                                </form>
+                            </div>
+                        </div>
                         <hr>
-                         <!-- Opcones elegidas -->
+                        <!-- Opciones elegidas a modificar -->
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6 text-center mt-3 mb-3">
                                 <label>Guardias</label><br>
@@ -135,6 +137,85 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Fin  para modificar -->
+                        <!-- Opcion 2 -->
+                <!--        <div class="container">
+                            <div class="table-responsive">
+
+                                <table class="table">
+                                    <thead class="issste-v text-white text-center">
+                                        <th>Perfil</th>
+                                        <th>Opciones</th>
+                                    </thead>
+                                    <tbody class="text-center black">
+                                        <tr>
+                                            <td>
+                                                Guardias
+                                                <p><input class="btn btn-warning mt-2" type="text" value="Modificar"></p>
+                                            </td>
+                                            <td>
+                                                <table class="table">
+                                                    <thead class="issste-v text-white text-center">
+                                                        <th>Opciones</th>
+                                                    </thead>
+                                                    <tbody class="text-center black">
+                                                        <tr>
+                                                            <td>Opcion 1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Opcion 2</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Suplencias
+                                                <p><input class="btn btn-warning mt-2" type="text" value="Modificar"></p>
+                                            </td>
+                                            <td>
+                                                <table class="table">
+                                                    <thead class="issste-v text-white text-center">
+                                                        <th>Opciones</th>
+                                                    </thead>
+                                                    <tbody class="text-center black">
+                                                        <tr>
+                                                            <td>Opcion 1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Opcion 2</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Presupuesto
+                                                <p><input class="btn btn-warning mt-2" type="text" value="Modificar"></p>
+                                            </td>
+                                            <td>
+                                                <table class="table">
+                                                    <thead class="issste-v text-white text-center">
+                                                        <th>Opciones</th>
+                                                    </thead>
+                                                    <tbody class="text-center black">
+                                                        <tr>
+                                                            <td>Opcion 1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Opcion 2</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>-->
+                        <!-- Fin de opcion 2 -->
 
                     </div>
                     <!-- Fin del formulario -->
@@ -160,13 +241,13 @@
         $(document).ready(function () {
             $('#opcion').select2({
                 placeholder: 'Selecciona las opciones que requieras',
-                multiple:true,
+                multiple: true,
                 tags: false,
                 allowClear: true,
                 closeOnSelect: false,
                 debug: true,
                 // matcher: matchCustom,
-                
+
                 width: '100%'
             });
 

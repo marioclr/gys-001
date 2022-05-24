@@ -53,58 +53,107 @@ $("#btnAgregarBolsaTrab").on("click", function (event) {
         $('.toast-body').text("No ha seleccionado ningun centro de trabajo");
         return false;
     }
-    if (rfc && nombre && apellidoPat && apellidoMat && id_div_geografica && id_centro_trabajo) {
-        // $("#btnAgregarBolsaTrab").attr('enabled','enabled');
-        // mostrarTabla();
-    }
-    // console.log("Datos enviados:" + rfc + " ," + nombre + " ," + apellidoPat + " ," + apellidoMat + " ," + id_div_geografica + " ," + id_centro_trabajo);
 
 });
 
 function mostrarTabla() {
     $('#tbl_bolsaTrabajo').DataTable({
-        pageLength: 1,
+        pageLength: 3,
         lengthMenu: [[3, 10, 25, 50, -1], [3, 10, 25, 50, "All"]],
         sort: true,
         ajax: {
             url: '/rest_bolsaTrabajo/registros',
             dataSrc: ''
         },
-        "order": [
-            [1, "desc"]
+        order: [
+            [0 , 1, "desc"]
         ],
-        // buttons: [
-        //     {
-        //         extend: 'pdfHtml5',
-        //         text: 'Exportar a PDF',
-        //         titleAttr: 'Exportar a PDF',
-        //         className: 'btn btn-danger',
-        //         title: 'Bolsa de trabajo guardias externos',
-        //         exportOptions: {
-        //             columns: [2, 3, 4, 5,6,7]
-        //         }
-        //     }
-        // ],
 
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excel',
+                title: 'Guardias personal externo',
+                exportOptions: {
+                    columns: [2, 3, 4, 5, 6, 7],
+                },            
+
+                className: 'btn btn-outline-success',
+                excelStyles: {                // Add an excelStyles definition
+                    template: "green_medium",  // Apply the 'blue_medium' template
+                },
+            },
+            {
+                extend: 'pdf',
+
+                title: 'Guardias personal externo',
+                orientation: 'landscape',
+                pageSize: 'LETTER',
+                customize: function (doc) {
+
+                    doc.styles.title = {
+                        color: '#a72c4d',
+                        fontSize: '20',
+                        alignment: 'center'
+                    }
+                    doc.styles.tableHeader = {
+                        fillColor: '#a72c4d',
+                        color: 'white',
+                        fontSize: '12',
+                        alignment: 'center'
+
+                    }
+                    doc.content[1].table.widths =
+                        Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+
+                    var rowCount = doc.content[1].table.body.length;
+                    for (i = 1; i < rowCount; i++) {
+                        doc.content[1].table.body[i][0].alignment = 'center';
+                        doc.content[1].table.body[i][1].alignment = 'center';
+                        doc.content[1].table.body[i][2].alignment = 'center';
+                        doc.content[1].table.body[i][3].alignment = 'center';
+                      
+                    }
+
+                },
+
+                exportOptions: {
+                    columns: [2, 3, 4, 5, 6, 7],
+                },
+                pageStyle: {
+                    horizontalCentered: true,
+                    verticalCentered: true,
+                },
+                className: 'btn btn-outline-danger',
+                excelStyles: {
+                    template: "green_medium",
+                },
+            },
+        ],
         columnDefs: [
-           
+
             {
                 targets: 0,
                 data: "id",
                 orderable: false,
+                bSort: false,
+                ordering: false,
                 render:
                     function (data) {
-                        return '<div class="btn-toolbar" id="eliminar" role="toolbar"><a href="/guardias/eliminar/' + data + '" class="btn btn-danger" onclick="return confirm("¿Estas seguro?")"><i class="fa fa-trash"></i></a>';
-                        // return '<div class="btn-toolbar" id="eliminar" role="toolbar"><a  sec:authorize="hasAnyAuthority("'+"ROOT"+'")" href="/guardias/eliminar/' + data + '" class="btn btn-danger" onclick="return confirm("¿Estas seguro?")"><i class="fa fa-trash"></i></a>';
+                        return '<div class="btn-toolbar" id="eliminar" role="toolbar"><a href="/guardias/eliminar/' + data + '" class="btn btn-danger"><i class="fa fa-trash"></i></a>';
+                        // return '<div class="btn-toolbar" id="eliminar" role="toolbar"><a class="btn btn-danger" onclick="return eliminar('+data+')"><i class="fa fa-trash"></i></a>';
                     }
             },
             {
                 targets: 1,
                 data: "id",
                 orderable: false,
+                bSort: false,
+                ordering: false,
                 render:
                     function (data) {
                         return '<div class="btn-toolbar" id="editar" role="toolbar"><a href="/guardias/editar/' + data + '" class="btn btn-warning"><i class="fa fa-edit"></i></a>';
+                        // return '<div class="btn-toolbar" id="editar" role="toolbar"><a class="btn btn-warning" onclick="return editar('+data+')"><i class="fa fa-edit"></i></a>';
                     }
 
             },
@@ -130,13 +179,18 @@ function mostrarTabla() {
             },
             {
                 targets: 6,
-                data: "id_div_geografica",
-                searchable: false
+                data: "n_Div_Geografica",
+                // searchable: false
             },
             {
                 targets: 7,
-                data: "id_centro_trabajo",
-                "searchable": false
+                data: "n_Centro_Trabajo",
+                render:
+                    function (data) {
+                        return '<span class="badge badge-primary text-wrap issste">' + data + '</span>';
+                    },
+
+                // "searchable": false
             },
 
         ],
@@ -150,13 +204,31 @@ function mostrarTabla() {
             infoFiltered: "(Filtrado de un total de _MAX_ registros)",
             sProccessing: "Procesando ...",
             oPaginate: {
-                "sFirst": "Primero",
-                "sLast": "Ultimo",
-                "sNext": " Siguiente",
-                "sPrevious": "Anterior "
+                sFirst: "Primero",
+                sLast: "Ultimo",
+                sNext: " Siguiente",
+                sPrevious: "Anterior"
 
             },
             searchPlaceholder: "RFC"
         }
     });
 }
+
+// function eliminar(id) {
+
+//     if (confirm("Seguro que quieres eliminar el siguiente pastel?")) {
+//         window.location = ("/guardias/eliminar/" + id);
+//         alert("Borrado el usuario con id: " + id);
+//     }
+
+// }
+
+// function editar(id) {
+
+//     if (confirm("Seguro que quieres editar el siguiente pastel?")) {
+//         window.location = ("/guardias/editar/" + id);
+//         // alert("Borrado el usuario con id: " + id);
+//     }
+
+// }

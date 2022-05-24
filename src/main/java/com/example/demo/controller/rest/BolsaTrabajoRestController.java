@@ -3,12 +3,14 @@ package com.example.demo.controller.rest;
 import java.util.List;
 
 import com.example.demo.model.BolsaTrabajoGuardias;
+import com.example.demo.model.IDatosBolsaTrabajo;
+import com.example.demo.model.IDatosRfc;
 import com.example.demo.service.IBolsaTrabajoGuardiasService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,8 +20,8 @@ public class BolsaTrabajoRestController {
 	IBolsaTrabajoGuardiasService servicioBolsaTrabGuardias;
 
     //Regresa todos los registros de bolsaTrabajo en formato json
-    @GetMapping("/registros")
-    List<BolsaTrabajoGuardias> getRegistros(){
+    @GetMapping("/reg")
+    List<BolsaTrabajoGuardias> getRegistro(){
         return servicioBolsaTrabGuardias.buscarTodos();
     } 
 
@@ -29,4 +31,19 @@ public class BolsaTrabajoRestController {
     //     return "redirect: /guardias/RegPersonalExt";
 		
 	// }
+
+    @GetMapping("/registros")
+    List<IDatosBolsaTrabajo> getRegistros(){
+        return servicioBolsaTrabGuardias.buscarRegistros();
+    }
+
+    @GetMapping("/rfcs")
+    List<IDatosRfc> getBuscarRfc(){
+        return servicioBolsaTrabGuardias.getbuscarRfc();
+    }
+
+    @GetMapping("/rfc")
+	public List<IDatosRfc> buscarPorRfc(@RequestParam("term") String rfc) {
+		return servicioBolsaTrabGuardias.buscarPorRfc(rfc);
+	}
 }
