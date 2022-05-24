@@ -58,8 +58,8 @@ $("#btnAgregarBolsaTrab").on("click", function (event) {
 
 function mostrarTabla() {
     $('#tbl_bolsaTrabajo').DataTable({
-        pageLength: 3,
-        lengthMenu: [[3, 10, 25, 50, -1], [3, 10, 25, 50, "All"]],
+        pageLength: 10,
+        lengthMenu: [[ 10, 25, 50, -1], [ 10, 25, 50, "All"]],
         sort: true,
         ajax: {
             url: '/rest_bolsaTrabajo/registros',
@@ -75,7 +75,7 @@ function mostrarTabla() {
                 extend: 'excel',
                 title: 'Guardias personal externo',
                 exportOptions: {
-                    columns: [2, 3, 4, 5],
+                    columns: [2, 3, 4],
                 },            
 
                 className: 'btn btn-outline-success',
@@ -159,8 +159,7 @@ function mostrarTabla() {
             },
             {
                 targets: 2,
-                data: "rfc",
-                visible: false
+                data: "rfc"
 
             },
             {
@@ -192,7 +191,6 @@ function mostrarTabla() {
                         return '<span class="badge badge-primary text-wrap issste">' + data + '</span>';
                     },
                 visible:false
-
                 // "searchable": false
             },
 
