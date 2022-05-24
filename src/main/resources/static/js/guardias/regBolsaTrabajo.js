@@ -75,7 +75,7 @@ function mostrarTabla() {
                 extend: 'excel',
                 title: 'Guardias personal externo',
                 exportOptions: {
-                    columns: [2, 3, 4, 5, 6, 7],
+                    columns: [2, 3, 4, 5],
                 },            
 
                 className: 'btn btn-outline-success',
@@ -118,7 +118,7 @@ function mostrarTabla() {
                 },
 
                 exportOptions: {
-                    columns: [2, 3, 4, 5, 6, 7],
+                    columns: [ 2, 3, 6, 7],
                 },
                 pageStyle: {
                     horizontalCentered: true,
@@ -159,7 +159,8 @@ function mostrarTabla() {
             },
             {
                 targets: 2,
-                data: "rfc"
+                data: "rfc",
+                visible: false
 
             },
             {
@@ -180,6 +181,7 @@ function mostrarTabla() {
             {
                 targets: 6,
                 data: "n_Div_Geografica",
+                visible:false
                 // searchable: false
             },
             {
@@ -189,6 +191,7 @@ function mostrarTabla() {
                     function (data) {
                         return '<span class="badge badge-primary text-wrap issste">' + data + '</span>';
                     },
+                visible:false
 
                 // "searchable": false
             },
