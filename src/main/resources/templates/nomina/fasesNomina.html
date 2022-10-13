@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head::head-main">
+</head>
+
+<body id="page-top">
+
+    <!-- Div que contienen todos los elementos de la página-->
+    <div id="wrapper" class="text-dark">
+
+        <!-- Sidebar -->
+        <div th:insert="fragments/menu::menu-lateral"></div>
+        <!-- End of Sidebar -->
+
+        <!-- Contenido principal -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <div th:insert="fragments/nav::navbar"></div>
+
+                <div class="container-fluid mt-4">
+                    <h1 class="text-center black">Registro de fases para proceso de nómina</h1>
+                    <div class="mt-5">
+                        <div th:if="${msg}" class="alert alert-success">
+                            <h5 class="text-center" th:text="${msg}"></h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <form th:action="@{/nomina/registroNomina}" th:object="${procesoNomina}" method="post">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
+                                            <label>Fecha pago:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
+                                            <input type="date" class="form-control" th:field="*{fec_pago}"
+                                                name="fec_pago" id="fec_pago">
+                                        </div>
+                                        <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
+                                            <label>Actividad:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
+                                            <input type="text" class="form-control" th:field="*{actividad}"
+                                                placeholder="Ingrese el nombre de la actividad" name="actividad"
+                                                id="actividad">
+                                        </div>
+                                        <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
+                                            <label>Fecha de inicio:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
+                                            <input type="date" class="form-control" th:field="*{fec_ini}" name="fec_ini"
+                                                id="fec_ini">
+                                        </div>
+                                        <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
+                                            <label>Fecha fin:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
+                                            <input type="date" class="form-control" th:field="*{fec_fin}" name="fec_fin" id="fec_fin">
+                                            <!-- Input para el validado -->
+                                            <!-- <input type="hidden" th:field="*{validado}" name="validado" id="validado" value="'F'"> -->
+                                        </div>
+                                        <div class="col-md-12 mt-5">
+                                            <input type="submit" class="btn btn-block issste text-white" value="Guardar">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div th:insert="fragments/footer::pie-pagina"></div>
+
+            </div>
+            <!--Fin del div que contiene todos los elementos de la pagina -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a th:insert="fragments/boton-scroll::boton-scroll-up"></a>
+
+        <!-- Logout Modal-->
+        <div th:insert="fragments/modal :: msgSalir"></div>
+
+        <!-- Scripts -->
+        <div th:insert="fragments/scripts::scripts-js"></div>
+        <!-- Script para animacion de cambio de tarjeta -->
+        <script th:src="@{/js/bootstrap.js}"></script>
+        <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
+        <script th:src="@{/js/guardia.js}"></script>
+</body>
+
+</html>

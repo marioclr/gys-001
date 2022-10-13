@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head::head-main">
+</head>
+
+<body id="page-top">
+
+    <!-- Div que contienen todos los elementos de la página-->
+    <div id="wrapper" class="text-dark">
+
+        <!-- Sidebar -->
+        <div th:insert="fragments/menu::menu-lateral"></div>
+        <!-- End of Sidebar -->
+
+        <!-- Contenido principal -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <div th:insert="fragments/nav::navbar"></div>
+
+                <div class="container-fluid mt-4">
+                    <h1 class="text-center black">Fechas de captura para la Qna19-2022</h1>
+                    <div class="row mt-5">
+                        <div class="col-md-12 mt-2 mb-3">
+                            <h4 class="black">Progreso:</h4>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <select class="form-control" aria-label="Default select example">
+                                <option value="0" selected>Seleccione una fecha</option>
+                                <option th:each="fecha : ${fechas}"
+                                    th:value="${fecha.fec_paga}"
+                                    th:text="${fecha.fechas}"></option>
+                                ></option>
+                              </select>
+                        </div>
+                        
+                        <div class="col-md-12 mt-5">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="black">
+                                        <tr>
+                                            <th>Actividad</th>
+                                            <th>Dias</th>
+                                            <th>Validado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="black">
+                                        <tr>
+                                            <td>Captura de movimientos</td>
+                                            <td>26 al 28 de septiembre del 2022</td>
+                                             <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                      Validado
+                                                    </label>
+                                                  </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Correccion de captura</td>
+                                            <td>27 al 29 de septiembre del 2022</td>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                      Validado
+                                                    </label>
+                                                  </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aplicacion de discos terceros, prestaciones y pension alimenticia</td>
+                                            <td>27 al 28 de septiembre del 2022</td>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                      Validado
+                                                    </label>
+                                                  </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Entrega de prenomina</td>
+                                            <td>29 de septiembre de 2022</td>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                      Validado
+                                                    </label>
+                                                  </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Revision y verificacion de captura</td>
+                                            <td>27 al 29 de septiembre de 2022</td>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                      Validado
+                                                    </label>
+                                                  </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cierre y liberacion de nómina con correcciones</td>
+                                            <td>03 de octubre del 2022</td>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                      Validado
+                                                    </label>
+                                                  </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer -->
+                <div th:insert="fragments/footer::pie-pagina"></div>
+
+            </div>
+            <!--Fin del div que contiene todos los elementos de la pagina -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a th:insert="fragments/boton-scroll::boton-scroll-up"></a>
+
+        <!-- Logout Modal-->
+        <div th:insert="fragments/modal :: msgSalir"></div>
+
+        <!-- Scripts -->
+        <div th:insert="fragments/scripts::scripts-js"></div>
+        <!-- Script para animacion de cambio de tarjeta -->
+        <script th:src="@{/js/bootstrap.js}"></script>
+        <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
+        <script th:src="@{/js/guardia.js}"></script>
+</body>
+
+</html>

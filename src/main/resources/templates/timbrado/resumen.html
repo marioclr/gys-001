@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head::head-main">
+</head>
+
+<body id="page-top">
+
+    <!-- Div que contienen todos los elementos de la página-->
+    <div id="wrapper" class="text-dark">
+
+        <!-- Sidebar -->
+        <div th:insert="fragments/menu::menu-lateral"></div>
+        <!-- End of Sidebar -->
+
+        <!-- Contenido principal -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <div th:insert="fragments/nav::navbar"></div>
+
+                <!-- Contenido editable por página -->
+                <div class="container-fluid mt-4">
+                    <h1 class="text-center black">Resumen de la quincena</h1>
+                    <div class="row mt-5">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title text-center">Registros META4</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Fecha de pago</th>
+                                                    <th>Registros</th>
+                                                    <th>ISR</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>07/08/2022</td>
+                                                    <td>21</td>
+                                                    <td>$ 28673.86</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>24/08/2022</td>
+                                                    <td>1</td>
+                                                    <td>$ 1544.92</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>27/08/2022</td>
+                                                    <td>31</td>
+                                                    <td>$ 37574.92</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>28/08/2022</td>
+                                                    <td>5</td>
+                                                    <td>$ 1713.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>31/08/2022</td>
+                                                    <td>102222</td>
+                                                    <td>$ 251813782.7</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>01/09/2022</td>
+                                                    <td>284</td>
+                                                    <td>$ 549669.95</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>02/09/2022</td>
+                                                    <td>566</td>
+                                                    <td>$ 2216229.89</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>03/09/2022</td>
+                                                    <td>4459</td>
+                                                    <td>$ 11513004.58</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Columna 2 -->
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title text-center">Registros timbrado ISSSTE META4</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Tipo Nómina</th>
+                                                    <th scope="col">Registros</th>
+                                                    <th scope="col">ISR</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Nómina</td>
+                                                    <td>21</td>
+                                                    <td>$ 27147.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nómina</td>
+                                                    <td>1</td>
+                                                    <td>$ 1544.92</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nómina</td>
+                                                    <td>31</td>
+                                                    <td>$ 37295.21</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nómina</td>
+                                                    <td>5</td>
+                                                    <td>$ 1713.8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nómina</td>
+                                                    <td>102113</td>
+                                                    <td>$ 251575729.5</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nómina</td>
+                                                    <td>281</td>
+                                                    <td>$ 542591.83</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nómina</td>
+                                                    <td>565</td>
+                                                    <td>$ 2214886.92</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Nómina</td>
+                                                    <td>4440</td>
+                                                    <td>$ 11460412.43</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Columna 3 -->
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title text-center">Registros sin timbrar META4</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Registros</th>
+                                                    <th scope="col">ISR</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>$1526.06</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>--</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>--</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>--</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>109</td>
+                                                    <td>$ 239215.49</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>$ 7078.12</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>$ 1342.97</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>19</td>
+                                                    <td>$ 52592.15</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!-- Fin del contenido editable por página -->
+                </div>
+
+                <!-- Footer -->
+                <div th:insert="fragments/footer::pie-pagina"></div>
+
+            </div>
+            <!--Fin del div que contiene todos los elementos de la pagina -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a th:insert="fragments/boton-scroll::boton-scroll-up"></a>
+
+        <!-- Logout Modal-->
+        <div th:insert="fragments/modal :: msgSalir"></div>
+
+        <!-- Scripts -->
+        <div th:insert="fragments/scripts::scripts-js"></div>
+        <!-- Script para animacion de cambio de tarjeta -->
+        <script th:src="@{/js/bootstrap.js}"></script>
+        <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
+        <script th:src="@{/js/guardia.js}"></script>
+</body>
+
+</html>
