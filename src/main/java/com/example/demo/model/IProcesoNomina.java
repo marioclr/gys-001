@@ -6,7 +6,7 @@ public interface IProcesoNomina {
 
     Date getFec_Pago();
     String getActividad();
-    Date getFec_Inicio();
+    Date getFec_Ini();
     Date getFec_Fin();
     Boolean getValidado();    
     

@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.IDatosUsuario;
+import com.example.demo.model.IPorcentajeNomina;
+import com.example.demo.model.IProcesoNomina;
 import com.example.demo.model.ProcesoNomina;
 import com.example.demo.model.Usuario;
 import com.example.demo.service.IProcesoNominaService;
@@ -41,11 +44,20 @@ public class ProcesoNominaController {
     @GetMapping("/procesoNomina")
 	public String proceso(Model modelo, Authentication authentication, HttpSession session) {
 		modelo.addAttribute("fechas", serviceProcesoNomina.getFechas());
-		return "/nomina/procesoNomina";
+		List<IProcesoNomina> listaFases = serviceProcesoNomina.getMostrarFases();
+		List<IPorcentajeNomina> porcentaje = serviceProcesoNomina.getProcentajeProgreso();
+		// System.out.println("Lista de fases: " + listaFases);
+		
+		// System.out.println(porcentaje);
+		modelo.addAttribute("porcentaje", porcentaje);
+		modelo.addAttribute("fases",listaFases);
+		modelo.addAttribute("fases", serviceProcesoNomina.getMostrarFases());
+		return "/nomina/procesoNomina2";
 	}
 
     @GetMapping("/registroNomina")
 	public String registroProcesoNomina(ProcesoNomina procesoNomina, BindingResult result, Model modelo, RedirectAttributes attributes) {
+		modelo.addAttribute("titulo", "Registro de fases de proceso de nomina");
 		return "/nomina/fasesNomina";
 	}
 
@@ -65,7 +77,17 @@ public class ProcesoNominaController {
 		serviceProcesoNomina.guardar(procesoNomina);
 		attributes.addFlashAttribute("msg","Registro guardado");
 
-		return "redirect:/nomina/registroNomina";
+		return "redirect:/nomina/procesoNomina";
+	}
+
+	//Modificar el registro de fases de la nomina
+	@GetMapping("/actValidacion/{fec_pago}")
+	public String editarRegistroFases(@PathVariable("fec_pago") Date fec_pago, Model modelo){
+		ProcesoNomina procesoNomina = serviceProcesoNomina.buscarFecha(fec_pago);
+		System.out.println("Resultado de busqueda: "+procesoNomina);
+		modelo.addAttribute("titulo", "Editar validación ");
+		modelo.addAttribute("procesoNomina", procesoNomina);
+		return "/nomina/fasesNomina";
 	}
 
 	@InitBinder

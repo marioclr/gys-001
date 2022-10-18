@@ -23,7 +23,7 @@
                 <div th:insert="fragments/nav::navbar"></div>
 
                 <div class="container-fluid mt-4">
-                    <h1 class="text-center black">Registro de fases para proceso de nómina</h1>
+                    <h1 class="text-center black" th:text="${titulo}"></h1>
                     <div class="mt-5">
                         <div th:if="${msg}" class="alert alert-success">
                             <h5 class="text-center" th:text="${msg}"></h5>
@@ -60,8 +60,12 @@
                                         </div>
                                         <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
                                             <input type="date" class="form-control" th:field="*{fec_fin}" name="fec_fin" id="fec_fin">
-                                            <!-- Input para el validado -->
-                                            <!-- <input type="hidden" th:field="*{validado}" name="validado" id="validado" value="'F'"> -->
+                                        </div>
+                                        <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
+                                            <label>Activo:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
+                                            <input type="checkbox" class="form-check-input" th:field="*{validado}" name="validado" id="validado">
                                         </div>
                                         <div class="col-md-12 mt-5">
                                             <input type="submit" class="btn btn-block issste text-white" value="Guardar">

@@ -1,11 +1,14 @@
 package com.example.demo.service.db;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.IFechaHisPagas;
+import com.example.demo.model.IPorcentajeNomina;
 import com.example.demo.model.IProcesoNomina;
 import com.example.demo.model.ProcesoNomina;
 import com.example.demo.repository.ProcesoNominaRepository;
@@ -30,12 +33,39 @@ public class ProcesoNominaServiceJpa implements IProcesoNominaService{
         return procesoNominaRepo.getFechas();
     }
 
-
     @Override
-    public List<IProcesoNomina> getBuscarFasesPorFecha() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<IProcesoNomina> getMostrarFases() {
+    
+        return procesoNominaRepo.getMostrarFases();
     }
 
+    // Buscar por una fecha las fases|
+    // @Override
+    // public IProcesoNomina buscarFecha(Date fec_pago) {
+	// 	Optional<ProcesoNomina> opcional =  procesoNominaRepo.findById(fec_pago);
+	// 	if(opcional.isPresent()) {
+	// 		return opcional.get();
+	// 	}
+	// 	return null;
+	// }
+
+    // Mostrar porcentaje de progreso
+    @Override
+    public List<IPorcentajeNomina> getProcentajeProgreso() {
+        return procesoNominaRepo.getProcentajeProgreso();
+    }
+
+
+    @Override
+    public ProcesoNomina buscarFecha(Date fec_pago) {
+        Optional<ProcesoNomina> opcional =  procesoNominaRepo.findById(fec_pago);
+		if(opcional.isPresent()) {
+			return opcional.get();
+		}
+		return null;
+    }
+
+
+    // https://es.stackoverflow.com/questions/311902/b%C3%BAsqueda-de-datos-entre-2-fechas-spring-boot
     
 }
