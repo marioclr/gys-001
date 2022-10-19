@@ -21,6 +21,7 @@ public interface IProcesoNominaService {
 
     List<IPorcentajeNomina> getProcentajeProgreso();
     ProcesoNomina buscarFecha(Date fec_pago);
+    List<IProcesoNomina> getBuscarFasesPorFecha(Date fec_pago);
 
 
     

@@ -42,9 +42,13 @@ public interface ProcesoNominaRepository extends JpaRepository<ProcesoNomina, Da
     //  Where fec_pago between '2022-10-13' and '2022-10-16'
     List<IProcesoNomina> getMostrarFases();
 
-    @Query(value = "Select * From fases_proceso_nomina Where fec_paga = ?", nativeQuery = true)
+    @Query(value = "Select * From fases_proceso_nomina Where fec_pago = ?", nativeQuery = true)
     //  Where fec_pago between '2022-10-13' and '2022-10-16'
     IProcesoNomina buscarFecha(Date fecha_paga);
+
+    // llama al datatables
+    @Query(value = "Select * From fases_proceso_nomina Where fec_pago = ?", nativeQuery = true)
+    List<IProcesoNomina> buscarFasesPorFecha(Date fecha_paga);
 
 
 }

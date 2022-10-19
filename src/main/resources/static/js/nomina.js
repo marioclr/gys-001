@@ -20,75 +20,87 @@ $("#btnBuscarFasesFecha").on("click", function (event) {
         return false;
     }
 
-    var fecha_paga = { "fec_pago": $("#fechas_paga").val() };
+    var fecha_paga = { "fec_paga": $("#fechas_paga").val() };
     console.log(fecha_paga);
 
     $.ajax({
         type: "POST",
         url: "/rest_procesoNomina/buscarPorFecha?" + $.param(fecha_paga),
-        data: { fec_pago: $("#fechas_paga").val() },
+        // url: "/rest_procesoNomina/buscarPorFecha",
+        // data: { fec_pago: $("#fechas_paga").val() },
+        data: fecha_paga,
         contentType: 'application/json; charset=utf-8',
         error: function (xhr, ajaxOptions, thrownError) {
             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
             return 0;
         },
         success: function (data) {
-            console.log(data);
-            // if (data.empleado === null) {
-            //     //alert("El número de empleado no está autorizado.");
-            //     $('.toast-error .toast-body').html('El empleado no se encuentra registrado en la base de datos.')
-            //     $('.toast-error').toast('show')
-            //     $("#btnAgregarGuardia").attr('disabled', 'disabled');
-            //     return 0;
-            // } else {
-            //     $("#hdnTipoCT").val(data.empleado.id_tipo_ct);
-            //     $("#hdnTabulador").val(data.empleado.id_tipo_tabulador);
-            //     $("#hdnZona").val(data.empleado.id_zona);
-            //     $("#nombresInt").text(data.empleado.nombre);
-            //     $("#apellidosInt").text(data.empleado.apellido_1 + ' ' + data.empleado.apellido_2);
-            //     $("#rfcInt").text(data.empleado.id_legal);
-            //     $("#adscripcionInt").text(data.empleado.id_centro_trabajo + '-' + data.empleado.n_centro_trabajo);
-            //     $("#servicioInt").text(data.empleado.id_clave_servicio + '-' + data.empleado.n_clave_servicio);
-            //     $("#puestoInt").text(data.empleado.id_puesto_plaza + '-' + data.empleado.n_puesto_plaza);
-            //     //$("#horarioInt").text(data.empleado.id_turno);
-            //     $("#nivelInt").text(data.empleado.id_nivel + '/' + data.empleado.id_sub_nivel);
-            //     $("#horasInt").text(data.empleado.id_tipo_jornada);
-            //     if (data.esValido) {
-            //         $('.toast-success .toast-body').html('El empleado cumple con las condiciones para registro de guardias.')
-            //         $('.toast-success').toast('show')
-            //         $("#btnAgregarGuardia").removeAttr('disabled');
-            //         carga_lista_guardias();
-            //         //alert("Las caracteristicas del puesto están autorizadas. No. de registro: " + data);
-            //         return data;
-            //     } else {
-            //         //alert("El número de empleado no está autorizado.");
-            //         $('.toast-error .toast-body').html('El empleado no cumple con las condiciones para registro de guardias.')
-            //         $('.toast-error').toast('show')
-            //         // $("#nombresInt").text('');
-            //         // $("#apellidosInt").text('');
-            //         // $("#rfcInt").text('');
-            //         // $("#adscripcionInt").text('');
-            //         // $("#servicioInt").text('');
-            //         // $("#puestoInt").text('');
-            //         // $("#horarioInt").text('');
-            //         // $("#nivelInt").text('');
-            //         // $("#horasInt").text('');
-            //         $("#btnAgregarGuardia").attr('disabled', 'disabled');
-            //         return 0;
-            //     }
-            // }
+            if(data == ""){
+                console.log("No se encontro informacion con esa fecha");
+            }else{
+                // initDataTable();
+                console.log("éxito", data);
+                // tabla.clear().draw();
+                // for (var i = 0; i < data.length; i++) {
+                //     addRow(data[i]);
+                // }
+
+            }
+          
         }
     });
 
-    
-
 });
+
+function addRow(obj) {
+
+    tabla.row.add(
+        [
+            // (obj.estado == 'ACT') ? '<button type="button" value="Modificar" id="btnModificar" class="btn btn-primary btn-sm" data-target="#ModificarGuardia" data-toggle="modal">Modificar</button>' : '',
+            // '',
+            obj.fec_pago,
+            obj.actividad,
+            obj.fec_ini,
+            obj.fec_fin,
+            obj.validado
+        ]
+    ).draw();
+}
 
 
 
 
 function mostrarTabla() {
     $('#tbl_nomina').DataTable({
+        // "procesing": true,
+        // "columnDefs":
+        //     [{
+        //         "targets": 0,
+        //         "orderable": true
+        //     },
+        //     {
+        //         "targets": 1,
+        //         "orderable": true
+        //     },
+        //     {
+        //         "targets": 2,
+        //         "orderable": false
+        //     },
+        //     {
+        //         "targets": 3,
+        //         "orderable": false
+        //     },{
+        //         "targets": 4,
+        //         "orderable": false
+        //     }],
+        // "aoColumns": [
+        //     { "sType": "date-uk" },
+        //     null,
+        //     { "sType": "date-uk" },
+        //     { "sType": "date-uk" },
+        //     null,
+        // ],
+
         pageLength: 10,
         lengthMenu: [[ 5, 8, 10, -1], [ 5, 8, 10, "Todos"]],
         sort: true,

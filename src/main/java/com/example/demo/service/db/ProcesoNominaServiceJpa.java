@@ -39,15 +39,6 @@ public class ProcesoNominaServiceJpa implements IProcesoNominaService{
         return procesoNominaRepo.getMostrarFases();
     }
 
-    // Buscar por una fecha las fases|
-    // @Override
-    // public IProcesoNomina buscarFecha(Date fec_pago) {
-	// 	Optional<ProcesoNomina> opcional =  procesoNominaRepo.findById(fec_pago);
-	// 	if(opcional.isPresent()) {
-	// 		return opcional.get();
-	// 	}
-	// 	return null;
-	// }
 
     // Mostrar porcentaje de progreso
     @Override
@@ -63,6 +54,13 @@ public class ProcesoNominaServiceJpa implements IProcesoNominaService{
 			return opcional.get();
 		}
 		return null;
+    }
+
+
+    @Override
+    public List<IProcesoNomina> getBuscarFasesPorFecha(Date fec_pago) {
+       
+        return procesoNominaRepo.buscarFasesPorFecha(fec_pago);
     }
 
 

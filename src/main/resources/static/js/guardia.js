@@ -168,7 +168,7 @@ function carga_lista_guardias() {
             console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
         },
         success: function (data) {
-            //initDataTable();
+            // initDataTable();
             //console.log("éxito", data);
             tabla.clear().draw();
             for (var i = 0; i < data.length; i++) {

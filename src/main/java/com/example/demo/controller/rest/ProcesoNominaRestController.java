@@ -1,12 +1,16 @@
 package com.example.demo.controller.rest;
 
+import java.text.SimpleDateFormat;
 // import java.text.DateFormat;
 // import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,14 +44,16 @@ public class ProcesoNominaRestController {
         return servicioProcesoNomina.getProcentajeProgreso();
     }
 
-    // @PostMapping("/buscarPorFecha")
-    // IProcesoNomina buscarFecha(@RequestParam("fec_pago") Date fec_pago){
-    //     // DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-    //     // fecha = formatter.format(fec_pago);
-    //     return servicioProcesoNomina.buscarFecha(fec_pago);
-    // }
+    @PostMapping("/buscarPorFecha")
+    List<IProcesoNomina> buscarFasesPorFecha(@RequestParam("fec_paga") Date fec_pago){
+        return servicioProcesoNomina.getBuscarFasesPorFecha(fec_pago);
+    }
 
-
+	@InitBinder
+	public void initBinder(WebDataBinder webDataBinder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
     // @GetMapping("/buscarPorFecha2")
     // List<IProcesoNomina> buscarFecha(Date fec_pago){
     //     return (List<IProcesoNomina>) servicioProcesoNomina.buscarFecha("2020-01-15");
