@@ -22,10 +22,10 @@
                 <!-- Topbar -->
                 <div th:insert="fragments/nav::navbar"></div>
 
-                <div class="container-fluid mt-4">
-                    <h1 class="text-center black">Fechas de captura</h1>
-                    <div class="row mt-5">
-                        
+                <div class="container-fluid mt-5">
+                    <h2 class="black text-center">Fechas de captura</h2>
+
+                    <div class="row mt-2 mb-3">
                         <div class="col-md-12 mt-2 mb-3">
                             <h4 class="black">Progreso:</h4>
                             <div class="conteo-progreso" th:each="prog : ${porcentaje}">
@@ -37,9 +37,11 @@
                                 <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
-                        
+                    </div>
+
+                    <div class="row">
                         <div class="col-md-4">
-                            <select class="form-control" aria-label="Default select example">
+                            <select class="form-control" id="fechas_paga" name="fechas_paga" aria-label="Default select example">
                                 <option value="0" selected>Seleccione una fecha</option>
                                 <option th:each="fecha : ${fechas}"
                                     th:value="${fecha.fec_paga}"
@@ -47,51 +49,50 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                                <input type="submit" class="btn btn-success" value="Buscar">
+                                <input type="submit" id="btnBuscarFasesFecha" class="btn btn-success" value="Buscar">
                         </div>
-                   
-                        
-                        <div class="col-md-12 mt-5">
-                            <div class="table-responsive text-center">
-                                <table class="table table-striped">
-                                    <thead class="black">
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-sm-12">
+                            <div class="table table-responsive-sm">
+                                <table class="table" id="tbl_nomina" style="width: 100%;">
+                                    <thead class="issste-v text-white text-center">
                                         <tr>
-                                            <th>Fecha pago</th>
+                                            <!-- <th class="text-center">Acciones</th>
+                                            <th><i class="fas fa-tasks"></i></th> -->
+                                            <th>Fecha de pago</th>
                                             <th>Actividad</th>
-                                            <th>Fecha inicio</th>
+                                            <th>Fecha de inicio</th>
                                             <th>Fecha fin</th>
                                             <th>Validado</th>
                                             <th>Actualizar</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="black">
-                                        <form action="" method="post">
-                                        <tr th:each="fase : ${fases}">
-                                            <td th:text="${#dates.format(fase.fec_Pago, 'dd-MMM-yyyy')}"></td>
-                                            <td th:text="${fase.actividad}"></td>
-                                            <td th:text="${fase.fec_Ini}"></td>
-                                            <td th:text="${fase.fec_Fin}"></td>
-                                            <td>
-                                                <div th:switch="${fase.validado}" class="form-check">
-                                                    <div th:case="false">
-                                                        <span class="badge badge-danger text-wrap">No Validado</span>
-                                                    </div>
-                                                    <div th:case="true">
-                                                        <span class="badge badge-success text-wrap">Validado</span>
-                                                    </div>
-
-                                                </div>
-                                            </td>
-                                            <td th:text="${fase.validado}"></td>
-                                            <td><div class="btn-toolbar" id="editar" role="toolbar"><a th:href="@{/nomina/actValidacion/{fec_pago} (fec_pago=${fase.fec_Pago}) }" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
-                                        </tr>
-                                    </form>
+                                    <tbody id="tbl_body_nomina" class="text-center black">
+                                       
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                </div>
+
+                <!-- Toast -->
+                <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 5%; top: 45px;">
+                    <div id="liveToast" class="toast toast-warning hide" role="alert" aria-live="assertive"
+                        aria-atomic="true" data-delay="2000">
+                        <div class="toast-header bg-warning text-white">
+                            <strong class="mr-auto">Información</strong>
+                        </div>
+                        <div class="toast-body bg-warning text-white">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin toast -->
                 
                 <!-- Footer -->
                 <div th:insert="fragments/footer::pie-pagina"></div>
@@ -111,10 +112,8 @@
         <!-- Scripts -->
         <div th:insert="fragments/scripts::scripts-js"></div>
         <!-- Script para animacion de cambio de tarjeta -->
-        <script th:src="@{/js/bootstrap.js}"></script>
-        <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
-        <script th:src="@{/js/guardia.js}"></script>
- 
+        
+        <script th:src="@{/js/nomina.js}"></script>
 </body>
 
 </html>

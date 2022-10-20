@@ -54,9 +54,4 @@ public class ProcesoNominaRestController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
-    // @GetMapping("/buscarPorFecha2")
-    // List<IProcesoNomina> buscarFecha(Date fec_pago){
-    //     return (List<IProcesoNomina>) servicioProcesoNomina.buscarFecha("2020-01-15");
-    // }
-    
 }

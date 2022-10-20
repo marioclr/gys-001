@@ -10,18 +10,26 @@ import com.example.demo.model.ProcesoNomina;
 
 public interface IProcesoNominaService {
 
+    //Guardar fase
     void guardar(ProcesoNomina procesoNomina);
-    
-    // Listar fases por fecha de pago   
-    // List<IProcesoNomina> getBuscarFasesPorFecha();
 
-    // Listar fechas de m4sys_hist_pagas
+    // Listar fechas de m4sys_hist_pagas en combobox
     List<IFechaHisPagas> getFechas();
+
+    // Listar todas las fases (REST_CONTROLLER)
     List<IProcesoNomina> getMostrarFases();
 
+    //Conteo de validado
     List<IPorcentajeNomina> getProcentajeProgreso();
+
+    //buscar el detalle de la fase para actualizar
     ProcesoNomina buscarFecha(Date fec_pago);
+
+    // Buscar fases por fecha de pago (POST)
     List<IProcesoNomina> getBuscarFasesPorFecha(Date fec_pago);
+
+    //Buscar fase para dataTables
+    List<IProcesoNomina> getBuscarFase(Date fase);
 
 
     

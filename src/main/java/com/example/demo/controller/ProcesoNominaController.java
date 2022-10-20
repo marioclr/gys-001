@@ -46,15 +46,12 @@ public class ProcesoNominaController {
 		modelo.addAttribute("fechas", serviceProcesoNomina.getFechas());
 		List<IProcesoNomina> listaFases = serviceProcesoNomina.getMostrarFases();
 		List<IPorcentajeNomina> porcentaje = serviceProcesoNomina.getProcentajeProgreso();
-		// System.out.println("Lista de fases: " + listaFases);
-		
-		// System.out.println(porcentaje);
 		modelo.addAttribute("porcentaje", porcentaje);
 		modelo.addAttribute("fases",listaFases);
 		modelo.addAttribute("fases", serviceProcesoNomina.getMostrarFases());
-		return "/nomina/procesoNomina2";
+		return "/nomina/procesoNomina";
 	}
-
+//////////////////Aqui se modifica
     @GetMapping("/registroNomina")
 	public String registroProcesoNomina(ProcesoNomina procesoNomina, BindingResult result, Model modelo, RedirectAttributes attributes) {
 		modelo.addAttribute("titulo", "Registro de fases de proceso de nomina");

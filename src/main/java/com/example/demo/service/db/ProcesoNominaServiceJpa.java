@@ -64,6 +64,12 @@ public class ProcesoNominaServiceJpa implements IProcesoNominaService{
     }
 
 
+    @Override
+    public List<IProcesoNomina> getBuscarFase(Date fase) {
+        return procesoNominaRepo.buscarFasesPorFecha(fase);
+    }
+
+
     // https://es.stackoverflow.com/questions/311902/b%C3%BAsqueda-de-datos-entre-2-fechas-spring-boot
     
 }
