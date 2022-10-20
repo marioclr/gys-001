@@ -78,9 +78,9 @@ public class ProcesoNominaController {
 	}
 
 	//Modificar el registro de fases de la nomina
-	@GetMapping("/actValidacion/{fec_pago}")
-	public String editarRegistroFases(@PathVariable("fec_pago") Date fec_pago, Model modelo){
-		ProcesoNomina procesoNomina = serviceProcesoNomina.buscarFecha(fec_pago);
+	@GetMapping("/actValidacion/{id}")
+	public String editarRegistroFases(@PathVariable("id") Integer id, Model modelo){
+		ProcesoNomina procesoNomina = serviceProcesoNomina.buscarFaseFecha(id);
 		System.out.println("Resultado de busqueda: "+procesoNomina);
 		modelo.addAttribute("titulo", "Editar validación ");
 		modelo.addAttribute("procesoNomina", procesoNomina);

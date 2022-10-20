@@ -2,11 +2,14 @@ package com.example.demo.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+// import javax.persistence.Temporal;
+// import javax.persistence.TemporalType;
 // import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,7 +19,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class ProcesoNomina {
     // PK fec_pago
     @Id
-    @Temporal(TemporalType.DATE)
+    @Column (updatable = false, insertable= false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    // @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date fec_pago;
     private String actividad;
@@ -25,6 +31,14 @@ public class ProcesoNomina {
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date fec_fin;
     private Boolean validado = false;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Date getFec_pago() {
         return fec_pago;

@@ -14,7 +14,7 @@ import com.example.demo.model.IProcesoNomina;
 import com.example.demo.model.ProcesoNomina;
 
 @Repository
-public interface ProcesoNominaRepository extends JpaRepository<ProcesoNomina, Date>{
+public interface ProcesoNominaRepository extends JpaRepository<ProcesoNomina, Integer>{
 
     @Query(value = "Select Count(*) conteo, validado From fases_proceso_nomina Group By validado", nativeQuery = true)
     List<IPorcentajeNomina> getProcentajeProgreso();
@@ -35,14 +35,14 @@ public interface ProcesoNominaRepository extends JpaRepository<ProcesoNomina, Da
                     +"(day(fec_paga) = '31' And month(fec_paga)='12') Or \r\n"
                     +"(day(fec_paga) = '28' And month(fec_paga)='02') Or \r\n"
                     +"(day(fec_paga) = '29' And month(fec_paga)='02'))"
-                    +"And fec_paga >= '2022-01-15' order by fec_paga desc", nativeQuery = true)
+                    +"And year(fec_paga) >= year(today) order by fec_paga desc", nativeQuery = true)
     List<IFechaHisPagas>getFechas();
 
     @Query(value = "Select * from fases_proceso_nomina", nativeQuery = true)
     List<IProcesoNomina> getMostrarFases();
 
     // llama al datatables
-    @Query(value = "Select * From fases_proceso_nomina Where fec_pago = ?", nativeQuery = true)
+    @Query(value = "Select * From fases_proceso_nomina Where fec_pago = ? order by fec_ini", nativeQuery = true)
     List<IProcesoNomina> buscarFasesPorFecha(Date fecha_paga);
 
 

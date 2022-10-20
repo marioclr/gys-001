@@ -32,6 +32,7 @@
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <form th:action="@{/nomina/registroNomina}" th:object="${procesoNomina}" method="post">
+                                    <input type="hidden" th:field="*{id}" name="id" id="id">
                                     <div class="row">
                                         <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
                                             <label>Fecha pago:</label>
@@ -68,7 +69,7 @@
                                             <input type="checkbox" class="form-check-input" th:field="*{validado}" name="validado" id="validado">
                                         </div>
                                         <div class="col-md-12 mt-5">
-                                            <input type="submit" class="btn btn-block issste text-white" value="Guardar">
+                                            <input type="submit" id="btnGuardarFases" class="btn btn-block issste text-white" value="Guardar">
                                         </div>
                                     </div>
                                 </form>
@@ -98,7 +99,7 @@
         <!-- Script para animacion de cambio de tarjeta -->
         <script th:src="@{/js/bootstrap.js}"></script>
         <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
-        <script th:src="@{/js/guardia.js}"></script>
+        <script th:src="@{/js/nomina.js}"></script>
 </body>
 
 </html>

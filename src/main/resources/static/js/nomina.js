@@ -1,11 +1,20 @@
-var tabla;
 
+$("#btnGuardarFases").on("click", function (event) {
+    let fecha_pago= document.getElementById('fec_pago').value;
+
+    if (fec_pago == null || fec_pago == 0 ){
+        alert("No ha seleccionado ninguna fecha de pago");
+
+        return false;
+    }
+});
 //funcion al cargar la página
-$(document).ready(function () {
+// $(document).ready(function () {
     // alert("funcionando");
     // mostrarTabla();
     // autocompletar();
-});
+// });
+var tabla;
 
 $("#btnBuscarFasesFecha").on("click", function (event) {
   
@@ -60,12 +69,14 @@ $("#btnBuscarFasesFecha").on("click", function (event) {
                     columnDefs: [
                         {
                             targets: 0,
-                            data: "fec_Pago"
+                            data: "fec_Pago",
+                            orderable: false
             
                         },
                         {
                             targets: 1,
-                            data: "actividad"
+                            data: "actividad",
+                            orderable: false
             
                         },
                         {
@@ -76,7 +87,8 @@ $("#btnBuscarFasesFecha").on("click", function (event) {
                         {
                             targets: 3,
                             data: "fec_Fin",
-                            searchable: false
+                            searchable: false,
+                            orderable: false
                         },
                         {
                             targets: 4,
@@ -93,7 +105,7 @@ $("#btnBuscarFasesFecha").on("click", function (event) {
                         },
                         {
                             targets: 5,
-                            data: "fec_Pago",
+                            data: "id",
                             orderable: false,
                             bSort: false,
                             ordering: false,

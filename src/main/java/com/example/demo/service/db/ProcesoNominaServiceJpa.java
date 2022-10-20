@@ -46,10 +46,10 @@ public class ProcesoNominaServiceJpa implements IProcesoNominaService{
         return procesoNominaRepo.getProcentajeProgreso();
     }
 
-
+    //Buscar para actualizar
     @Override
-    public ProcesoNomina buscarFecha(Date fec_pago) {
-        Optional<ProcesoNomina> opcional =  procesoNominaRepo.findById(fec_pago);
+    public ProcesoNomina buscarFaseFecha(Integer id) {
+        Optional<ProcesoNomina> opcional =  procesoNominaRepo.findById(id);
 		if(opcional.isPresent()) {
 			return opcional.get();
 		}
