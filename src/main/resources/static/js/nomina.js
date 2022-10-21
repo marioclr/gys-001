@@ -19,6 +19,8 @@ var tabla;
 $("#btnBuscarFasesFecha").on("click", function (event) {
   
     let fechas_paga = document.getElementById('fechas_paga').value;
+    var i=0;
+    var j=0;
     // alert(fechas_paga);
 
     if (fechas_paga == 0 || $("#fechas_paga").val() == 00) {
@@ -50,7 +52,28 @@ $("#btnBuscarFasesFecha").on("click", function (event) {
                 // $('.toast-body').text("No se encontro informacion con esa fecha");
                 return 0;
             }else{
+                // Porcentaje de progress Bar
+                data.forEach(elemento => {
+                    i++;
+                    if(elemento.validado == true){
+                        j++;
+                    }
+                    // console.log(j);
+                });
+                // console.log(i);
+                var porcentaje = (100/i)*j;
 
+                if(i == 0){
+                var progressBar = '';
+                }else if(j == 0){
+                    var progressBar = '<div class="col-md-1 mt-2 mb-3">0%</div><div class="col-md-11 mt-2 mb-3"><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div></div>';
+                }else{
+                    var progressBar = '<div class="col-md-1 mt-2 mb-3">'+porcentaje.toFixed(2)+' %</div><div class="col-md-11 mt-2 mb-3"><div class="progress"><div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: '+(100/i)*j+'%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div></div>';
+                }
+
+                document.getElementById('progress-bar').innerHTML=progressBar;
+                
+                // Datatables
                 console.log("éxito", data);
                 tabla = $('#tbl_nomina').DataTable({
                     paging: false,

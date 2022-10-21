@@ -23,20 +23,9 @@
                 <div th:insert="fragments/nav::navbar"></div>
 
                 <div class="container-fluid mt-5">
-                    <h2 class="black text-center">Fechas de captura</h2>
+                    <h2 class="black text-center mb-5">Fechas de captura</h2>
 
-                    <div class="row mt-2 mb-3">
-                        <div class="col-md-12 mt-2 mb-3">
-                            <h4 class="black">Progreso:</h4>
-                            <div class="conteo-progreso" th:each="prog : ${porcentaje}">
-                                <span th:text="${prog.conteo}"></span>
-                                <!-- <span th:value="${prog.conteo}">prueba</span> -->
-                                <span th:text="${prog.validado}"></span>
-                            </div>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
+                    <div id="progress-bar"  class="row mt-2 mb-3">
                     </div>
 
                     <div class="row">
@@ -48,8 +37,11 @@
                                     th:text="${fecha.fechas}"></option>
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-1">
                                 <input type="submit" id="btnBuscarFasesFecha" class="btn btn-success" value="Buscar">
+                        </div>
+                        <div class="col-md-3">
+                            <a href="/nomina/registroNomina" class="btn btn-primary">Registrar una nueva fase</a>
                         </div>
                     </div>
 
