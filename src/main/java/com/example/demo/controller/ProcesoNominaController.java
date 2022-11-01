@@ -55,6 +55,7 @@ public class ProcesoNominaController {
     @GetMapping("/registroNomina")
 	public String registroProcesoNomina(ProcesoNomina procesoNomina, BindingResult result, Model modelo, RedirectAttributes attributes) {
 		modelo.addAttribute("titulo", "Registro de fases de proceso de nomina");
+		modelo.addAttribute("fechas", serviceProcesoNomina.getFechas());
 		return "/nomina/fasesNomina";
 	}
 

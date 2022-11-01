@@ -31,51 +31,57 @@
                         <div class="row">
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
-                                <form th:action="@{/nomina/registroNomina}" th:object="${procesoNomina}" method="post">
-                                    <input type="hidden" th:field="*{id}" name="id" id="id">
+                                <form th:action="@{/timbrado/registroFechas}" th:object="${timbrado}" method="post">
                                     <div class="row">
                                         <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
                                             <label>Fecha pago:</label>
                                         </div>
                                         <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
-                                            <select class="form-control" id="fec_pago" name="fec_pago" th:field="*{fec_pago}" aria-label="Default select example">
-                                                <option value="0" selected>Seleccione una fecha</option>
-                                                <option th:each="fecha : ${fechas}"
-                                                    th:value="${fecha.fec_paga}"
-                                                    th:text="${fecha.fechas}"></option>
-                                            </select>
-                                            <!-- <input type="date" class="form-control" th:field="*{fec_pago}"
-                                                name="fec_pago" id="fec_pago"> -->
+                                            <input type="date" class="form-control" name="fec_pago" id="fec_pago">
                                         </div>
                                         <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
-                                            <label>Actividad:</label>
+                                            <label>ISR:</label>
                                         </div>
                                         <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
-                                            <input type="text" class="form-control" th:field="*{actividad}"
-                                                placeholder="Ingrese el nombre de la actividad" name="actividad"
-                                                id="actividad">
+                                            <input type="text" class="form-control" 
+                                                placeholder="Ingrese el monto de ISR" name="isr"
+                                                id="isr" required>
                                         </div>
                                         <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
-                                            <label>Fecha de inicio:</label>
+                                            <label>Registros:</label>
                                         </div>
                                         <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
-                                            <input type="date" class="form-control" th:field="*{fec_ini}" name="fec_ini"
-                                                id="fec_ini">
+                                            <input type="text" class="form-control" 
+                                                placeholder="Ingrese el mes correspondiente" name="registros"
+                                                id="registros" required>
                                         </div>
                                         <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
-                                            <label>Fecha fin:</label>
+                                            <label>Quincena:</label>
                                         </div>
                                         <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
-                                            <input type="date" class="form-control" th:field="*{fec_fin}" name="fec_fin" id="fec_fin">
+                                            <input type="text" class="form-control" 
+                                                placeholder="Ingrese la quincena" name="quincena"
+                                                id="quincena" required>
                                         </div>
                                         <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
-                                            <label>Activo:</label>
+                                            <label>Mes:</label>
                                         </div>
                                         <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
-                                            <input type="checkbox" class="form-check-input" th:field="*{validado}" name="validado" id="validado">
+                                            <input type="text" class="form-control" 
+                                                placeholder="Ingrese el mes correspondiente" name="mes"
+                                                id="mes" required>
                                         </div>
+                                        <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
+                                            <label>Año:</label>
+                                        </div>
+                                        <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
+                                            <input type="text" class="form-control"
+                                                placeholder="Ingrese el año correspondiente" name="anio"
+                                                id="anio" required>
+                                        </div>
+                                        
                                         <div class="col-md-12 mt-5">
-                                            <input type="submit" id="btnGuardarFases" class="btn btn-block issste text-white" value="Guardar">
+                                            <input type="submit" id="btnGuardarFechas" class="btn btn-block issste text-white" value="Guardar">
                                         </div>
                                     </div>
                                 </form>
