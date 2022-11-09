@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.model.IQnaTimbrado;
 import com.example.demo.model.ITimbradoMeta4;
 import com.example.demo.model.Timbrado;
 import com.example.demo.repository.TimbradoRepository;
@@ -25,6 +26,11 @@ public class TimbradoServiceJpa implements ITimbradoService {
     @Override
     public List<ITimbradoMeta4> mostrarRegistrosMeta4(Integer quincena) {
         return timbradoRepo.mostrarRegistrosMeta4(quincena);
+    }
+
+    @Override
+    public List<IQnaTimbrado> listaQnaTimbrado() {
+        return timbradoRepo.listaQnaTimbrado();
     }
 
 }

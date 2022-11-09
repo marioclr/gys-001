@@ -39,7 +39,8 @@ public class TimbradoController {
 	ITimbradoService serviceTimbrado;
 
     @GetMapping("/resumen")
-	public String resumen() {
+	public String resumen(Model modelo) {
+		modelo.addAttribute("qnas", serviceTimbrado.listaQnaTimbrado());
 		return "/timbrado/resumen";
 	}
 
