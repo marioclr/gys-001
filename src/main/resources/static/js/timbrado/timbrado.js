@@ -29,7 +29,7 @@ $("#btnBuscarQnaTimbrado").on("click", function (event){
         },
        
         order: [
-            [0 , 1, "asc"]
+            [0 , "desc"]
         ],
 
         columnDefs: [
@@ -40,12 +40,26 @@ $("#btnBuscarQnaTimbrado").on("click", function (event){
             },
             {
                 targets: 1,
-                data: "registros_meta4"
+                data: "registros_meta4",
+                render:
+                    function (data) {
+                        if(data){
+                            return '<span class="badge badge-primary text-wrap">' + data + '</span>';
+                        }
+                    },
 
             },
             {
                 targets: 2,
-                data: "isr_Meta4", //new Intl.NumberFormat('en-IN').format(number)
+                data: "isr_Meta4",
+                render:
+                    function (data) {
+                        if(data>0){
+                            return '<span class="badge badge-primary text-wrap">' + new Intl.NumberFormat('es-MX').format(data) + '</span>';
+                        }else{
+                            return '<span></span>';
+                        }
+                    },
                 searchable: false
             },
             {
@@ -55,23 +69,63 @@ $("#btnBuscarQnaTimbrado").on("click", function (event){
             },
             {
                 targets:4,
-                data:"recibos_No_Reportados"
+                data:"recibos_No_Reportados",
+                render:
+                    function (data) {
+                        if(data!=0){
+                            return '<h5><span class="badge badge-warning text-wrap">' + data + '</span></h5>';
+                        }else{
+                            return '<span>' + data + '</span>';
+                        }
+                    }
             },
             {
                 targets:5,
-                data:"registros"
+                data:"registros",
+                render:
+                    function (data) {
+                        if(data>0){
+                            return '<span class="badge badge-success text-wrap">' + data + '</span>';
+                        }
+                    }
             },
             {
                 targets:6,
-                data:"isr"
+                data:"isr",
+                render:
+                    function (data) {
+                        if(data>0){
+                            return '<span class="badge badge-success text-wrap">' + new Intl.NumberFormat('es-MX').format(data) + '</span>';
+                        }else{
+                            return '<span></span>';
+                        }
+                    }
+
             },
             {
                 targets:7,
-                data:"registros_no_timbrados"
+                data:"registros_no_timbrados",
+                render:
+                    function (data) {
+                        if(data>0){
+                            return '<h5><span class="badge badge-danger text-wrap">' + data + '</span><h5>';
+                        }else{
+                            return '<span></span>';
+                        }
+                    }
             },
             {
                 targets:8,
-                data:"isr_no_timbrado"
+                data:"isr_no_timbrado",
+                render:
+                    function (data) {
+                        if(data>0){
+                            return '<span class="badge badge-danger text-wrap">' + new Intl.NumberFormat('es-MX').format(data) + '</span>';
+                        }else{
+                            return '<span></span>';
+                        }
+                    }
+                
             }
             
         ],
@@ -81,7 +135,7 @@ $("#btnBuscarQnaTimbrado").on("click", function (event){
             info: "Mostrando registros de _START_ a _END_ de un total de _TOTAL_ registros",
             zeroRecords: "Buscando resultados",
             sSearch: "Buscar: ",
-            infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+            infoEmpty: "",
             infoFiltered: "(Filtrado de un total de _MAX_ registros)",
             sProccessing: "Procesando ...",
             oPaginate: {

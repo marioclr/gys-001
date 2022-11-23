@@ -37,15 +37,17 @@
                                         <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
                                             <label>Fecha pago:</label>
                                         </div>
-                                        <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
-                                            <select class="form-control" id="fec_pago" name="fec_pago" th:field="*{fec_pago}" aria-label="Default select example">
+                                        <!-- <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
+                                            <select class="form-control" id="fec_pago" name="fec_pago"
+                                                th:field="*{fec_pago}" aria-label="Default select example">
                                                 <option value="0" selected>Seleccione una fecha</option>
                                                 <option th:each="fecha : ${fechas}"
                                                     th:value="${fecha.fec_paga}"
                                                     th:text="${fecha.fechas}"></option>
-                                            </select>
-                                            <!-- <input type="date" class="form-control" th:field="*{fec_pago}"
-                                                name="fec_pago" id="fec_pago"> -->
+                                            </select> -->
+                                        <div class="col-sm-12 col-lg-8 col-md-8 mt-3 mb-4">
+                                            <input type="date" class="form-control" th:field="*{fec_pago}"
+                                                name="fec_pago" id="fec_pago">
                                         </div>
                                         <div class="col-sm-12 col-lg-4 col-md-4 mt-3 mb-4 text-center black">
                                             <label>Actividad:</label>
